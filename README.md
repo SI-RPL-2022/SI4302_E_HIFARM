@@ -2,7 +2,7 @@
 
 ## About HiFarm
 
-**HiFarm** is a repository for Web Application for Project of Capstone Project Course. HiFarm provides facilities to the community, especially farmers in Indonesia. On this website, farmers can purchase animal feed ingredients, sell livestock, auction animals and record income and expenses from farmers. This website can also cooperate with other parties for the distribution of livestock, for example qurban animals.
+**HiFarm** is a repository for Web Application Project of Capstone Project Course. HiFarm provides facilities to the community, especially farmers in Indonesia. On this website, farmers can purchase animal feed ingredients, sell livestock, auction animals and record income and expenses from farmers. This website can also cooperate with other parties for the distribution of livestock, for example qurban animals.
 
 ## Requirements
 - PHP >= 7.3.0
