@@ -27,7 +27,7 @@ It is assumed that you have been successfully run the application on your develo
 
 ## Contributor
 1. Nuh Mahardika Matien Siam (1202194046) a.k.a [ennmatien](https://github.com/ennmatien)
-2. Fakhri Hassan Maulana (1202194336) [dzzlr](https://github.com/dzzlr)
-3. Febrian Fahmi Alim (1202190177) [brianajaaa](https://github.com/brianajaaa)
-4. M Fajri Bryan Pratama (1202190116) [fajribryan](https://github.com/fajribryan)
-5. Zul Fauzi Yahyah (1202190128) [icarryu](https://github.com/icarryu)
+2. Fakhri Hassan Maulana (1202194336) a.k.a [dzzlr](https://github.com/dzzlr)
+3. Febrian Fahmi Alim (1202190177) a.k.a [brianajaaa](https://github.com/brianajaaa)
+4. M Fajri Bryan Pratama (1202190116) a.k.a [fajribryan](https://github.com/fajribryan)
+5. Zul Fauzi Yahyah (1202190128) a.k.a [icarryu](https://github.com/icarryu)
