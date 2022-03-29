@@ -26,8 +26,8 @@ It is assumed that you have been successfully run the application on your develo
 3. Push to the remote repository `git push origin <your_branch_name>`
 
 ## Contributor
-1. Nuh Mahardika Matien Siam (1202194046)
-2. Fakhri Hassan Maulana (1202194336)
-3. Febrian Fahmi Alim (1202190177)
-4. M Fajri Bryan Pratama (1202190116)
-5. Zul Fauzi Yahyah (1202190128)
+1. Nuh Mahardika Matien Siam (1202194046) a.k.a [ennmatien](https://github.com/ennmatien)
+2. Fakhri Hassan Maulana (1202194336) [dzzlr](https://github.com/dzzlr)
+3. Febrian Fahmi Alim (1202190177) [brianajaaa](https://github.com/brianajaaa)
+4. M Fajri Bryan Pratama (1202190116) [fajribryan](https://github.com/fajribryan)
+5. Zul Fauzi Yahyah (1202190128) [icarryu](https://github.com/icarryu)
