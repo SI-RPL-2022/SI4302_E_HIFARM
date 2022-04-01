@@ -15,11 +15,15 @@
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
                 @endif --}}
-                {{-- @if (session()->has('success-add'))
-                    <x-alert/>
-                @endif --}}
-
                 <div class="m-3">
+                    @if (session()->has('success-add'))
+                        <x-alert type="success" message="{{ session('success-add') }}"/>
+                    @endif
+
+                    @if (session()->has('success-update'))
+                        <x-alert type="success" message="{{ session('success-update') }}"/>
+                    @endif
+
                     <a class="btn btn-sm btn-primary mb-2 fw-bold" href="{{ route('vendor.product.create') }}">
                         <span><i class="bi bi-plus-lg fw-bold"></i>
                         </span>{{ __('Add Product') }}

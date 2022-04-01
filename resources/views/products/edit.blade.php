@@ -9,13 +9,14 @@
             <div class="card">
                 <div class="card-header">{{ __('Edit Produk') }}</div>
                 <div class="card-body">
-                    <form action="/vendor/product/edit/{{ $data->id }}" method="POST">
+                    <form action="/vendor/product/edit/{{ $data->id }}" method="POST" enctype="multipart/form-data">
                         @csrf
 
                         <div class="mb-3 row">
-                            <label for="gambar" class="col-sm-2 col-form-label">{{ __('Gambar Produk') }}</label>
+                            <label for="image" class="col-sm-2 col-form-label">{{ __('Gambar Produk') }}</label>
                             <div class="col-sm-10">
-                                <input class="form-control" type="file" id="gambar" name="gambar">
+                                <img class="mb-3 col-sm-5 img-preview img-fluid">
+                                <input class="form-control" type="file" id="image" name="image" onchange="previewImage()">
                             </div>
                         </div>
 
@@ -90,4 +91,19 @@
     </div>
 
 </div>
+
+<script>
+    function previewImage() {
+        const image = document.querySelector('#image');
+        const imgPreview = document.querySelector('.img-preview');
+        imgPreview.style.display = 'block';
+        const oFReader = new FileReader();
+        oFReader.readAsDataURL(image.files[0]);
+        
+        oFReader.onload = function(oFREvent) {
+            imgPreview.src = oFREvent.target.result;
+        }
+    }
+</script>
+
 @endsection

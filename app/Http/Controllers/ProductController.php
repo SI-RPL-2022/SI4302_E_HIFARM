@@ -93,7 +93,7 @@ class ProductController extends Controller
         $data->desc = $request->desc;
         $data->save();
 
-        return redirect('/vendor/product')->with('success-edit','Anda berhasil menambah produk!');
+        return redirect('/vendor/product')->with('success-update','Anda berhasil update produk!');
     }
 
     /**
