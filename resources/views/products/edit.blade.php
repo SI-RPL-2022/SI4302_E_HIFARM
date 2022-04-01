@@ -75,7 +75,9 @@
                         <div class="mb-3 row">
                             <label for="desc" class="col-sm-2 col-form-label">{{ __('Keterangan') }}</label>
                             <div class="col-sm-10">
-                                <textarea class="form-control" id="desc" name="desc" rows="3">{{ $data->desc }}</textarea>
+                                <input type="hidden" name="desc" id="desc" value="{{ $data->desc }}">
+                                <trix-editor input="desc"></trix-editor>
+                                {{-- <textarea class="form-control" id="desc" name="desc" rows="3">{{ $data->desc }}</textarea> --}}
                             </div>
                         </div>
 
