@@ -27,6 +27,7 @@ Auth::routes();
 Route::prefix('home')->middleware('auth')->group(function () {
     ////////////////////////// LANDING PAGE
     Route::get('/', [HomeController::class, 'index'])->name('home');
+    // Route::get('/storeList', [HomeController::class, 'index'])->name('storeList');
 
 });
 
