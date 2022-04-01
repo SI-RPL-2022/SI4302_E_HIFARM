@@ -25,6 +25,6 @@ class CheckRole
             }
         }
         //
-        return redirect('/');
+        abort(403, 'Unauthorized action.');
     }
 }

@@ -15,14 +15,15 @@ class CreateProductsTable extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('vendor_id');
-            $table->foreign('vendor_id')->references('id')->on('vendors')->onDelete('cascade')->onUpdate('cascade');
-            $table->string('product_name');
+            // $table->unsignedBigInteger('vendor_id');
+            // $table->foreign('vendor_id')->references('id')->on('vendors')->onDelete('cascade')->onUpdate('cascade');
+            $table->string('name');
             $table->integer('price');
             $table->integer('weight');
-            $table->enum('role', ['Hewan Ternak', 'Produk Ternak','Pakan Ternak','Lainnya'])->default('Lainnya');
-            $table->string('image')->default('noimg.jpg');
-            $table->text('descr')->nullable();
+            $table->enum('category',['Hewan Ternak','Produk Ternak','Pakan Ternak','Lainnya']);
+            // $table->string('image')->default('noimg.jpg');
+            $table->string('image')->nullable();
+            $table->text('desc')->nullable();
             $table->timestamps();
         });
     }

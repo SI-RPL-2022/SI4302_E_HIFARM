@@ -20,12 +20,12 @@
                 @endif --}}
 
                 <div class="m-3">
-                    <a class="btn btn-sm btn-primary mb-2 fw-bold" href="{{ route('product.create') }}">
+                    <a class="btn btn-sm btn-primary mb-2 fw-bold" href="{{ route('vendor.product.create') }}">
                         <span><i class="bi bi-plus-lg fw-bold"></i>
                         </span>{{ __('Add Product') }}
                     </a>
 
-                    <form class="mb-2 d-flex input-group" action="/product">
+                    <form class="mb-2 d-flex input-group" action="/vendor/product">
                         <input class="form-control" type="text" placeholder="Search" name="search" aria-label="Search" value="{{ request('search') }}">
                         <button class="btn btn-primary" type="submit">Search</button>
                     </form>
@@ -45,13 +45,13 @@
                         @foreach ($data as $key=>$row)
                             <tr>
                                 <td>{{ $row->id }}</td>
-                                <td>{{ $row->nama }}</td>
-                                <td>{{ $row->harga }}</td>
-                                <td>{{ $row->berat }}</td>
-                                <td>{{ $row->kategori }}</td>
+                                <td>{{ $row->name }}</td>
+                                <td>{{ $row->price }}</td>
+                                <td>{{ $row->weight }}</td>
+                                <td>{{ $row->category }}</td>
                                 <td class="d-flex flex-wrap">
                                     <a class="btn btn-sm btn-info me-1 mb-1 text-white" href=""> {{ __('View') }} </a>
-                                    <a class="btn btn-sm btn-primary me-1 mb-1" href="/product/edit/{{ $row->id }}"> {{ __('Edit') }} </a>
+                                    <a class="btn btn-sm btn-primary me-1 mb-1" href="/vendor/product/edit/{{ $row->id }}"> {{ __('Edit') }} </a>
                                     <button class="btn btn-sm btn-danger me-1 mb-1" type="button" data-bs-toggle="modal" data-bs-target="#confirmationDelete">Delete</button>
                                 </td>
                             </tr>
@@ -69,7 +69,7 @@
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                             
-                                            <form action="/product/{{ $row->id }}" method="post">
+                                            <form action="/vendor/product/{{ $row->id }}" method="post">
                                                 @csrf
 
                                                 <input type="hidden" name="_method" value="DELETE">

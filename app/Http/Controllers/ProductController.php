@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Products;
+use App\Models\Product;
 
 class ProductController extends Controller
 {
@@ -15,7 +15,7 @@ class ProductController extends Controller
     public function index()
     {
         return view('products.index', [
-            'data' => Products::latest()->filter(request(['search']))->paginate(10)
+            'data' => Product::latest()->filter(request(['search']))->paginate(10)
         ]);
     }
 
@@ -37,23 +37,17 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        // $data = new Products;
-        // $data->nama = $request->nama;
-        // $data->harga = $request->harga;
-        // $data->berat = $request->berat;
-        // $data->kategori = $request->kategori;
-        // $data->keterangan = $request->keterangan;
-        // $data->save();
         $validatedData = $request->validate([
-            'nama' => 'required',        
-            'harga' => 'required',
-            'berat' => 'required',
-            'kategori' => 'required',
-            'keterangan' => 'required',
+            // 'vendor_id' => 'required',
+            'name' => 'required',
+            'price' => 'required',
+            'weight' => 'required',
+            'category' => 'required',
+            'desc' => 'required',
         ]);
 
-        Products::create($validatedData);
-        return redirect('/product')->with('success-add','Anda berhasil menambah produk!');
+        Product::create($validatedData);
+        return redirect('/vendor/product')->with('success-add','Anda berhasil menambah produk!');
     }
 
     /**
@@ -75,7 +69,7 @@ class ProductController extends Controller
      */
     public function edit($id) //$id
     {
-        $data = Products::find($id);
+        $data = Product::find($id);
 
         return view('products.edit', [
             'data' => $data
@@ -91,15 +85,15 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $data = Products::find($id);
-        $data->nama = $request->nama;
-        $data->harga = $request->harga;
-        $data->berat = $request->berat;
-        $data->kategori = $request->kategori;
-        $data->keterangan = $request->keterangan;
+        $data = Product::find($id);
+        $data->name = $request->name;
+        $data->price = $request->price;
+        $data->weight = $request->weight;
+        $data->category = $request->category;
+        $data->desc = $request->desc;
         $data->save();
 
-        return redirect('/product')->with('success-edit','Anda berhasil menambah produk!');
+        return redirect('/vendor/product')->with('success-edit','Anda berhasil menambah produk!');
     }
 
     /**
@@ -110,9 +104,9 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        $data = Products::find($id);
+        $data = Product::find($id);
         $data->delete();
 
-        return redirect('/product')->with('success-remove','Anda berhasil menghapus produk!');
+        return redirect('/vendor/product')->with('success-remove','Anda berhasil menghapus produk!');
     }
 }

@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\VendorController;
+use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,13 +22,31 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+////////////////////////// Landing Page
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::group(['middleware'=>'auth'], function() {
-    Route::get('/product', [App\Http\Controllers\ProductController::class, 'index'])->name('product.index');
-    Route::post('/product', [App\Http\Controllers\ProductController::class, 'store']);
-    Route::get('/product/create', [App\Http\Controllers\ProductController::class, 'create'])->name('product.create');
-    Route::get('/product/edit/{id}', [App\Http\Controllers\ProductController::class, 'edit'])->name('product.edit');
-    Route::post('/product/edit/{id}', [App\Http\Controllers\ProductController::class, 'update']);
-    Route::delete('/product/{id}', [App\Http\Controllers\ProductController::class, 'destroy']);
+Route::prefix('home')->middleware('auth')->group(function () {
+    ////////////////////////// LANDING PAGE
+    Route::get('/', [HomeController::class, 'index'])->name('home');
+    // Route::get('/storeList', [HomeController::class, 'index'])->name('storeList');
+
+});
+
+
+// Route::prefix('vendor')->middleware('auth', 'checkRole:vendor')->group(function () {
+Route::group(['middleware'=>'checkRole:vendor','prefix'=>'vendor'], function() {
+    // TOKO
+    // Route::get('/store', [VendorController::class, 'index'])->name('vendor.store');
+    // Route::post('/store', [VendorController::class, 'store'])->name('vendor.create');
+    // Route::put('/store/{id}', [VendorController::class, 'update'])->name('vendor.update');
+    // Route::delete('/delete/{id}', [VendorController::class, 'delete'])->name('vendor.delete');
+
+    // PRODUK
+    Route::get('/product', [ProductController::class, 'index'])->name('vendor.product.index');
+    Route::post('/product', [ProductController::class, 'store']);
+    Route::get('/product/add', [ProductController::class, 'create'])->name('vendor.product.create');
+    Route::get('/product/edit/{id}', [ProductController::class, 'edit'])->name('vendor.product.edit');
+    Route::post('/product/edit/{id}', [ProductController::class, 'update']);
+    Route::delete('/product/{id}', [ProductController::class, 'destroy']);
+
 });
