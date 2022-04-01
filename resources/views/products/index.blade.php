@@ -23,6 +23,10 @@
                     @if (session()->has('success-update'))
                         <x-alert type="success" message="{{ session('success-update') }}"/>
                     @endif
+                    
+                    @if (session()->has('success-remove'))
+                        <x-alert type="success" message="{{ session('success-remove') }}"/>
+                    @endif
 
                     <a class="btn btn-sm btn-primary mb-2 fw-bold" href="{{ route('vendor.product.create') }}">
                         <span><i class="bi bi-plus-lg fw-bold"></i>
