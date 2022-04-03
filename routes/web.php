@@ -32,13 +32,21 @@ Route::prefix('home')->middleware('auth')->group(function () {
 
 });
 
+Route::group(['middleware'=>'checkRole:user','prefix'=>'user'], function() {
+    // BUKA TOKO
+    Route::get('/store', [VendorController::class, 'create'])->name('user.create');
+    Route::post('/store', [VendorController::class, 'store'])->name('user.store');
+
+
+});
+
 
 // Route::prefix('vendor')->middleware('auth', 'checkRole:vendor')->group(function () {
 Route::group(['middleware'=>'checkRole:vendor','prefix'=>'vendor'], function() {
     // TOKO
-    // Route::get('/store', [VendorController::class, 'index'])->name('vendor.store');
-    // Route::post('/store', [VendorController::class, 'store'])->name('vendor.create');
-    // Route::put('/store/{id}', [VendorController::class, 'update'])->name('vendor.update');
+    Route::get('/store', [VendorController::class, 'index'])->name('vendor.index');
+    Route::get('/store/{id}', [VendorController::class, 'edit'])->name('vendor.edit');
+    Route::put('/store/{id}', [VendorController::class, 'update'])->name('vendor.update');
     // Route::delete('/delete/{id}', [VendorController::class, 'delete'])->name('vendor.delete');
 
     // PRODUK

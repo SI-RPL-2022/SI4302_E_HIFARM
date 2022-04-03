@@ -56,7 +56,7 @@
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item">Buka Toko</a>
+                            <a class="dropdown-item" href="{{ route('user.create')}}">Buka Toko</a>
                             <a class="dropdown-item">Profil</a>
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                onclick="event.preventDefault();
@@ -76,7 +76,7 @@
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item">Toko Ku</a>
+                            <a class="dropdown-item" href="{{ route('vendor.index')}}">Toko Ku</a>
                             <a class="dropdown-item">Buku Akuntan</a>
                             <a class="dropdown-item">Profil</a>
                             <a class="dropdown-item" href="{{ route('logout') }}"
