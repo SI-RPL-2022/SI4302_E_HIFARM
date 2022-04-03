@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Vendor;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class VendorController extends Controller
 {
@@ -13,7 +17,8 @@ class VendorController extends Controller
      */
     public function index()
     {
-        return view('tes');
+        $id = Auth::user()->id;
+        return view('tes')->with($id);
     }
 
     /**
@@ -23,7 +28,7 @@ class VendorController extends Controller
      */
     public function create()
     {
-        //
+        return view('vendor.create');
     }
 
     /**
@@ -34,7 +39,30 @@ class VendorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $nama_file="noimg.jpg";
+        if ($request->file('image')){
+            $file = $request->file('image');
+            $nama_file= time().str_replace(" ","",$file->getClientOriginalName());
+            $file->move('image', $nama_file);
+        }
+
+        $user = User::find($request->user_id);
+        $user->update([
+                'role' => 'vendor'
+            ]);
+
+        $vendor = Vendor::create(
+            [
+                'user_id' => $request->user_id,
+                'store_name' => $request->store_name,
+                'address' => $request->address,
+                'phone' => $request->phone,
+                'image' => $nama_file,
+                'descr' => $request->descr,
+            ]);
+
+            //tambahin alert berhasil?
+            return $this->index();
     }
 
     /**
@@ -45,7 +73,9 @@ class VendorController extends Controller
      */
     public function show($id)
     {
-        //
+        
+        
+
     }
 
     /**
@@ -56,7 +86,8 @@ class VendorController extends Controller
      */
     public function edit($id)
     {
-        //
+        $vendor = Vendor::where('user_id', $id)->first();
+        return view('vendor.update',compact('vendor'));
     }
 
     /**
@@ -68,7 +99,25 @@ class VendorController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $nama_file="noimg.jpg";
+        if ($request->file('image')){
+            $file = $request->file('image');
+            $nama_file= time().str_replace(" ","",$file->getClientOriginalName());
+            $file->move('image', $nama_file);
+        }
+
+        $vendor = vendor::updateOrCreate(
+            ['user_id' => $id],
+            [   
+                'store_name' => $request->store_name,
+                'address' => $request->address,
+                'phone' => $request->phone,
+                'image' => $nama_file,
+                'descr' => $request->descr,
+            ]);
+
+            //tambahin alert berhasil?
+            return $this->index();
     }
 
     /**
