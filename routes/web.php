@@ -50,3 +50,6 @@ Route::group(['middleware'=>'checkRole:vendor','prefix'=>'vendor'], function() {
     Route::delete('/product/{id}', [ProductController::class, 'destroy']);
 
 });
+Route::get('/deskripsitoko',function () {
+    return view('deskripsitoko');
+});
