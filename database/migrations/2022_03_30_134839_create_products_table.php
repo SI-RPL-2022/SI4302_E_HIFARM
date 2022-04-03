@@ -17,12 +17,13 @@ class CreateProductsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('vendor_id');
             $table->foreign('vendor_id')->references('id')->on('vendors')->onDelete('cascade')->onUpdate('cascade');
-            $table->string('product_name');
+            $table->string('name');
             $table->integer('price');
             $table->integer('weight');
-            $table->enum('role', ['Hewan Ternak', 'Produk Ternak','Pakan Ternak','Lainnya'])->default('Lainnya');
+            $table->enum('category',['Hewan Ternak','Produk Ternak','Pakan Ternak','Lainnya']);
             $table->string('image')->default('noimg.jpg');
-            $table->text('descr')->nullable();
+            // $table->string('image')->nullable();
+            $table->text('desc')->nullable();
             $table->timestamps();
         });
     }

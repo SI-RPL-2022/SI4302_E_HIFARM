@@ -9,62 +9,64 @@
             <div class="card">
                 <div class="card-header">{{ __('Edit Produk') }}</div>
                 <div class="card-body">
-                    <form action="/product/edit/{{ $data->id }}" method="POST">
+                    <form action="/vendor/product/edit/{{ $data->id }}" method="POST" enctype="multipart/form-data">
                         @csrf
+                        <input type="hidden" name="vendor_id" value="{{ $vendor_id }}">
 
                         <div class="mb-3 row">
-                            <label for="gambar" class="col-sm-2 col-form-label">{{ __('Gambar Produk') }}</label>
+                            <label for="image" class="col-sm-2 col-form-label">{{ __('Gambar Produk') }}</label>
                             <div class="col-sm-10">
-                                <input class="form-control" type="file" id="gambar" name="gambar">
+                                <img class="mb-3 col-sm-5 img-preview img-fluid">
+                                <input class="form-control" type="file" id="image" name="image" onchange="previewImage()">
                             </div>
                         </div>
 
                         <div class="mb-3 row">
-                            <label for="nama" class="col-sm-2 col-form-label">{{ __('Nama Produk') }}</label>
+                            <label for="name" class="col-sm-2 col-form-label">{{ __('Nama Produk') }}</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="nama" name="nama" value="{{ $data->nama }}">
+                                <input type="text" class="form-control" id="name" name="name" value="{{ $data->name }}">
                             </div>
                         </div>
 
                         <div class="mb-3 row">
-                            <label for="harga" class="col-sm-2 col-form-label">{{ __('Harga Produk') }}</label>
+                            <label for="price" class="col-sm-2 col-form-label">{{ __('Harga Produk') }}</label>
                             <div class="col-sm-10">
-                                <input type="number" class="form-control" id="harga" name="harga" min="1" value="{{ $data->harga }}">
+                                <input type="number" class="form-control" id="price" name="price" min="1" value="{{ $data->price }}">
                             </div>
                         </div>
 
                         <div class="mb-3 row">
-                            <label for="berat" class="col-sm-2 col-form-label">{{ __('Berat Produk') }}</label>
+                            <label for="weight" class="col-sm-2 col-form-label">{{ __('Berat Produk') }}</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="berat" name="berat" value="{{ $data->berat }}">
+                                <input type="text" class="form-control" id="weight" name="weight" value="{{ $data->weight }}">
                             </div>
                         </div>
 
                         <div class="mb-3 row">
-                            <label for="kategori" class="col-sm-2 col-form-label">{{ __('Kategori Produk') }}</label>
+                            <label for="category" class="col-sm-2 col-form-label">{{ __('Kategori Produk') }}</label>
                             <div class="col-sm-10">
 
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="kategori" id="inlineRadio1"
-                                        value="Hewan Ternak" @if($data->kategori == 'Hewan Ternak') checked @endif>
+                                    <input class="form-check-input" type="radio" name="category" id="inlineRadio1"
+                                        value="Hewan Ternak" @if($data->category == 'Hewan Ternak') checked @endif>
                                     <label class="form-check-label" for="inlineRadio1">{{ __('Hewan Ternak') }}</label>
                                 </div>
 
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="kategori" id="inlineRadio2"
-                                        value="Produk Ternak" @if($data->kategori == 'Produk Ternak') checked @endif>
+                                    <input class="form-check-input" type="radio" name="category" id="inlineRadio2"
+                                        value="Produk Ternak" @if($data->category == 'Produk Ternak') checked @endif>
                                     <label class="form-check-label" for="inlineRadio2">{{ __('Produk Ternak') }}</label>
                                 </div>
 
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="kategori" id="inlineRadio3"
-                                        value="Pakan Ternak" @if($data->kategori == 'Pakan Ternak') checked @endif>
+                                    <input class="form-check-input" type="radio" name="category" id="inlineRadio3"
+                                        value="Pakan Ternak" @if($data->category == 'Pakan Ternak') checked @endif>
                                     <label class="form-check-label" for="inlineRadio3">{{ __('Pakan Ternak') }}</label>
                                 </div>
 
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="kategori" id="inlineRadio4"
-                                        value="Lainnya" @if($data->kategori == 'Lainnya') checked @endif>
+                                    <input class="form-check-input" type="radio" name="category" id="inlineRadio4"
+                                        value="Lainnya" @if($data->category == 'Lainnya') checked @endif>
                                     <label class="form-check-label" for="inlineRadio4">{{ __('Lainnya') }}</label>
                                 </div>
 
@@ -72,14 +74,16 @@
                         </div>
 
                         <div class="mb-3 row">
-                            <label for="keterangan" class="col-sm-2 col-form-label">{{ __('Keterangan') }}</label>
+                            <label for="desc" class="col-sm-2 col-form-label">{{ __('Keterangan') }}</label>
                             <div class="col-sm-10">
-                                <textarea class="form-control" id="keterangan" name="keterangan" rows="3">{{ $data->nama }}</textarea>
+                                <input type="hidden" name="desc" id="desc" value="{{ $data->desc }}">
+                                <trix-editor input="desc"></trix-editor>
+                                {{-- <textarea class="form-control" id="desc" name="desc" rows="3">{{ $data->desc }}</textarea> --}}
                             </div>
                         </div>
 
                         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                            <a class="btn btn-danger me-md-2" href="{{ route('product.index') }}">{{ __('Cancel') }}</a>
+                            <a class="btn btn-danger me-md-2" href="{{ route('vendor.product.index') }}">{{ __('Cancel') }}</a>
                             <button class="btn btn-primary" type="submit">{{ __('Submit') }}</button>
                         </div>
 
@@ -90,4 +94,19 @@
     </div>
 
 </div>
+
+<script>
+    function previewImage() {
+        const image = document.querySelector('#image');
+        const imgPreview = document.querySelector('.img-preview');
+        imgPreview.style.display = 'block';
+        const oFReader = new FileReader();
+        oFReader.readAsDataURL(image.files[0]);
+        
+        oFReader.onload = function(oFREvent) {
+            imgPreview.src = oFREvent.target.result;
+        }
+    }
+</script>
+
 @endsection
