@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Vendor;
 
 class ProductController extends Controller
 {
@@ -14,8 +15,12 @@ class ProductController extends Controller
      */
     public function index()
     {
+        $user = auth()->user()->id;
+        $vendor_id = Vendor::where('user_id',$user)->first()->id;
+
         return view('products.index', [
-            'data' => Product::latest()->filter(request(['search']))->paginate(10)
+            'vendor_id' => $vendor_id,
+            'data' => Product::latest('updated_at')->where('vendor_id',$vendor_id)->filter(request(['search']))->paginate(10)
         ]);
     }
 
@@ -26,7 +31,9 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('products.create');
+        return view('products.create', [
+            'vendor_id' => Vendor::where('user_id',auth()->user()->id)->first()->id
+        ]);
     }
 
     /**
@@ -38,7 +45,7 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            // 'vendor_id' => 'required',
+            'vendor_id' => 'required',
             'name' => 'required',
             'price' => 'required',
             'weight' => 'required',
@@ -56,9 +63,11 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Product $product)
     {
-        //
+        return view('products.show', [
+            'data' => $product
+        ]);
     }
 
     /**
@@ -67,12 +76,14 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id) //$id
+    public function edit(Product $product) //$id
     {
-        $data = Product::find($id);
+        // $data = Product::find($id);
+        $this->authorize('view', $product);
 
         return view('products.edit', [
-            'data' => $data
+            'vendor_id' => Vendor::where('user_id',auth()->user()->id)->first()->id,
+            'data' => $product
         ]);
     }
 
@@ -86,6 +97,7 @@ class ProductController extends Controller
     public function update(Request $request, $id)
     {
         $data = Product::find($id);
+        $data->vendor_id = $request->vendor_id;
         $data->name = $request->name;
         $data->price = $request->price;
         $data->weight = $request->weight;

@@ -42,6 +42,7 @@
                         <thead>
                             <tr>
                                 <th scope="col">Id</th>
+                                <th scope="col">Updated</th>
                                 <th scope="col">Nama</th>
                                 <th scope="col">Harga</th>
                                 <th scope="col">Berat</th>
@@ -53,18 +54,19 @@
                         @foreach ($data as $key=>$row)
                             <tr>
                                 <td>{{ $row->id }}</td>
+                                <td>{{ $row->updated_at }}</td>
                                 <td>{{ $row->name }}</td>
                                 <td>{{ $row->price }}</td>
                                 <td>{{ $row->weight }}</td>
                                 <td>{{ $row->category }}</td>
                                 <td class="d-flex flex-wrap">
-                                    <a class="btn btn-sm btn-info me-1 mb-1 text-white" href=""> {{ __('View') }} </a>
+                                    <a class="btn btn-sm btn-info me-1 mb-1 text-white" href="/vendor/product/show/{{ $row->id }}"> {{ __('View') }} </a>
                                     <a class="btn btn-sm btn-primary me-1 mb-1" href="/vendor/product/edit/{{ $row->id }}"> {{ __('Edit') }} </a>
-                                    <button class="btn btn-sm btn-danger me-1 mb-1" type="button" data-bs-toggle="modal" data-bs-target="#confirmationDelete">Delete</button>
+                                    <button class="btn btn-sm btn-danger me-1 mb-1" type="button" data-bs-toggle="modal" data-bs-target="#confirmationDelete{{ $row->id }}">Delete</button>
                                 </td>
                             </tr>
 
-                            <div class="modal fade" id="confirmationDelete" tabindex="-1" aria-labelledby="confirmationDeleteLabel" aria-hidden="true">
+                            <div class="modal fade" id="confirmationDelete{{ $row->id }}" tabindex="-1" aria-labelledby="confirmationDeleteLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">

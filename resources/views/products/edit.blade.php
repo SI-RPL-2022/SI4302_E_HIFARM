@@ -11,6 +11,7 @@
                 <div class="card-body">
                     <form action="/vendor/product/edit/{{ $data->id }}" method="POST" enctype="multipart/form-data">
                         @csrf
+                        <input type="hidden" name="vendor_id" value="{{ $vendor_id }}">
 
                         <div class="mb-3 row">
                             <label for="image" class="col-sm-2 col-form-label">{{ __('Gambar Produk') }}</label>

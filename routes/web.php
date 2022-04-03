@@ -42,11 +42,14 @@ Route::group(['middleware'=>'checkRole:vendor','prefix'=>'vendor'], function() {
     // Route::delete('/delete/{id}', [VendorController::class, 'delete'])->name('vendor.delete');
 
     // PRODUK
-    Route::get('/product', [ProductController::class, 'index'])->name('vendor.product.index');
-    Route::post('/product', [ProductController::class, 'store']);
-    Route::get('/product/add', [ProductController::class, 'create'])->name('vendor.product.create');
-    Route::get('/product/edit/{id}', [ProductController::class, 'edit'])->name('vendor.product.edit');
-    Route::post('/product/edit/{id}', [ProductController::class, 'update']);
-    Route::delete('/product/{id}', [ProductController::class, 'destroy']);
+    Route::group(['prefix'=>'product'], function() {
+        Route::get('/', [ProductController::class, 'index'])->name('vendor.product.index');
+        Route::post('/', [ProductController::class, 'store']);
+        Route::get('/create', [ProductController::class, 'create'])->name('vendor.product.create');
+        Route::get('/edit/{product}', [ProductController::class, 'edit'])->name('vendor.product.edit');
+        Route::post('/edit/{product}', [ProductController::class, 'update']);
+        Route::get('/show/{product}', [ProductController::class, 'show']);
+        Route::delete('/{product}', [ProductController::class, 'destroy']);
+    });
 
 });
