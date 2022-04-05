@@ -76,10 +76,10 @@ class VendorController extends Controller
     public function show($id)
     {
         $vendor= Vendor::find($id);
-        $product= Product::where("vendor_id",$id)->get(); //iterate foreach
+        $product= Product::where("vendor_id",$id)->paginate(6); //iterate foreach
         //$ review here, also foreach
 
-        return view('vendor.show',compact('vendor'));
+        return view('vendor.show',compact('vendor','product'));
 
     }
 

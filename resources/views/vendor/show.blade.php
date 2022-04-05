@@ -36,99 +36,35 @@
 			<div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
 			<br></br>
 			<div class="row mb-5 custom-row">
-		    	<div class="col-4">
-		    		<div class="card" style="width: 18rem;">
-					  <img src="assets/image_3.png" class="card-img-top" alt="...">
+				@foreach ($product as $item)
+		    	<div class="col-4" style="margin-top:2%;">
+		    		<div class="card" style="width: 25rem;">
+					  <img src="{{ URL::asset('image/'.$item->image)}}" class="card-img-top" alt="...">
 					  <div class="card-body">
-					    <h5 class="card-title">Sapi jantan unggulan</h5>
+					    <h5 class="card-title">{{$item->product_name}}</h5>
 					    <p class="card-text">
-					    	<span>Rp. 24.450.000,-</span><br>
-					    	<span>Bobot: 200-250kg</span>
+					    	<span>Rp. {{$item->price}}-</span><br>
+					    	<span>Bobot: {{$item->weight}}kg</span>
+							<br>
+							<br>
+							<span>Kategori: {{$item->role}}</span>
 					    </p>
-
-					    <span class="city">Bandung<a href="#" class="btn btn-primary btn-pesan" style="border-radius: 10px;">Pesan</a></span>
+						
+					    	<a href="#" class="btn btn-primary float-right" style="border-radius: 10px; width:4cm">Lihat</a>
 					  </div>
 					</div>
 		    	</div>
+				@endforeach
 
-		    	<div class="col-4">
-		    		<div class="card" style="width: 18rem;">
-					  <img src="assets/image_3.png" class="card-img-top" alt="...">
-					  <div class="card-body">
-					    <h5 class="card-title">Sapi biasa aja</h5>
-					    <p class="card-text">
-					    	<span>Rp. 24.450.000,-</span><br>
-					    	<span>Bobot: 200-250kg</span>
-					    </p>
-
-					    <span class="city">Bandung<a href="#" class="btn btn-primary btn-pesan" style="border-radius: 10px;">Pesan</a></span>
-					  </div>
-					</div>
-		    	</div>
-
-		    	<div class="col-4">
-		    		<div class="card" style="width: 18rem;">
-					  <img src="assets/image_3.png" class="card-img-top" alt="...">
-					  <div class="card-body">
-					    <h5 class="card-title">Sapi galak ternama</h5>
-					    <p class="card-text">
-					    	<span>Rp. 24.450.000,-</span><br>
-					    	<span>Bobot: 200-250kg</span>
-					    </p>
-
-					    <span class="city">Bandung<a href="#" class="btn btn-primary btn-pesan" style="border-radius: 10px;">Pesan</a></span>
-					  </div>
-					</div>
-		    	</div>
+		    	
+				
 		    </div>
-			<div class="row mb-5 custom-row">
-		    	<div class="col-4">
-		    		<div class="card" style="width: 18rem;">
-					  <img src="assets/image_3.png" class="card-img-top" alt="...">
-					  <div class="card-body">
-					    <h5 class="card-title">Sapi jantan unggulan</h5>
-					    <p class="card-text">
-					    	<span>Rp. 24.450.000,-</span><br>
-					    	<span>Bobot: 200-250kg</span>
-					    </p>
-
-					    <span class="city">Bandung<a href="#" class="btn btn-primary btn-pesan" style="border-radius: 10px;">Pesan</a></span>
-					  </div>
-					</div>
-		    	</div>
-
-		    	<div class="col-4">
-		    		<div class="card" style="width: 18rem;">
-					  <img src="assets/image_3.png" class="card-img-top" alt="...">
-					  <div class="card-body">
-					    <h5 class="card-title">Sapi biasa aja</h5>
-					    <p class="card-text">
-					    	<span>Rp. 24.450.000,-</span><br>
-					    	<span>Bobot: 200-250kg</span>
-					    </p>
-
-					    <span class="city">Bandung<a href="#" class="btn btn-primary btn-pesan" style="border-radius: 10px;">Pesan</a></span>
-					  </div>
-					</div>
-		    	</div>
-
-		    	<div class="col-4">
-		    		<div class="card" style="width: 18rem;">
-					  <img src="assets/image_3.png" class="card-img-top" alt="...">
-					  <div class="card-body">
-					    <h5 class="card-title">Sapi galak ternama</h5>
-					    <p class="card-text">
-					    	<span>Rp. 24.450.000,-</span><br>
-					    	<span>Bobot: 200-250kg</span>
-					    </p>
-
-					    <span class="city">Bandung<a href="#" class="btn btn-primary btn-pesan" style="border-radius: 10px;">Pesan</a></span>
-					  </div>
-					</div>
-		    	</div>
+			<div class="d-flex justify-content-center">
+				{{ $product->links() }}	
 		    </div>
+			
 
-			<div class="pagination-position">
+			<!-- <div class="pagination-position">
 			    <nav aria-label="Page navigation example">
 				  <ul class="pagination">
 				    <li class="page-item">
@@ -146,13 +82,31 @@
 				    </li>
 				  </ul>
 				</nav>
-			</div>
+			</div> -->
 
 			</div>
 
 			<!-- ISI DETAIL TOKO -->
 			<div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-
+					<div class="container">
+					
+					<div class="text-center mt-3 mb-4">
+					<br></br>
+							<h2><b> Detail Toko </b></h2>	
+					</div>
+						<br></br>
+						<h4> <b>Deskripsi Toko</b> </h4>
+						<h5> {{$vendor->descr}}</h5>
+					<br></br>
+							<h4> <b>Lokasi Toko</b> </h4>
+							<h5>{{ $vendor->address }}</h5>
+							<br></br>
+							<h4> <b>Kontak</b> </h4>
+							<h5> <img src="https://w7.pngwing.com/pngs/752/599/png-transparent-line-app-icon-whatsapp-logo-whatsapp-grass-mobile-phones-android.png" width="50" alt=""></h5><h6>{{ $vendor->phone }}  </h6>
+							<br></br>
+							<h4> <b> Buka Sejak </b></h4>
+							<h5> {{ $vendor->created_at }} </h5>
+					<br></br>
 
 			</div>
 
