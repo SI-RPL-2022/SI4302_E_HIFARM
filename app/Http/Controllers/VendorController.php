@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Vendor;
 use App\Models\User;
+use App\Models\Product;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -15,10 +16,11 @@ class VendorController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $id = Auth::user()->id;
-        return view('vendor.index')->with($id);
+        $vendor = Vendor::where('user_id', $id)->first();
+        return view('vendor.index',compact('vendor'))->with($id);
     }
 
     /**
@@ -62,7 +64,7 @@ class VendorController extends Controller
             ]);
 
             //tambahin alert berhasil?
-            return $this->index();
+            return view('welcome');
     }
 
     /**
@@ -73,8 +75,11 @@ class VendorController extends Controller
      */
     public function show($id)
     {
-        
-        
+        $vendor= Vendor::find($id);
+        $product= Product::where("vendor_id",$id)->get(); //iterate foreach
+        //$ review here, also foreach
+
+        return view('vendor.show',compact('vendor'));
 
     }
 
@@ -128,6 +133,15 @@ class VendorController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::find($id);
+        $user->update([
+                'role' => 'user'
+            ]);
+
+        $vendor = Vendor::where('user_id', $id)->first();
+        $vendor->delete();
+
+        ///tambahin alert
+        return redirect('/');
     }
 }

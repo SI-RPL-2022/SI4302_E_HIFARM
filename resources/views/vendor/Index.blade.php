@@ -22,15 +22,15 @@
 
 
 		<!-- banner -->
-		<div class="layer" style="width:100%; height:250px; background-image: url('{{ asset('image/ranch.jpg')}}');background-repeat: no-repeat; background-size: 100% auto; background-position: center;">
+		<div class="layer" style="width:100%; height:250px; background-image: url('{{ asset('image/'.$vendor->image)}}');background-repeat: no-repeat; background-size: 100% auto; background-position: center;">
             <div class="layer">
                 </br>
                 </br>
                 </br>
-                <h1 class="display-5 fw-bold" style="color:white; margin-left:2rem; ">Toko Abadi</h1>
-                <p class="col-md-8 fs-4" style="color:white; margin-left:2rem; ">Jl. Sukabumi</p> 
+                <h1 class="display-5 fw-bold" style="color:white; margin-left:2rem; ">{{ $vendor->store_name }}</h1>
+                <p class="col-md-8 fs-4" style="color:white; margin-left:2rem; ">{{ $vendor->address }}</p> 
             </div>
-      </div>
+      	</div>
 		
 		<!-- container -->
 		<div class="container">
@@ -40,18 +40,25 @@
 		    	<h2><b> Detail Toko </b></h2>	
 		</div>
 			<br></br>
-			<h4> Deskripsi Toko </h4>
-			<h5> Toko Abadi fokus dalam menyediakan hewan-hewan ternak terbaik dan berkualitas untukmu.</h5>
+			<h4> <b>Deskripsi Toko</b> </h4>
+			<h5> {{$vendor->descr}}</h5>
 		<br></br>
-				<h4> Lokasi Toko </h4>
-				<h5>Jl. W.J. Lalamentik, Oebufu, Kec. Oebobo, Kota Kupang, Nusa Tenggara Tim.</h5>
+				<h4> <b>Lokasi Toko</b> </h4>
+				<h5>{{ $vendor->address }}</h5>
 				<br></br>
-				<h4> Kontak </h4>
-				<h5> <img src="https://w7.pngwing.com/pngs/752/599/png-transparent-line-app-icon-whatsapp-logo-whatsapp-grass-mobile-phones-android.png" width="50" alt=""></h5><h6>  </h6>
+				<h4> <b>Kontak</b> </h4>
+				<h5> <img src="https://w7.pngwing.com/pngs/752/599/png-transparent-line-app-icon-whatsapp-logo-whatsapp-grass-mobile-phones-android.png" width="50" alt=""></h5><h6>{{ $vendor->phone }}  </h6>
 				<br></br>
-				<h4> Buka Sejak </h4>
-				<h5> 2019 </h5>
+				<h4> <b> Buka Sejak </b></h4>
+				<h5> {{ $vendor->created_at }} </h5>
+		<br></br>
 
+		<div class="text-center mt-3 mb-4">
+		<form action="{{ route('vendor.edit', Auth::user()->id)}}" method="GET" enctype="multipart/form-data"> 
+  		@csrf
+		    	<button type="submit" class="btn btn-primary btn-lg"><b>Edit Detail Toko</b></button>	
+		    </div>
+		</form>
 
 </div>
 </div>

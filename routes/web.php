@@ -33,25 +33,26 @@ Route::prefix('home')->middleware('auth')->group(function () {
     ////////////////////////// LANDING PAGE
     Route::get('/', [HomeController::class, 'index'])->name('home');
     // Route::get('/storeList', [HomeController::class, 'index'])->name('storeList');
+    Route::get('/visit/{id}', [VendorController::class, 'show'])->name('user.visit');
 
 });
 
 Route::group(['middleware'=>'checkRole:user','prefix'=>'user'], function() {
-    // BUKA TOKO
+    // GET BUKA TOKO
     Route::get('/store', [VendorController::class, 'create'])->name('user.create');
     Route::post('/store', [VendorController::class, 'store'])->name('user.store');
 
-
+    
 });
 
 
-// Route::prefix('vendor')->middleware('auth', 'checkRole:vendor')->group(function () {
 Route::group(['middleware'=>'checkRole:vendor','prefix'=>'vendor'], function() {
     // TOKO
+    
     Route::get('/store', [VendorController::class, 'index'])->name('vendor.index');
     Route::get('/store/{id}', [VendorController::class, 'edit'])->name('vendor.edit');
     Route::put('/store/{id}', [VendorController::class, 'update'])->name('vendor.update');
-    // Route::delete('/delete/{id}', [VendorController::class, 'delete'])->name('vendor.delete');
+    Route::delete('/store/delete/{id}', [VendorController::class, 'destroy'])->name('vendor.delete');
 
     // PRODUK
     Route::group(['prefix'=>'product'], function() {

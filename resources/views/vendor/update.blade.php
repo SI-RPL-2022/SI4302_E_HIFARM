@@ -72,8 +72,8 @@
 						        Apakah Anda yakin melakukan perubahan toko?
 						      </div>
 						      <div class="modal-footer">
-						        <button type="submit" class="btn btn-warning text-white" data-bs-dismiss="modal">Yakin</button>
-						        <button type="button" class="btn btn-primary">Kembali</button>
+						        <button type="submit" class="btn btn-success text-white" data-bs-dismiss="modal">Yakin</button>
+						        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Kembali</button>
 								</form>
 						      </div>
 						    </div>
@@ -93,8 +93,14 @@
 						        Apakah Anda yakin melakukan tutup toko?
 						      </div>
 						      <div class="modal-footer">
-						        <button type="button" class="btn btn-warning text-white" data-bs-dismiss="modal">Yakin</button>
-						        <button type="button" class="btn btn-primary">Kembali</button>
+							  <form action="{{ route('vendor.delete',Auth::user()->id)}}" method="POST" enctype="multipart/form-data"> 
+									@csrf
+
+									<input type="hidden" name="_method" value="DELETE">
+						        <button type="submit" class="btn btn-success text-white" data-bs-dismiss="modal">Yakin</button>
+								</form>
+
+						        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Kembali</button>
 						      </div>
 						    </div>
 						  </div>

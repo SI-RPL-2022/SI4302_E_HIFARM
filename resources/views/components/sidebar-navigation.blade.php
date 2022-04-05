@@ -3,9 +3,9 @@
         <ul class="list-group list-group-flush">
             <a href="" class="text-decoration-none"><li class="list-group-item sidebar-hover">
                 <span><i class="bi bi-grid"></i></span>&nbsp;&nbsp;{{ __('Dashboard') }}</li></a>
-            <a href="" class="text-decoration-none"><li class="list-group-item sidebar-hover">
+            <a href="{{ route('vendor.index')}}" class="{{ Request::is('vendor/store') ? 'border-start border-5 border-primary text-decoration-none' : 'text-decoration-none' }} "><li class="list-group-item sidebar-hover">
                 <span><i class="bi bi-trophy"></i></span>&nbsp;&nbsp;{{ __('Toko') }}</li></a>
-            <a href="" class="border-start border-5 border-primary text-decoration-none"><li class="list-group-item sidebar-hover">
+            <a href="{{ route('vendor.product.index')}}" class="{{ Request::is('vendor/product') ? 'border-start border-5 border-primary text-decoration-none' : 'text-decoration-none' }} "><li class="list-group-item sidebar-hover">
                 <span><i class="bi bi-trophy"></i></span>&nbsp;&nbsp;{{ __('Products') }}</li></a>
             <a href="" class="text-decoration-none"><li class="list-group-item sidebar-hover">
                 <span><i class="bi bi-trophy"></i></span>&nbsp;&nbsp;{{ __('Blog Post') }}</li></a>
