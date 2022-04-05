@@ -11,11 +11,17 @@
                 <div class="card-body">
                     <form action="/vendor/product/edit/{{ $data->id }}" method="POST" enctype="multipart/form-data">
                         @csrf
+                        <input type="hidden" name="vendor_id" value="{{ $data->vendor_id }}">
+                        <input type="hidden" name="oldImage" value="{{ $data->image }}">
 
                         <div class="mb-3 row">
                             <label for="image" class="col-sm-2 col-form-label">{{ __('Gambar Produk') }}</label>
                             <div class="col-sm-10">
-                                <img class="mb-3 col-sm-5 img-preview img-fluid">
+                                @if ($data->image)
+                                    <img src="{{ asset('storage/'.$data->image) }}" class="mb-3 col-sm-5 img-preview img-fluid">
+                                @else
+                                    <img class="mb-3 col-sm-5 img-preview img-fluid">
+                                @endif
                                 <input class="form-control" type="file" id="image" name="image" onchange="previewImage()">
                             </div>
                         </div>
