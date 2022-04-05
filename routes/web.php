@@ -20,6 +20,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/tes', function () {
+    return view('index');
+});
+
 Auth::routes();
 
 ////////////////////////// Landing Page

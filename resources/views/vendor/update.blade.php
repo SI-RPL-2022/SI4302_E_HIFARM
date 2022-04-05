@@ -1,7 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
-
+<div class="container">
+    <div class="row">
+        <x-sidebar-navigation/>
+		<div class="col-lg-10">
+            <div class="card">
+                <div class="card-header">{{ __('Edit Detail Toko') }}</div>
+                <div class="card-body">
 <form action="{{ route('vendor.update',Auth::user()->id)}}" method="POST" enctype="multipart/form-data"> 
 		@csrf
 
@@ -98,12 +104,26 @@
 				</div>
 			</div>
 		</div><br><br><br>
+		</div>
+            </div>
+        </div>
+		</div>
 
-		<!-- Footer -->
-		
+</div>
 
-	<!-- <script src="assets/js/sticky_vanila_toggle.js"></script>
+<script>
+    function previewImage() {
+        const image = document.querySelector('#image');
+        const imgPreview = document.querySelector('.img-preview');
+        imgPreview.style.display = 'block';
+        const oFReader = new FileReader();
+        oFReader.readAsDataURL(image.files[0]);
+        
+        oFReader.onload = function(oFREvent) {
+            imgPreview.src = oFREvent.target.result;
+        }
+    }
+</script>
 
-	 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script> -->
 
 @endsection

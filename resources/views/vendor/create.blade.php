@@ -1,6 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
+
+		<link rel="stylesheet" href="{{ asset('css/style_bukaToko.css') }}">
 		<!-- form -->
 		<form action="{{ route('user.store')}}" method="POST" enctype="multipart/form-data"> 
 		@csrf
