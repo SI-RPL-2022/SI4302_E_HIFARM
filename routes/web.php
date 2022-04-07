@@ -1,9 +1,11 @@
 <?php
 
+
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\VendorController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\FrontController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,18 +18,16 @@ use App\Http\Controllers\ProductController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
 Route::get('/tes', function () {
     return view('toko');
 });
 
-Auth::routes();
 
-////////////////////////// Landing Page
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+/////GUEST
+Auth::routes();
+Route::get('/', [FrontController::class, 'index']);
+
 
 Route::prefix('home')->middleware('auth')->group(function () {
     ////////////////////////// LANDING PAGE
@@ -65,7 +65,4 @@ Route::group(['middleware'=>'checkRole:vendor','prefix'=>'vendor'], function() {
         Route::delete('/{product}', [ProductController::class, 'destroy']);
     });
 
-});
-Route::get('/deskripsitoko',function () {
-    return view('deskripsitoko');
 });
