@@ -19,14 +19,11 @@ use App\Http\Controllers\FrontController;
 */
 
 
-Route::get('/tes', function () {
-    return view('toko');
-});
-
-
 /////GUEST
 Auth::routes();
-Route::get('/', [FrontController::class, 'index']);
+Route::get('/', [FrontController::class, 'index'])->name('home');
+Route::get('/toko', [FrontController::class, 'toko'])->name('toko');
+Route::get('/visit/{id}', [VendorController::class, 'show'])->name('visit');
 
 
 Route::prefix('home')->middleware('auth')->group(function () {

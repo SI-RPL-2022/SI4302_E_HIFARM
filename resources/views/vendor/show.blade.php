@@ -41,13 +41,13 @@
 		    		<div class="card" style="width: 25rem;">
 					  <img src="{{ URL::asset('image/'.$item->image)}}" class="card-img-top" alt="...">
 					  <div class="card-body">
-					    <h5 class="card-title">{{$item->product_name}}</h5>
+					    <h5 class="card-title">{{$item->name}}</h5>
 					    <p class="card-text">
 					    	<span>Rp. {{$item->price}}-</span><br>
 					    	<span>Bobot: {{$item->weight}}kg</span>
 							<br>
 							<br>
-							<span>Kategori: {{$item->role}}</span>
+							<span>Kategori: {{$item->category}}</span>
 					    </p>
 						
 					    	<a href="#" class="btn btn-primary float-right" style="border-radius: 10px; width:4cm">Lihat</a>
