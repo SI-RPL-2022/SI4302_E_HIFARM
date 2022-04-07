@@ -21,7 +21,7 @@ Route::get('/', function () {
 });
 
 Route::get('/tes', function () {
-    return view('index');
+    return view('toko');
 });
 
 Auth::routes();
