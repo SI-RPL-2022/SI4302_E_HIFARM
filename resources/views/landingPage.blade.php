@@ -21,7 +21,7 @@
       </div>
     </div>
 
-    <div class="mb-5 py-4" style="background-color: #FDE57A;">
+    <div class="py-4" style="background-color: #FDE57A;">
       <h3 class="text-center mb-4"><b>Bergabung Dalam Ekosistem HiFarm</b></h3>
       <div class="container row mx-auto">
         <div class="col-sm mb-2">
@@ -44,11 +44,10 @@
           <a class="btn btn-primary" href="{{ route('register')}}" role="button">Gabung Sekarang</a>
         </div>
       </div>
-
-      
+      <br>
     </div>
 
-    <div class="mb-5 py-4" style="background-color: orange;">
+    <div class="py-4" style="background-color: orange;"> <br>
     <h3 class="text-center mb-4"><b>Produk-Produk Terbaru</b></h3>
         <div class="row" style="margin-left:4rem; margin-right:4rem; margin-bottom:2rem;">
             @foreach ($latest as $item)
@@ -73,6 +72,12 @@
                         </div>
                     </div>
                     @endforeach
+        </div>
+        <div class="row justify-content-center">
+        <div class="text-center">
+          <p class="fs-5">HiFarm membuka kesempatan untuk kamu para <br> peternak yang ingin terlibat untuk memanjukan
+            <br> Peternakan Indonesia.</p>
+          <a class="btn btn-primary" href="{{ route('register')}}" role="button">Browse Toko</a>
         </div>
 
       </div>
