@@ -51,22 +51,23 @@
                             </tr>
                         </thead>
                         <tbody>
-                        @foreach ($data as $key=>$row)
+                        @foreach ($data as $key)
+                        @can('view', $key)
                             <tr>
-                                <td>{{ $row->id }}</td>
-                                <td>{{ $row->updated_at }}</td>
-                                <td>{{ $row->name }}</td>
-                                <td>{{ $row->price }}</td>
-                                <td>{{ $row->weight }}</td>
-                                <td>{{ $row->category }}</td>
+                                <td>{{ $key->id }}</td>
+                                <td>{{ $key->updated_at }}</td>
+                                <td>{{ $key->name }}</td>
+                                <td>{{ $key->price }}</td>
+                                <td>{{ $key->weight }}</td>
+                                <td>{{ $key->category }}</td>
                                 <td class="d-flex flex-wrap">
-                                    <a class="btn btn-sm btn-info me-1 mb-1 text-white" href="/vendor/product/show/{{ $row->id }}"> {{ __('View') }} </a>
-                                    <a class="btn btn-sm btn-primary me-1 mb-1" href="/vendor/product/edit/{{ $row->id }}"> {{ __('Edit') }} </a>
-                                    <button class="btn btn-sm btn-danger me-1 mb-1" type="button" data-bs-toggle="modal" data-bs-target="#confirmationDelete{{ $row->id }}">Delete</button>
+                                    <a class="btn btn-sm btn-info me-1 mb-1 text-white" href="/vendor/product/show/{{ $key->id }}"> {{ __('View') }} </a>
+                                    <a class="btn btn-sm btn-primary me-1 mb-1" href="/vendor/product/edit/{{ $key->id }}"> {{ __('Edit') }} </a>
+                                    <button class="btn btn-sm btn-danger me-1 mb-1" type="button" data-bs-toggle="modal" data-bs-target="#confirmationDelete{{ $key->id }}">Delete</button>
                                 </td>
                             </tr>
 
-                            <div class="modal fade" id="confirmationDelete{{ $row->id }}" tabindex="-1" aria-labelledby="confirmationDeleteLabel" aria-hidden="true">
+                            <div class="modal fade" id="confirmationDelete{{ $key->id }}" tabindex="-1" aria-labelledby="confirmationDeleteLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
@@ -79,7 +80,7 @@
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                             
-                                            <form action="/vendor/product/{{ $row->id }}" method="post">
+                                            <form action="/vendor/product/{{ $key->id }}" method="post">
                                                 @csrf
 
                                                 <input type="hidden" name="_method" value="DELETE">
@@ -91,7 +92,7 @@
                                     </div>
                                 </div>
                             </div>
-
+                        @endcan
                         @endforeach
                         </tbody>
                     </table>

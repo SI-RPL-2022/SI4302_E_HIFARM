@@ -16,12 +16,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $user = auth()->user()->id;
-        $vendor_id = Vendor::where('user_id',$user)->first()->id;
-
         return view('products.index', [
-            'vendor_id' => $vendor_id,
-            'data' => Product::latest('updated_at')->where('vendor_id',$vendor_id)->filter(request(['search']))->paginate(10)
+            'data' => Product::latest('updated_at')->filter(request(['search']))->paginate(10)
         ]);
     }
 
