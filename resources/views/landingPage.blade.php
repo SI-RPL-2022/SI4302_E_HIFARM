@@ -73,6 +73,12 @@
                     </div>
                     @endforeach
         </div>
+        <div class="row justify-content-center">
+        <div class="text-center">
+          <p class="fs-5">HiFarm membuka kesempatan untuk kamu para <br> peternak yang ingin terlibat untuk memanjukan
+            <br> Peternakan Indonesia.</p>
+          <a class="btn btn-primary" href="{{ route('register')}}" role="button">Browse Toko</a>
+        </div>
 
       </div>
 @endsection
