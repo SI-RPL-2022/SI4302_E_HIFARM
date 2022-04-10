@@ -16,7 +16,7 @@ class VendorController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
         $id = Auth::user()->id;
         $vendor = Vendor::where('user_id', $id)->first();
