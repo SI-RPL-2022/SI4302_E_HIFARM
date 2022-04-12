@@ -13,7 +13,6 @@
 </head>
 
 <body>
-
 	<!-- form -->
 	<div class="container"><br><br><br>
 		<h1 class="text-center mt-5 mb-5">Semua Toko</h1>
@@ -84,7 +83,6 @@
 					</div>
 				</div>
 			</div>
-
 			<div class="col">
 				<div class="card mb-5" style="max-width: 540px; border-radius: 20px;">
 					<div class="row g-0">
@@ -299,5 +297,4 @@
 
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
-
 </html>
