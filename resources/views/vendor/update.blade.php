@@ -8,7 +8,7 @@
             <div class="card">
                 <div class="card-header">{{ __('Edit Detail Toko') }}</div>
                 <div class="card-body">
-<form action="{{ route('vendor.update',Auth::user()->id)}}" method="POST" enctype="multipart/form-data"> 
+<form action="{{ route('vendor.update', Auth::user()->id)}}" method="POST" enctype="multipart/form-data"> 
 		@csrf
 
 		<input type="hidden" name="_method" value="PUT">
