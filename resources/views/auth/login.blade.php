@@ -8,8 +8,11 @@
             <div class="card mb-3 mx-auto" style="max-width: 1000px;">
                 <div class="row g-0">
 
-                    <div class="col-md-6" style="background-color: #48C2F8;">
-                        <!-- <img src="..." class="img-fluid rounded-start" alt="..."> -->
+                <div class="col-md-6 d-flex align-items-center flex-column py-5" style="background-color: #48C2F8;">
+                        <div style="margin: auto">
+                            <img src="{{ asset('image/logo.png') }}" class="mx-auto d-block" width=150 alt="...">
+                            <h4 class="text-white text-center">{{ 'Membuat ternakmu menjadi lebih unggul daripada yang lainnya.' }}</h4>
+                        </div>
                     </div>
 
                     <div class="col-md-6 p-3">
