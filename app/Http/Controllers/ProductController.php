@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Products;
+use App\Models\Product;
+use App\Models\Vendor;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -15,7 +17,7 @@ class ProductController extends Controller
     public function index()
     {
         return view('products.index', [
-            'data' => Products::latest()->filter(request(['search']))->paginate(10)
+            'data' => Product::latest('updated_at')->filter(request(['search']))->paginate(10)
         ]);
     }
 
@@ -26,7 +28,9 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('products.create');
+        return view('products.create', [
+            'vendor_id' => Vendor::where('user_id', auth()->user()->id)->first()->id
+        ]);
     }
 
     /**
@@ -37,23 +41,22 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        // $data = new Products;
-        // $data->nama = $request->nama;
-        // $data->harga = $request->harga;
-        // $data->berat = $request->berat;
-        // $data->kategori = $request->kategori;
-        // $data->keterangan = $request->keterangan;
-        // $data->save();
         $validatedData = $request->validate([
-            'nama' => 'required',        
-            'harga' => 'required',
-            'berat' => 'required',
-            'kategori' => 'required',
-            'keterangan' => 'required',
+            'vendor_id' => 'required',
+            'name' => 'required',
+            'price' => 'required',
+            'weight' => 'required',
+            'category' => 'required',
+            'image' => 'image|file|max:1024',
+            'desc' => 'required',
         ]);
 
-        Products::create($validatedData);
-        return redirect('/product')->with('success-add','Anda berhasil menambah produk!');
+        if ($request->file('image')) {
+            $validatedData['image'] = $request->file('image')->store('product-images');
+        }
+
+        Product::create($validatedData);
+        return redirect('/vendor/product')->with('success-add','Anda berhasil menambah produk!');
     }
 
     /**
@@ -62,9 +65,11 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Product $product)
     {
-        //
+        return view('products.show', [
+            'data' => $product
+        ]);
     }
 
     /**
@@ -73,12 +78,12 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id) //$id
+    public function edit(Product $product) //$id
     {
-        $data = Products::find($id);
+        $this->authorize('view', $product);
 
         return view('products.edit', [
-            'data' => $data
+            'data' => $product
         ]);
     }
 
@@ -89,17 +94,27 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Product $product)
     {
-        $data = Products::find($id);
-        $data->nama = $request->nama;
-        $data->harga = $request->harga;
-        $data->berat = $request->berat;
-        $data->kategori = $request->kategori;
-        $data->keterangan = $request->keterangan;
-        $data->save();
+        $validatedData = $request->validate([
+            'vendor_id' => 'required',
+            'name' => 'required',
+            'price' => 'required',
+            'weight' => 'required',
+            'category' => 'required',
+            'image' => 'image|file|max:1024',
+            'desc' => 'required',
+        ]);
 
-        return redirect('/product')->with('success-edit','Anda berhasil menambah produk!');
+        if ($request->file('image')) {
+            if ($request->oldImage) {
+                Storage::delete($request->oldImage);
+            }
+            $validatedData['image'] = $request->file('image')->store('product-images');
+        }
+
+        Product::where('id', $product->id)->update($validatedData);
+        return redirect('/vendor/product')->with('success-update','Anda berhasil update produk!');
     }
 
     /**
@@ -108,11 +123,13 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Product $product)
     {
-        $data = Products::find($id);
-        $data->delete();
+        if ($product->image) {
+            Storage::delete($product->image);
+        }
 
-        return redirect('/product')->with('success-remove','Anda berhasil menghapus produk!');
+        Product::destroy($product->id);
+        return redirect('/vendor/product')->with('success-remove','Anda berhasil menghapus produk!');
     }
 }

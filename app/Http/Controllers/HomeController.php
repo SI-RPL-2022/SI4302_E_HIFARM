@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -22,7 +24,16 @@ class HomeController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index()
+    {   
+        $latest = DB::table('products')
+                    ->orderByDesc('created_at')
+                    ->limit(3)
+                    ->get();
+
+        return view('landingPage',compact('latest'));
+    }
+    public function test()
     {
-        return view('home');
+        return view('tes');
     }
 }
