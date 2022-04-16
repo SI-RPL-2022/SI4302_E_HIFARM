@@ -32,6 +32,7 @@ class HomeController extends Controller
 
         return view('landingPage',compact('latest'));
     }
+    
     public function test()
     {
         return view('tes');

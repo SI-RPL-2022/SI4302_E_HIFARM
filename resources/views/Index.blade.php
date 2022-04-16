@@ -1,181 +1,87 @@
 @extends('layouts.app')
 
+@section('title', 'Home')
+
 @section('content')
+<div class="container ">
+    <div class="card mb-5">
+        <img src="https://images.unsplash.com/photo-1594302954323-7846bf62b5a6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8c2FwaXxlbnwwfHwwfHw%3D&w=1000&q=80"
+            height="350" class="card-img-top" alt="...">
+    </div>
 
+    <div class="row mb-5">
+        <div class="col-sm d-flex align-items-center">
+            <div>
+                <h2 class="fw-bold">Menjadikan Ternak Sebagai Mata Pencaharian yang Lebih Baik untuk Indonesia</h2>
+                <p>HiFarm bertujuan untuk menghubungkan peternak skala kecil dengan eksposur global dalam mempromosikan
+                    produk
+                    ternak Indonesia yang lezat; melalui kesepakatan grosir, belanja eceran, dan kemitraan bisnis. </p>
+            </div>
+        </div>
+        <div class="col-sm">
+            <img src="https://disnakkeswan.ntbprov.go.id/wp-content/uploads/2020/11/FB_IMG_1604063969568-732x380.jpg"
+                height="" class="card-img-top" alt="...">
+        </div>
+    </div>
+</div>
 
-	<link rel="stylesheet" href="{{ asset('css/style_kunjungiTokoAdmin.css') }}">
+<div class="py-4" style="background-color: #FDE57A;">
+    <h3 class="text-center mb-4"><b>Bergabung Dalam Ekosistem HiFarm</b></h3>
+    <div class="container row mx-auto">
+        <div class="col-sm mb-2">
+            <img src="https://disnakkeswan.ntbprov.go.id/wp-content/uploads/2020/11/FB_IMG_1604063969568-732x380.jpg"
+                height="" class="card-img-top" alt="...">
+        </div>
+        <div class="col-sm mb-2">
+            <img src="https://disnakkeswan.ntbprov.go.id/wp-content/uploads/2020/11/FB_IMG_1604063969568-732x380.jpg"
+                height="" class="card-img-top" alt="...">
+        </div>
+        <div class="col-sm mb-2">
+            <img src="https://disnakkeswan.ntbprov.go.id/wp-content/uploads/2020/11/FB_IMG_1604063969568-732x380.jpg"
+                height="" class="card-img-top" alt="...">
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="text-center">
+            <p class="fs-5">HiFarm membuka kesempatan untuk kamu para <br> peternak yang ingin terlibat untuk memanjukan
+                <br> Peternakan Indonesia.</p>
+            <a class="btn btn-primary" href="{{ route('register')}}" role="button">Gabung Sekarang</a>
+        </div>
+    </div>
+    <br>
+</div>
 
-	<!-- Bootstrap CSS
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-	<title>Toko</title>
-	</head> -->
-
-	<body>
-	<div class="container">
-    <div class="row">
-        <x-sidebar-navigation/>
-
-        <div class="col-lg-10">
+<div class="py-4" style="background-color: orange;"> <br>
+    <h3 class="text-center mb-4"><b>Produk-Produk Terbaru</b></h3>
+    <div class="row" style="margin-left:4rem; margin-right:4rem; margin-bottom:2rem;">
+        @foreach ($latest as $item)
+        <div class="col-sm-4">
             <div class="card">
-                <div class="card-header">{{ __('Buat Produk') }}</div>
+
+                <img src="{{ URL::asset('image/'.$item->image)}}" height="250px" class="card-img-top" alt="gambar">
                 <div class="card-body">
-
-
-		<!-- banner -->
-		<div class="banner">
-			<div class="custom-container">
-				<img src="assets/discord2.png" class="img-profil-toko">
-				<h1 class="text-white title-banner">Toko Abadi</h1>
-			</div>
-			<p class="text-white desc-banner">Menyediakan berbagai daging terbaik</p>
-		</div>
-		
-		<!-- container -->
-		<div class="container">
-			<!-- row 1 -->
-			<div class="row mt-2 mb-4">
-		    	<div class="col">
-		      		<p class="text-center container-produk"><a href="#" class="link-produk">Produk</a></p>
-		    	</div>
-
-		    	<div class="col">
-		    		<hr class="dividing-line">
-		    	</div>
-
-		    	<div class="col">
-		      		<p class="text-center container-detailToko"><a href="#" class="link-detailToko">Detail Toko</a></p>
-		    	</div>
-		    </div>
-
-		    <div class="text-center mt-3 mb-4">
-		    	<button type="button" class="btn btn-primary btn-lg"><b>+ Tambah Produk</b></button>	
-		    </div>
-		    
-		    <!-- row 2 -->
-		    <div class="row mb-5 custom-row">
-		    	<div class="col-4">
-		    		<div class="card" style="width: 18rem;">
-					  <img src="assets/image_3.png" class="card-img-top" alt="...">
-					  <div class="card-body">
-					    <h5 class="card-title">Sapi jantan unggulan</h5>
-					    <p class="card-text">
-					    	<span>Rp. 24.450.000,-</span><br>
-					    	<span>Bobot: 200-250kg</span>
-					    </p>
-
-					    <span class="city">Bandung<a href="#" class="btn btn-primary btn-pesan" style="border-radius: 10px;">Pesan</a></span>
-					  </div>
-					</div>
-		    	</div>
-
-		    	<div class="col-4">
-		    		<div class="card" style="width: 18rem;">
-					  <img src="assets/image_3.png" class="card-img-top" alt="...">
-					  <div class="card-body">
-					    <h5 class="card-title">Sapi biasa aja</h5>
-					    <p class="card-text">
-					    	<span>Rp. 24.450.000,-</span><br>
-					    	<span>Bobot: 200-250kg</span>
-					    </p>
-
-					    <span class="city">Bandung<a href="#" class="btn btn-primary btn-pesan" style="border-radius: 10px;">Pesan</a></span>
-					  </div>
-					</div>
-		    	</div>
-
-		    	<div class="col-4">
-		    		<div class="card" style="width: 18rem;">
-					  <img src="assets/image_3.png" class="card-img-top" alt="...">
-					  <div class="card-body">
-					    <h5 class="card-title">Sapi galak ternama</h5>
-					    <p class="card-text">
-					    	<span>Rp. 24.450.000,-</span><br>
-					    	<span>Bobot: 200-250kg</span>
-					    </p>
-
-					    <span class="city">Bandung<a href="#" class="btn btn-primary btn-pesan" style="border-radius: 10px;">Pesan</a></span>
-					  </div>
-					</div>
-		    	</div>
-		    </div>
-
-		    <!-- row 3 -->
-		    <div class="row mb-5 custom-row">
-		    	<div class="col-4">
-		    		<div class="card" style="width: 18rem;">
-					  <img src="assets/image_3.png" class="card-img-top" alt="...">
-					  <div class="card-body">
-					    <h5 class="card-title">Sapi jantan unggulan</h5>
-					    <p class="card-text">
-					    	<span>Rp. 24.450.000,-</span><br>
-					    	<span>Bobot: 200-250kg</span>
-					    </p>
-
-					    <span class="city">Bandung<a href="#" class="btn btn-primary btn-pesan" style="border-radius: 10px;">Pesan</a></span>
-					  </div>
-					</div>
-		    	</div>
-
-		    	<div class="col-4">
-		    		<div class="card" style="width: 18rem;">
-					  <img src="assets/image_3.png" class="card-img-top" alt="...">
-					  <div class="card-body">
-					    <h5 class="card-title">Sapi jantan unggulan</h5>
-					    <p class="card-text">
-					    	<span>Rp. 24.450.000,-</span><br>
-					    	<span>Bobot: 200-250kg</span>
-					    </p>
-
-					    <span class="city">Bandung<a href="#" class="btn btn-primary btn-pesan" style="border-radius: 10px;">Pesan</a></span>
-					  </div>
-					</div>
-		    	</div>
-
-		    	<div class="col-4">
-		    		<div class="card" style="width: 18rem;">
-					  <img src="assets/image_3.png" class="card-img-top" alt="...">
-					  <div class="card-body">
-					    <h5 class="card-title">Sapi jantan unggulan</h5>
-					    <p class="card-text">
-					    	<span>Rp. 24.450.000,-</span><br>
-					    	<span>Bobot: 200-250kg</span>
-					    </p>
-
-					    <span class="city">Bandung<a href="#" class="btn btn-primary btn-pesan" style="border-radius: 10px;">Pesan</a></span>
-					  </div>
-					</div>
-		    	</div>
-		    </div>
-
-		    <div class="pagination-position">
-			    <nav aria-label="Page navigation example">
-				  <ul class="pagination">
-				    <li class="page-item">
-				      <a class="page-link" href="#" aria-label="Previous">
-				        <span aria-hidden="true">&laquo;</span>
-				      </a>
-				    </li>
-				    <li class="page-item"><a class="page-link" href="#">1</a></li>
-				    <li class="page-item"><a class="page-link" href="#">2</a></li>
-				    <li class="page-item"><a class="page-link" href="#">3</a></li>
-				    <li class="page-item">
-				      <a class="page-link" href="#" aria-label="Next">
-				        <span aria-hidden="true">&raquo;</span>
-				      </a>
-				    </li>
-				  </ul>
-				</nav>
-			</div>
-		</div>
-
-
+                    <!--route open bracket 'vendor.product', $item->id close -->
+                    <form action="" method="GET">
+                        <br>
+                        <h3 class="card-title">{{$item->name}}</h3>
+                        <hr>
+                        <h4>{{$item->price}}</h4>
+                        <h4>{{$item->weight}}</h4>
+                        <h4>{!!$item->desc!!}</h4>
+                        <br>
+                        <button type="submit" class="btn btn-primary btn-lg">Lihat</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        @endforeach
+    </div>
+    <div class="row justify-content-center">
+        <div class="text-center">
+            <p class="fs-5">HiFarm membuka kesempatan untuk kamu para <br> peternak yang ingin terlibat untuk memanjukan
+                <br> Peternakan Indonesia.</p>
+            <a class="btn btn-primary" href="{{ route('toko')}}" role="button">Browse Toko</a>
+        </div>
+    </div>
 </div>
-</div>
-</div>
-</div>
-</div>
-</div>
-
-
-
-	@endsection
+@endsection

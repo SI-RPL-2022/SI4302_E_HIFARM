@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Products')
+
 @section('content')
 <div class="container">
     <div class="row">
@@ -9,12 +11,6 @@
             <div class="card">
                 <div class="card-header">{{ __('Daftar Produk') }}</div>
 
-                {{-- @if (session()->has('success-add'))
-                    <div class="mx-3 my-2 alert alert-success alert-dismissible fade show" role="alert">
-                        {{ session('success-add') }}
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
-                @endif --}}
                 <div class="m-3">
                     @if (session()->has('success-add'))
                         <x-alert type="success" message="{{ session('success-add') }}"/>
@@ -61,8 +57,8 @@
                                 <td>{{ $key->weight }}</td>
                                 <td>{{ $key->category }}</td>
                                 <td class="d-flex flex-wrap">
-                                    <a class="btn btn-sm btn-info me-1 mb-1 text-white" href="/vendor/product/show/{{ $key->id }}"> {{ __('View') }} </a>
-                                    <a class="btn btn-sm btn-primary me-1 mb-1" href="/vendor/product/edit/{{ $key->id }}"> {{ __('Edit') }} </a>
+                                    <a class="btn btn-sm btn-info me-1 mb-1 text-white" href="{{ route('vendor.product.show', $key->id) }}"> {{ __('View') }} </a>
+                                    <a class="btn btn-sm btn-primary me-1 mb-1" href="{{ route('vendor.product.edit', $key->id) }}"> {{ __('Edit') }} </a>
                                     <button class="btn btn-sm btn-danger me-1 mb-1" type="button" data-bs-toggle="modal" data-bs-target="#confirmationDelete{{ $key->id }}">Delete</button>
                                 </td>
                             </tr>
@@ -80,12 +76,10 @@
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                             
-                                            <form action="/vendor/product/{{ $key->id }}" method="post">
+                                            <form action="{{ route('vendor.product.destroy', $key->id) }}" method="POST">
                                                 @csrf
-
                                                 <input type="hidden" name="_method" value="DELETE">
                                                 <button type="submit" class="btn btn-danger">Delete</button>
-
                                             </form>
 
                                         </div>

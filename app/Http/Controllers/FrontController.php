@@ -10,30 +10,37 @@ use App\Models\Product;
 
 class FrontController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         $latest = DB::table('products')
                     ->orderByDesc('created_at')
                     ->limit(3)
                     ->get();
 
-        return view('landingPage',compact('latest'));
+        return view('index',compact('latest'));
     }
 
-
-    public function toko(){
-
-        
-        if(request('search')) {{
+    public function toko()
+    {
+        if (request('search')) {
             $toko = DB::table('vendors')->where('store_name', 'like', '%'.request('search').'%')
-                                        ->orWhere('address', 'like', '%'.request('search').'%')->paginate(6);
-        }}
-        elseif (request('filter')) {{
+                                        ->orWhere('address', 'like', '%'.request('search').'%')
+                                        ->paginate(6);
+        }
+        elseif (request('filter')) {
             $toko = DB::table('vendors')->where('store_name', 'like', request('filter').'%')->paginate(6);
-        }}
-        else{
+        }
+        else {
             $toko = Vendor::paginate(6);
         }
+        return view('vendor.index', compact('toko'));
+    }
 
-        return view('toko', compact('toko'));
+    public function showToko($id)
+    {
+        $vendor = Vendor::find($id);
+        $product = Product::where("vendor_id",$id)->paginate(6); //iterate foreach
+
+        return view('vendor.show',compact('vendor','product'));
     }
 }

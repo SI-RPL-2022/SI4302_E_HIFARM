@@ -1,7 +1,8 @@
-<footer class="footer mt-auto py-3 bg-white">
+<footer class="footer mt-auto pt-4 bg-white">
     <div class="container">
         <div class="row justify-content-between">
             <div class="col-sm-5">
+                <img src="{{ asset('assets/logo.svg') }}" class="mb-3 d-block" width=85 alt="HiFarm-logo">
                 <div>
                     <h5 class="fw-bold">PT. Hifarm Satu Nusantara</h5>
                     <p>Perdagangan Peternakan Terintegrasi. Misi kami adalah menjadikan peternakan sebagai mata

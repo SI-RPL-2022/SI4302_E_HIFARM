@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Register')
+
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -14,6 +16,7 @@
                             <h4 class="text-white text-center">{{ 'Membuat ternakmu menjadi lebih unggul daripada yang lainnya.' }}</h4>
                         </div>
                     </div>
+                    
                     <div class="col-md-6 p-3">
                         <div class="card-body">
                             <h4 class="card-title fw-bold text-center">{{ __('Register') }}</h4>

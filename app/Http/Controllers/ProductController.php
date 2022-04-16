@@ -14,9 +14,14 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
-        return view('products.index', [
+        return view('dashboard.vendor.product.index', [
             'data' => Product::latest('updated_at')->filter(request(['search']))->paginate(10)
         ]);
     }
@@ -28,7 +33,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('products.create', [
+        return view('dashboard.vendor.product.create', [
             'vendor_id' => Vendor::where('user_id', auth()->user()->id)->first()->id
         ]);
     }
@@ -56,7 +61,7 @@ class ProductController extends Controller
         }
 
         Product::create($validatedData);
-        return redirect('/vendor/product')->with('success-add','Anda berhasil menambah produk!');
+        return redirect('dashboard/vendor/product')->with('success-add','Anda berhasil menambah produk!');
     }
 
     /**
@@ -67,7 +72,7 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        return view('products.show', [
+        return view('dashboard.vendor.product.show', [
             'data' => $product
         ]);
     }
@@ -82,7 +87,7 @@ class ProductController extends Controller
     {
         $this->authorize('view', $product);
 
-        return view('products.edit', [
+        return view('dashboard.vendor.product.edit', [
             'data' => $product
         ]);
     }
@@ -114,7 +119,7 @@ class ProductController extends Controller
         }
 
         Product::where('id', $product->id)->update($validatedData);
-        return redirect('/vendor/product')->with('success-update','Anda berhasil update produk!');
+        return redirect('/dashboard/vendor/product')->with('success-update','Anda berhasil update produk!');
     }
 
     /**
@@ -130,6 +135,6 @@ class ProductController extends Controller
         }
 
         Product::destroy($product->id);
-        return redirect('/vendor/product')->with('success-remove','Anda berhasil menghapus produk!');
+        return redirect('/dashboard/vendor/product')->with('success-remove','Anda berhasil menghapus produk!');
     }
 }

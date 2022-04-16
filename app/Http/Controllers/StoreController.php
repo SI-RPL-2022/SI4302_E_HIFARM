@@ -10,18 +10,23 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 
-class VendorController extends Controller
+class StoreController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function index()
     {
         $id = Auth::user()->id;
         $vendor = Vendor::where('user_id', $id)->first();
-        return view('vendor.index',compact('vendor'))->with($id);
+        return view('dashboard.vendor.store-profile.index',compact('vendor'))->with($id);
     }
 
     /**
@@ -43,7 +48,7 @@ class VendorController extends Controller
     public function store(Request $request)
     {
         $nama_file="noimg.jpg";
-        if ($request->file('image')){
+        if ($request->file('image')) {
             $file = $request->file('image');
             $nama_file= time().str_replace(" ","",$file->getClientOriginalName());
             $file->move('image', $nama_file);
@@ -79,7 +84,7 @@ class VendorController extends Controller
         $product= Product::where("vendor_id",$id)->paginate(6); //iterate foreach
         //$ review here, also foreach
 
-        return view('vendor.show',compact('vendor','product'));
+        return view('dashboard.vendor.store-profile.show',compact('vendor','product'));
     }
 
     /**
@@ -91,7 +96,7 @@ class VendorController extends Controller
     public function edit($id)
     {
         $vendor = Vendor::where('user_id', $id)->first();
-        return view('vendor.update',compact('vendor'));
+        return view('dashboard.vendor.store-profile.edit',compact('vendor'));
     }
 
     /**
@@ -135,7 +140,7 @@ class VendorController extends Controller
     {
         $user = User::find($id);
         $user->update([
-                'role' => 'user'
+            'role' => 'user'
         ]);
 
         $vendor = Vendor::where('user_id', $id)->first();
