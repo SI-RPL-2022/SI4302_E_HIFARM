@@ -25,11 +25,10 @@
                     @endif
 
                     <a class="btn btn-sm btn-primary mb-2 fw-bold" href="{{ route('vendor.product.create') }}">
-                        <span><i class="bi bi-plus-lg fw-bold"></i>
                         </span>{{ __('Add Product') }}
                     </a>
 
-                    <form class="mb-2 d-flex input-group" action="/vendor/product">
+                    <form class="mb-2 d-flex input-group" action="/dashboard/vendor/product">
                         <input class="form-control" type="text" placeholder="Search" name="search" aria-label="Search" value="{{ request('search') }}">
                         <button class="btn btn-primary" type="submit">Search</button>
                     </form>

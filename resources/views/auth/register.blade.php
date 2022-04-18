@@ -12,7 +12,7 @@
                     
                     <div class="col-md-6 d-flex align-items-center flex-column py-5" style="background-color: #9FDA8A;">
                         <div style="margin: auto">
-                            <img src="{{ asset('image/logo.png') }}" class="mx-auto d-block" width=150 alt="...">
+                            <img src="{{ asset('assets/logo.svg') }}" class="mx-auto d-block" width=150 alt="...">
                             <h4 class="text-white text-center">{{ 'Membuat ternakmu menjadi lebih unggul daripada yang lainnya.' }}</h4>
                         </div>
                     </div>

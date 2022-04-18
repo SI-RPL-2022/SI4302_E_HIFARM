@@ -1,6 +1,5 @@
 <?php
 
-
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\VendorController;
@@ -20,7 +19,7 @@ use App\Http\Controllers\FrontController;
 */
 
 
-//GUEST
+// Guest
 Auth::routes();
 Route::get('/', [FrontController::class, 'index'])->name('index');
 Route::get('/produk', [FrontController::class, 'belum'])->name('belum');
