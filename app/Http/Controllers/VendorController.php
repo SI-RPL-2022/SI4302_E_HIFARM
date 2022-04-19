@@ -64,7 +64,7 @@ class VendorController extends Controller
             ]);
 
             //tambahin alert berhasil?
-            return view('welcome');
+            return redirect()->route('home');
     }
 
     /**

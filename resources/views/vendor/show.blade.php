@@ -39,7 +39,7 @@
 				@foreach ($product as $item)
 		    	<div class="col-4" style="margin-top:2%;">
 		    		<div class="card" style="width: 25rem;">
-					  <img src="{{ URL::asset('image/'.$item->image)}}" class="card-img-top" alt="...">
+					  <img src="{{ URL::asset('storage/'.$item->image)}}" class="card-img-top" alt="...">
 					  <div class="card-body">
 					    <h5 class="card-title">{{$item->name}}</h5>
 					    <p class="card-text">

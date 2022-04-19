@@ -21,7 +21,7 @@ class CreateProductsTable extends Migration
             $table->integer('price');
             $table->integer('weight');
             $table->enum('category',['Hewan Ternak','Produk Ternak','Pakan Ternak','Lainnya']);
-            $table->string('image')->default('noimg.jpg');
+            $table->string('image')->default('product-images/noimg.jpg');
             // $table->string('image')->nullable();
             $table->text('desc')->nullable();
             $table->timestamps();
