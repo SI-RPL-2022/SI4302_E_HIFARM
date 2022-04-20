@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Product;
+use App\Models\Vendor;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -13,7 +16,9 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        return view('products.index', [
+            'data' => Product::latest('updated_at')->filter(request(['search']))->paginate(10)
+        ]);
     }
 
     /**
@@ -23,7 +28,9 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        return view('products.create', [
+            'vendor_id' => Vendor::where('user_id', auth()->user()->id)->first()->id
+        ]);
     }
 
     /**
@@ -34,7 +41,22 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'vendor_id' => 'required',
+            'name' => 'required',
+            'price' => 'required',
+            'weight' => 'required',
+            'category' => 'required',
+            'image' => 'image|file|max:1024',
+            'desc' => 'required',
+        ]);
+
+        if ($request->file('image')) {
+            $validatedData['image'] = $request->file('image')->store('product-images');
+        }
+
+        Product::create($validatedData);
+        return redirect('/vendor/product')->with('success-add','Anda berhasil menambah produk!');
     }
 
     /**
@@ -43,9 +65,11 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Product $product)
     {
-        //
+        return view('products.show', [
+            'data' => $product
+        ]);
     }
 
     /**
@@ -54,9 +78,13 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Product $product) //$id
     {
-        //
+        $this->authorize('view', $product);
+
+        return view('products.edit', [
+            'data' => $product
+        ]);
     }
 
     /**
@@ -66,9 +94,27 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Product $product)
     {
-        //
+        $validatedData = $request->validate([
+            'vendor_id' => 'required',
+            'name' => 'required',
+            'price' => 'required',
+            'weight' => 'required',
+            'category' => 'required',
+            'image' => 'image|file|max:1024',
+            'desc' => 'required',
+        ]);
+
+        if ($request->file('image')) {
+            if ($request->oldImage) {
+                Storage::delete($request->oldImage);
+            }
+            $validatedData['image'] = $request->file('image')->store('product-images');
+        }
+
+        Product::where('id', $product->id)->update($validatedData);
+        return redirect('/vendor/product')->with('success-update','Anda berhasil update produk!');
     }
 
     /**
@@ -77,8 +123,13 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Product $product)
     {
-        //
+        if ($product->image) {
+            Storage::delete($product->image);
+        }
+
+        Product::destroy($product->id);
+        return redirect('/vendor/product')->with('success-remove','Anda berhasil menghapus produk!');
     }
 }
