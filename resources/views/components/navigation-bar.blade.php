@@ -21,7 +21,7 @@
                         <a class="nav-link" href="">Home</a>
                     </li>
                     <li class="nav-item me-2">
-                        <a class="nav-link" href="">Produk</a>
+                        <a class="nav-link" href="{{ route('forum')}}">Forum</a>
                     </li>
                     <li class="nav-item me-2">
                         <a class="nav-link" href="{{ route('toko')}}">Toko</a>

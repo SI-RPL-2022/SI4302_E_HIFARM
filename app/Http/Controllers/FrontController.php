@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Models\Vendor;
 use App\Models\Product;
+use App\Models\Forum_Thread;
+
 
 class FrontController extends Controller
 {
@@ -35,5 +37,22 @@ class FrontController extends Controller
         }
 
         return view('toko', compact('toko'));
+    }
+
+    public function forum(){
+
+        
+        if(request('search')) {{
+            // need fix
+            $forum = Forum_Thread::withCount('comments');
+            $forum= $forum->where('title', 'like', '%'.request('search').'%')->paginate(6);
+        }}
+        else{
+            $forum = Forum_Thread::withCount('comments')->paginate(6); //the 'comments' here refer to the function from thread's model
+            // $forum = Forum_Thread::paginate(6);
+        }
+        
+
+        return view('forum', compact('forum'));
     }
 }

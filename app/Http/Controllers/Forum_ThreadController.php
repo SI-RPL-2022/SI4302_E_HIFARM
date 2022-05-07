@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Forum_Thread;
+use App\Models\Forum_Comment;
+use App\Models\User;
 
 class Forum_ThreadController extends Controller
 {
@@ -13,7 +16,7 @@ class Forum_ThreadController extends Controller
      */
     public function index()
     {
-        //
+        return view('forum');
     }
 
     /**
@@ -45,7 +48,10 @@ class Forum_ThreadController extends Controller
      */
     public function show($id)
     {
-        //
+        $thread= Forum_Thread::find($id);
+        $comment= Forum_Comment::where("thread_id",$id)->get(); //iterate foreach
+        $num = Forum_Comment::where("thread_id",$id)->count();
+        return view('forumDetail',compact('thread','comment',"num"));
     }
 
     /**

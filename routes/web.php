@@ -6,6 +6,8 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\VendorController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\FrontController;
+use App\Http\Controllers\Forum_ThreadController;
+use App\Http\Controllers\Forum_CommentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,6 +26,11 @@ Auth::routes();
 Route::get('/', [FrontController::class, 'index'])->name('home');
 Route::get('/toko', [FrontController::class, 'toko'])->name('toko');
 Route::get('/visit/{id}', [VendorController::class, 'show'])->name('visit');
+Route::get('/forum', [FrontController::class, 'forum'])->name('forum');
+Route::get('/thread/{id}', [Forum_ThreadController::class, 'show'])->name('thread');
+Route::get('/t', [Forum_ThreadController::class, 'show'])->name('threadEdit');
+Route::get('/ttt', [Forum_ThreadController::class, 'show'])->name('commentEdit');
+
 
 
 Route::prefix('home')->middleware('auth')->group(function () {

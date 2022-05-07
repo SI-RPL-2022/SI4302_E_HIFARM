@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\Forum_Thread;
+use App\Models\Forum_Comment;
 
 class User extends Authenticatable
 {
@@ -47,5 +49,15 @@ class User extends Authenticatable
     public function getVendor()
     {
         return $this->hasOne(Vendor::class);
+    }
+
+    public function threads()
+    {
+        return $this->hasMany(Forum_Thread::class);
+    }
+    
+    public function comments()
+    {
+        return $this->hasMany(Forum_Comment::class);
     }
 }
