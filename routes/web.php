@@ -40,9 +40,12 @@ Route::prefix('thread')->group(function () {
     Route::delete('/delete/{id}', [Forum_ThreadController::class, 'destroy'])->name('thread.delete');
 
     Route::prefix('comment')->group(function () {
-        Route::get('/create', [Forum_ThreadController::class, 'create'])->name('thread.comment.create');
-        Route::post('/create', [Forum_ThreadController::class, 'show'])->name('thread.comment.store');
-        Route::get('/edit', [Forum_ThreadController::class, 'edit'])->name('comment.edit');
+        Route::get('/create/{id}', [Forum_CommentController::class, 'create'])->name('thread.comment.create');              ///id of thread's
+        Route::post('/create', [Forum_CommentController::class, 'store'])->name('thread.comment.store');
+
+        Route::get('/edit/{id}', [Forum_CommentController::class, 'edit'])->name('thread.comment.edit');                           ///id of comment's
+        Route::put('/edit/{id}', [Forum_CommentController::class, 'update'])->name('thread.comment.update');   
+        Route::delete('/delete/{id}', [Forum_CommentController::class, 'destroy'])->name('thread.comment.delete');            
         });
 
 });
@@ -50,7 +53,7 @@ Route::prefix('thread')->group(function () {
 
 
 
-//// SPECIFIC USER
+/////////////////////////////////////////SPECIFIC USER
 
 Route::prefix('home')->middleware('auth')->group(function () {
     ////////////////////////// LANDING PAGE
@@ -68,7 +71,7 @@ Route::group(['middleware'=>'checkRole:user','prefix'=>'user'], function() {
     
 });
 
-
+/////VENDOR
 Route::group(['middleware'=>'checkRole:vendor','prefix'=>'vendor'], function() {
     // TOKO
     
@@ -90,4 +93,4 @@ Route::group(['middleware'=>'checkRole:vendor','prefix'=>'vendor'], function() {
 
 });
 
-//// SPECIFIC USER
+//////////////////////////////////////// SPECIFIC USER

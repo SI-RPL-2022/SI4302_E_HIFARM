@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Vendor;
 
 class Product extends Model
 {
@@ -23,5 +24,10 @@ class Product extends Model
         $query->when($filters['search'] ?? false, function($query, $search) {
             return $query->where('name','like','%'.$search.'%');
         });
+    }
+
+    public function vendor()
+    {
+        return $this->belongsTo(Vendor::class);
     }
 }

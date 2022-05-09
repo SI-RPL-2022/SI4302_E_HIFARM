@@ -14,9 +14,11 @@
 			<div class="row">
 				<div class="col-md-10 offset-md-1">
 					<div class="row">
+						<form action="{{ route('thread.comment.create', $thread->id)}}" method="GET">
 						<div class="text-end">
-							<button type="button" class="btn btn-outline-primary btn-lg"><b>+ Tambah Balasan</b></button>
+							<button type="submit" class="btn btn-outline-primary btn-lg"><b>+ Tambah Balasan</b></button>
 						</div>
+						</form>
 					</div>
 
 					<div class="row">
@@ -148,8 +150,8 @@
 
 								@if (Auth::id() == $comments->user_id)
 							<div class="text-end">		
-								<form action="{{  route('comment.edit', $comments->id ) }}" method='GET'>
-								<button type="submit" class="btn btn-warning btn-sm custom-btn-edit text-white me-3" data-bs-toggle="modal" data-bs-target="#exampleModal2">
+								<form action="{{  route('thread.comment.edit', $comments->id ) }}" method='GET'>
+								<button type="submit" class="btn btn-warning btn-sm custom-btn-edit text-white me-3">
 									<div class="d-flex">
 										<b>Edit</b>
 										<div class="icon-edit">
@@ -161,8 +163,8 @@
 								</form>
 
 								<!-- Button trigger modal form delete-->
-								<form>
-								<button type="button" class="btn btn-danger btn-sm custom-btn-tutupToko" data-bs-toggle="modal" data-bs-target="#exampleModal">
+								
+								<button type="button" class="btn btn-danger btn-sm custom-btn-tutupToko" data-bs-toggle="modal" data-bs-target="#exampleModal2">
 								  <div class="d-flex">
 									<b>Hapus</b>
 									<div class="icon-hapus">
@@ -172,7 +174,7 @@
 								</button>
 								
 								<!-- Modal -->
-								<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+								<div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 								  <div class="modal-dialog">
 								    <div class="modal-content">
 								      <div class="modal-header">
@@ -180,12 +182,16 @@
 								        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 								      </div>
 								      <div class="modal-body text-center">
-								        <b>Apakah Anda yakin ingin menghapus Diskusi / Balasan?</b>
+								        <b>Apakah Anda yakin ingin menghapus Balasan?</b>
 								      </div>
-								      <div class="modal-footer">
-								        <button type="button" class="btn btn-warning text-white" data-bs-dismiss="modal"><b>Yakin</b></button>
-								        <button type="button" class="btn btn-primary"><b>Kembali</b></button>
-								      </div>
+									<form action="{{  route('thread.comment.delete', $comments->id ) }}" method="POST">
+										@csrf
+										<div class="modal-footer">
+											<input type="hidden" name="_method" value="DELETE">
+											<button type="submit" class="btn btn-warning text-white" ><b>Yakin</b></button>
+											<button type="button" class="btn btn-primary" data-bs-dismiss="modal"><b>Kembali</b></button>
+										</div>
+									</form>
 								    </div>
 								  </div>
 								</div>
