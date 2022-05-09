@@ -9,7 +9,7 @@ use App\Models\User;
 class Forum_Comment extends Model
 {
     use HasFactory;
-    protected $fillable = ['thread_id','comment'];
+    protected $fillable = ['user_id','thread_id','comment'];
     protected $table = 'forum_comments';
     
     public function user()

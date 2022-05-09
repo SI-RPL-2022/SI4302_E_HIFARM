@@ -45,10 +45,10 @@ class FrontController extends Controller
         if(request('search')) {{
             // need fix
             $forum = Forum_Thread::withCount('comments');
-            $forum= $forum->where('title', 'like', '%'.request('search').'%')->paginate(6);
+            $forum= $forum->where('title', 'like', '%'.request('search').'%')->orderBy('created_at', 'DESC')->paginate(6);
         }}
         else{
-            $forum = Forum_Thread::withCount('comments')->paginate(6); //the 'comments' here refer to the function from thread's model
+            $forum = Forum_Thread::withCount('comments')->orderBy('created_at', 'DESC')->paginate(6); //the 'comments' here refer to the function from thread's model
             // $forum = Forum_Thread::paginate(6);
         }
         

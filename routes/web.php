@@ -21,17 +21,36 @@ use App\Http\Controllers\Forum_CommentController;
 */
 
 
-/////GUEST
+//////////////////////////////////////GUEST & ALL USER
 Auth::routes();
 Route::get('/', [FrontController::class, 'index'])->name('home');
 Route::get('/toko', [FrontController::class, 'toko'])->name('toko');
 Route::get('/visit/{id}', [VendorController::class, 'show'])->name('visit');
 Route::get('/forum', [FrontController::class, 'forum'])->name('forum');
-Route::get('/thread/{id}', [Forum_ThreadController::class, 'show'])->name('thread');
-Route::get('/t', [Forum_ThreadController::class, 'show'])->name('threadEdit');
-Route::get('/ttt', [Forum_ThreadController::class, 'show'])->name('commentEdit');
 
 
+
+    /// THREAD
+Route::prefix('thread')->group(function () {
+    Route::get('/create', [Forum_ThreadController::class, 'create'])->name('thread.create');
+    Route::post('/create', [Forum_ThreadController::class, 'store'])->name('thread.store');
+    Route::get('/show/{id}', [Forum_ThreadController::class, 'show'])->name('thread.show');
+    Route::get('/edit/{id}', [Forum_ThreadController::class, 'edit'])->name('thread.edit');
+    Route::put('/update/{id}', [Forum_ThreadController::class, 'update'])->name('thread.update');
+    Route::delete('/delete/{id}', [Forum_ThreadController::class, 'destroy'])->name('thread.delete');
+
+    Route::prefix('comment')->group(function () {
+        Route::get('/create', [Forum_ThreadController::class, 'create'])->name('thread.comment.create');
+        Route::post('/create', [Forum_ThreadController::class, 'show'])->name('thread.comment.store');
+        Route::get('/edit', [Forum_ThreadController::class, 'edit'])->name('comment.edit');
+        });
+
+});
+////////////////////////////////////////GUEST & ALL USER
+
+
+
+//// SPECIFIC USER
 
 Route::prefix('home')->middleware('auth')->group(function () {
     ////////////////////////// LANDING PAGE
@@ -70,3 +89,5 @@ Route::group(['middleware'=>'checkRole:vendor','prefix'=>'vendor'], function() {
     });
 
 });
+
+//// SPECIFIC USER

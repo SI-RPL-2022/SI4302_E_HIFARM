@@ -50,9 +50,11 @@
 						<div class="row mb-3">
 								<label>{{ $thread->content }}</label>
 						
+						
 							<div class="text-end">		
-							<form action="{{  route('threadEdit', $thread->id ) }}" method='GET'>
-								<button type="button" class="btn btn-warning btn-sm custom-btn-edit text-white me-3">
+							@if (Auth::id() == $thread->user_id)
+							<form action="{{  route('thread.edit', $thread->id ) }}" method='GET'>
+								<button type="submit" class="btn btn-warning btn-sm custom-btn-edit text-white me-3">
 									<div class="d-flex">
 										<b>Edit</b>
 										<div class="icon-edit">
@@ -60,7 +62,7 @@
 										</div>
 									</div>
 								</button>
-								</form>
+							</form>
 
 								<!-- Button trigger modal -->
 								<button type="button" class="btn btn-danger btn-sm custom-btn-tutupToko" data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -71,6 +73,7 @@
 									</div>
 								  </div>
 								</button>
+						
 
 								<!-- Modal -->
 								<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -81,19 +84,28 @@
 								        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 								      </div>
 								      <div class="modal-body text-center">
-								        <b>Apakah Anda yakin ingin menghapus Diskusi / Balasan?</b>
+								        <b>Apakah Anda yakin ingin menghapus Thread diskusi?</b>
 								      </div>
-								      <div class="modal-footer">
-								        <button type="button" class="btn btn-warning text-white" data-bs-dismiss="modal"><b>Yakin</b></button>
-								        <button type="button" class="btn btn-primary"><b>Kembali</b></button>
-								      </div>
+									  <form action="{{  route('thread.delete', $thread->id ) }}" method="POST">
+										@csrf
+										<div class="modal-footer">
+											<input type="hidden" name="_method" value="DELETE">
+											<button type="submit" class="btn btn-warning text-white" ><b>Yakin</b></button>
+											<button type="button" class="btn btn-primary" data-bs-dismiss="modal"><b>Kembali</b></button>
+										</div>
+									</form>
 								    </div>
 								  </div>
 								</div>
 							</div>
 						</div>
+						@endif
 						<hr>
-						<!-- end Anggota -->
+						
+
+
+
+
 						<span>Balasan ({{$num}})</span>
 					</div>
 
@@ -134,9 +146,9 @@
 								<label>{{ $comments->comment }}</label>
 							
 
-
+								@if (Auth::id() == $comments->user_id)
 							<div class="text-end">		
-								<form action="{{  route('commentEdit', $comments->id ) }}" method='GET'>
+								<form action="{{  route('comment.edit', $comments->id ) }}" method='GET'>
 								<button type="submit" class="btn btn-warning btn-sm custom-btn-edit text-white me-3" data-bs-toggle="modal" data-bs-target="#exampleModal2">
 									<div class="d-flex">
 										<b>Edit</b>
@@ -177,7 +189,10 @@
 								    </div>
 								  </div>
 								</div>
+
 							</div>
+							@endif
+
 						</div>
 					</div>
 				</div>

@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Forum_Thread;
 use App\Models\Forum_Comment;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class Forum_ThreadController extends Controller
 {
@@ -26,7 +28,7 @@ class Forum_ThreadController extends Controller
      */
     public function create()
     {
-        //
+        return view('thread.create');
     }
 
     /**
@@ -37,7 +39,16 @@ class Forum_ThreadController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $id = Auth::user()->id;
+        $thread = Forum_Thread::create(
+            [
+                'user_id' => $id,
+                'title' => $request->title,
+                'content' => $request->content,
+            ]);
+        $threadId = $thread->id;
+            //tambahin alert berhasil?
+            return redirect()->route('thread.show',['id'=> $threadId ]);
     }
 
     /**
@@ -62,7 +73,8 @@ class Forum_ThreadController extends Controller
      */
     public function edit($id)
     {
-        //
+        $thread = Forum_Thread::find($id);
+        return view('thread.update', compact('thread'));
     }
 
     /**
@@ -74,7 +86,17 @@ class Forum_ThreadController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $thread = Forum_Thread::updateOrCreate(
+            ['id' => $id],
+            [   
+                'title' => $request->title,
+                'content' => $request->content,
+                
+            ]);
+        
+        $threadId = $thread->id;
+        //tambahin alert berhasil?
+        return redirect()->route('thread.show',['id'=> $threadId ]);
     }
 
     /**
@@ -85,6 +107,10 @@ class Forum_ThreadController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $thread = Forum_Thread::find($id);
+        $thread->delete();
+
+        ///tambahin alert
+        return redirect()->route('forum');
     }
 }
