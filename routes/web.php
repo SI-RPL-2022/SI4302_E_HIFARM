@@ -41,6 +41,17 @@ Route::group(['middleware'=>'checkRole:vendor','prefix'=>'vendor'], function() {
     // Route::put('/store/{id}', [VendorController::class, 'update'])->name('vendor.update');
     // Route::delete('/delete/{id}', [VendorController::class, 'delete'])->name('vendor.delete');
 
+    // Blog
+    Route::group(['prefix'=>'product'], function() {
+        Route::get('/', [BlogController::class, 'index'])->name('vendor.blog.index');
+        Route::post('/', [BlogController::class, 'store']);
+        Route::get('/create', [BlogController::class, 'create'])->name('vendor.blog.create');
+        Route::get('/edit/{blog}', [BlogController::class, 'edit'])->name('vendor.blog.edit');
+        Route::post('/edit/{blog}', [BlogController::class, 'update']);
+        Route::get('/show/{blog}', [BlogController::class, 'show']);
+        Route::delete('/{blog}', [BlogController::class, 'destroy']);
+    });
+
     // PRODUK
     Route::group(['prefix'=>'product'], function() {
         Route::get('/', [ProductController::class, 'index'])->name('vendor.product.index');
@@ -52,4 +63,7 @@ Route::group(['middleware'=>'checkRole:vendor','prefix'=>'vendor'], function() {
         Route::delete('/{product}', [ProductController::class, 'destroy']);
     });
 
+});
+Route::get('/createlaman', function () {
+    return view('createlaman');
 });
