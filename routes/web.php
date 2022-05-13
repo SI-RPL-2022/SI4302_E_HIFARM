@@ -43,7 +43,7 @@ Route::group(['middleware'=>'checkRole:vendor','prefix'=>'vendor'], function() {
     // Route::delete('/delete/{id}', [VendorController::class, 'delete'])->name('vendor.delete');
 
     // Blog
-    Route::group(['prefix'=>'product'], function() {
+    Route::group(['prefix'=>'blog'], function() {
         Route::get('/', [BlogController::class, 'index'])->name('vendor.blog.index');
         Route::post('/', [BlogController::class, 'store']);
         Route::get('/create', [BlogController::class, 'create'])->name('vendor.blog.create');

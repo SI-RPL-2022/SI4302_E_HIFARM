@@ -7,7 +7,7 @@
 
         <div class="col-lg-10">
             <div class="card">
-                <div class="card-header">{{ __('Daftar Produk') }}</div>
+                <div class="card-header">{{ __('Daftar Blog') }}</div>
 
                 {{-- @if (session()->has('success-add'))
                     <div class="mx-3 my-2 alert alert-success alert-dismissible fade show" role="alert">
@@ -28,12 +28,12 @@
                         <x-alert type="success" message="{{ session('success-remove') }}"/>
                     @endif
 
-                    <a class="btn btn-sm btn-primary mb-2 fw-bold" href="{{ route('vendor.product.create') }}">
+                    <a class="btn btn-sm btn-primary mb-2 fw-bold" href="{{ route('vendor.blog.create') }}">
                         <span><i class="bi bi-plus-lg fw-bold"></i>
-                        </span>{{ __('Add Product') }}
+                        </span>{{ __('Add Blog') }}
                     </a>
 
-                    <form class="mb-2 d-flex input-group" action="/vendor/product">
+                    <form class="mb-2 d-flex input-group" action="/vendor/blog">
                         <input class="form-control" type="text" placeholder="Search" name="search" aria-label="Search" value="{{ request('search') }}">
                         <button class="btn btn-primary" type="submit">Search</button>
                     </form>
@@ -43,10 +43,7 @@
                             <tr>
                                 <th scope="col">Id</th>
                                 <th scope="col">Updated</th>
-                                <th scope="col">Nama</th>
-                                <th scope="col">Harga</th>
-                                <th scope="col">Berat</th>
-                                <th scope="col">Kategori</th>
+                                <th scope="col">Title</th>
                                 <th scope="col">Action</th>
                             </tr>
                         </thead>
@@ -56,13 +53,10 @@
                             <tr>
                                 <td>{{ $key->id }}</td>
                                 <td>{{ $key->updated_at }}</td>
-                                <td>{{ $key->name }}</td>
-                                <td>{{ $key->price }}</td>
-                                <td>{{ $key->weight }}</td>
-                                <td>{{ $key->category }}</td>
+                                <td>{{ $key->title }}</td>
                                 <td class="d-flex flex-wrap">
-                                    <a class="btn btn-sm btn-info me-1 mb-1 text-white" href="/vendor/product/show/{{ $key->id }}"> {{ __('View') }} </a>
-                                    <a class="btn btn-sm btn-primary me-1 mb-1" href="/vendor/product/edit/{{ $key->id }}"> {{ __('Edit') }} </a>
+                                    <a class="btn btn-sm btn-info me-1 mb-1 text-white" href="/vendor/blog/show/{{ $key->id }}"> {{ __('View') }} </a>
+                                    <a class="btn btn-sm btn-primary me-1 mb-1" href="/vendor/blog/edit/{{ $key->id }}"> {{ __('Edit') }} </a>
                                     <button class="btn btn-sm btn-danger me-1 mb-1" type="button" data-bs-toggle="modal" data-bs-target="#confirmationDelete{{ $key->id }}">Delete</button>
                                 </td>
                             </tr>
@@ -75,12 +69,12 @@
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
-                                        {{ __('Apakah Anda Yakin untuk Melakukan Hapus Produk dari toko?') }}
+                                        {{ __('Apakah Anda Yakin untuk Melakukan Hapus Blog?') }}
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                             
-                                            <form action="/vendor/product/{{ $key->id }}" method="post">
+                                            <form action="/vendor/blog/{{ $key->id }}" method="post">
                                                 @csrf
 
                                                 <input type="hidden" name="_method" value="DELETE">
