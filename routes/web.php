@@ -24,6 +24,7 @@ Auth::routes();
 Route::get('/', [FrontController::class, 'index'])->name('home');
 Route::get('/toko', [FrontController::class, 'toko'])->name('toko');
 Route::get('/visit/{id}', [VendorController::class, 'show'])->name('visit');
+Route::get('/blog', [FrontController::class, 'blog'])->name('blog');
 
 
 Route::prefix('home')->middleware('auth')->group(function () {

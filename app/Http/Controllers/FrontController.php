@@ -36,4 +36,8 @@ class FrontController extends Controller
 
         return view('toko', compact('toko'));
     }
+
+    public function blog(){
+        return view('kumpulan_blog');
+    }
 }

@@ -1,0 +1,38 @@
+.custom-inpForm
+{
+	position: relative;
+	display: flex;
+	width: 70%;
+	margin: 0 -4cm 1cm 4cm;
+}
+
+.custom-btn-filter
+{
+	margin: 0 0 0 20px;
+	width: 44px;
+	height: 45px;
+	border-radius: 10px;
+}
+
+.filter-icon
+{
+	justify-content: center;
+	width: 47px;
+	padding: 5px 4px 5px 4px;
+	margin: -7px 0 0 -11px;
+	border: 1px solid black;
+	background-attachment: black;
+	background-color: white;
+	border-radius: 10px;
+	filter: invert(0%);
+}
+
+.form-check
+{
+	margin-left: 10px;
+}
+
+.form-check-label
+{
+	margin-left: 5px;
+}
