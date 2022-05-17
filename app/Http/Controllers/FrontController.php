@@ -55,4 +55,9 @@ class FrontController extends Controller
 
         return view('forum', compact('forum'));
     }
+
+    public function tes(){
+
+        return view('auth.passwords.confirm');
+    }
 }

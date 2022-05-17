@@ -28,7 +28,7 @@ Route::get('/toko', [FrontController::class, 'toko'])->name('toko');
 Route::get('/visit/{id}', [VendorController::class, 'show'])->name('visit');
 Route::get('/forum', [FrontController::class, 'forum'])->name('forum');
 
-
+Route::get('/tes', [FrontController::class, 'tes'])->name('tes');
 
     /// THREAD
 Route::prefix('thread')->group(function () {
