@@ -2,6 +2,11 @@
 
 @section('content')
 <div class="container ">
+          @if (session('status'))
+              <div class="alert alert-success alert-dismissible fade show" role="alert">
+                  {{ session('status') }}
+              </div>
+          @endif
       <div class="card mb-5">
         <img
           src="https://images.unsplash.com/photo-1594302954323-7846bf62b5a6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8c2FwaXxlbnwwfHwwfHw%3D&w=1000&q=80"
