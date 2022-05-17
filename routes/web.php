@@ -1,8 +1,13 @@
 <?php
 
+
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\VendorController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\FrontController;
+use App\Http\Controllers\Forum_ThreadController;
+use App\Http\Controllers\Forum_CommentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,34 +20,77 @@ use App\Http\Controllers\VendorController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
+//////////////////////////////////////GUEST & ALL USER
 Auth::routes();
+Route::get('/', [FrontController::class, 'index'])->name('home');
+Route::get('/toko', [FrontController::class, 'toko'])->name('toko');
+Route::get('/visit/{id}', [VendorController::class, 'show'])->name('visit');
+Route::get('/forum', [FrontController::class, 'forum'])->name('forum');
 
-////////////////////////// Landing Page
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+    /// THREAD
+Route::prefix('thread')->group(function () {
+    Route::get('/create', [Forum_ThreadController::class, 'create'])->name('thread.create');
+    Route::post('/create', [Forum_ThreadController::class, 'store'])->name('thread.store');
+    Route::get('/show/{id}', [Forum_ThreadController::class, 'show'])->name('thread.show');
+    Route::get('/edit/{id}', [Forum_ThreadController::class, 'edit'])->name('thread.edit');
+    Route::put('/update/{id}', [Forum_ThreadController::class, 'update'])->name('thread.update');
+    Route::delete('/delete/{id}', [Forum_ThreadController::class, 'destroy'])->name('thread.delete');
+
+    Route::prefix('comment')->group(function () {
+        Route::get('/create/{id}', [Forum_CommentController::class, 'create'])->name('thread.comment.create');              ///id of thread's
+        Route::post('/create', [Forum_CommentController::class, 'store'])->name('thread.comment.store');
+
+        Route::get('/edit/{id}', [Forum_CommentController::class, 'edit'])->name('thread.comment.edit');                           ///id of comment's
+        Route::put('/edit/{id}', [Forum_CommentController::class, 'update'])->name('thread.comment.update');   
+        Route::delete('/delete/{id}', [Forum_CommentController::class, 'destroy'])->name('thread.comment.delete');            
+        });
+
+});
+////////////////////////////////////////GUEST & ALL USER
+
+
+
+/////////////////////////////////////////SPECIFIC USER
 
 Route::prefix('home')->middleware('auth')->group(function () {
     ////////////////////////// LANDING PAGE
     Route::get('/', [HomeController::class, 'index'])->name('home');
     // Route::get('/storeList', [HomeController::class, 'index'])->name('storeList');
+    Route::get('/visit/{id}', [VendorController::class, 'show'])->name('user.visit');
 
 });
 
+Route::group(['middleware'=>'checkRole:user','prefix'=>'user'], function() {
+    // GET BUKA TOKO
+    Route::get('/store', [VendorController::class, 'create'])->name('user.create');
+    Route::post('/store', [VendorController::class, 'store'])->name('user.store');
 
-Route::prefix('vendor')->middleware('auth', 'checkRole:vendor')->group(function () {
-//     /////////////////////// TOKO
-    Route::get('/store', [VendorController::class, 'index'])->name('vendor.store');
-//     // Route::post('/store', [VendorController::class, 'store'])->name('vendor.create');
-//     // Route::put('/store/{id}', [VendorController::class, 'update'])->name('vendor.update');
-//     // Route::delete('/delete/{id}', [VendorController::class, 'delete'])->name('vendor.delete');
+    
+});
 
-//     /////////////////////// PRODUK
-//     // Route::get('/product/{id}', [ProductController::class, 'index'])->name('vendor.product');
-//     // Route::post('/product/add/{id}', [ProductController::class, 'store'])->name('vendor.addProduct');
-//     // Route::put('/product/{id}', [ProductController::class, 'update'])->name('vendor.updateProduct');
-//     // Route::put('/product/delete/{id}', [ProductController::class, 'delete'])->name('vendor.deleteProduct');
+/////VENDOR
+Route::group(['middleware'=>'checkRole:vendor','prefix'=>'vendor'], function() {
+    // TOKO
+    
+    Route::get('/store', [VendorController::class, 'index'])->name('vendor.index');
+    Route::get('/store/{id}', [VendorController::class, 'edit'])->name('vendor.edit');
+    Route::put('/store/{id}', [VendorController::class, 'update'])->name('vendor.update');
+    Route::delete('/store/delete/{id}', [VendorController::class, 'destroy'])->name('vendor.delete');
+
+    // PRODUK
+    Route::group(['prefix'=>'product'], function() {
+        Route::get('/', [ProductController::class, 'index'])->name('vendor.product.index');
+        Route::post('/', [ProductController::class, 'store']);
+        Route::get('/create', [ProductController::class, 'create'])->name('vendor.product.create');
+        Route::get('/edit/{product}', [ProductController::class, 'edit'])->name('vendor.product.edit');
+        Route::post('/edit/{product}', [ProductController::class, 'update']);
+        Route::get('/show/{product}', [ProductController::class, 'show']);
+        Route::delete('/{product}', [ProductController::class, 'destroy']);
+    });
 
 });
+
+//////////////////////////////////////// SPECIFIC USER

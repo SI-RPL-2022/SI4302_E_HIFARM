@@ -1,0 +1,59 @@
+.content-user
+{
+	margin: 10px 20px 25px 20px;
+}
+
+.box-user
+{
+	background: #e3e3e3;
+	border-radius: 20px;
+}
+
+.col-custom-flex
+{
+
+	display: flex;
+	padding-top: 0.5cm;
+	margin-bottom: 0.5cm;
+}
+
+.img-user
+{
+	border-radius: 60%;
+	min-width: 2.5cm;
+	min-height: 2.5cm;
+	max-width: 2.5cm;
+	max-height: 2.5cm;
+	object-fit: cover;
+	margin-right: 10px;
+}
+
+span
+{
+	color: grey;
+}
+
+.d-grid-custom
+{
+	padding-top: 0.5cm;
+	justify-content: flex-end;
+}
+
+.d-flex
+{
+	display: flex;
+}
+
+.icon-thread
+{
+	margin-left: 10px;
+	width: 20px;
+	filter: invert(50%);
+}
+
+.icon-edit, .icon-hapus
+{
+	width: 16px;
+	filter: invert(100%);
+	margin-left: 10px;
+}

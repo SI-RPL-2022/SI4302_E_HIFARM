@@ -16,6 +16,7 @@ class CreateForumCommentsTable extends Migration
         Schema::create('forum_comments', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('thread_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('thread_id')->references('id')->on('forum_threads')->onDelete('cascade')->onUpdate('cascade');
             $table->text('comment');
             $table->timestamps();

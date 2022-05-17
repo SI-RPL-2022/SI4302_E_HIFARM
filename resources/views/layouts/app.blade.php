@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <link href="{{ asset('css/detailtoko.css') }}" rel="stylesheet">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -19,6 +19,11 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    <!-- Trix Editor -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/trix.css') }}">
+    <script type="text/javascript" src="{{ asset('js/trix.js') }}"></script>
+
     <style>
         .bd-placeholder-img {
           font-size: 1.125rem;
@@ -44,7 +49,7 @@
             @yield('content')
         </main>
 
-        {{-- <x-footer/> --}}
+        <x-footer/>
     </div>
 </body>
 </html>

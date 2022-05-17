@@ -1,0 +1,62 @@
+.container-produk, 
+.container-detailToko 
+{
+	margin-top: 20px;
+	font-size: 0.8cm;
+}
+
+.link-produk,
+.link-detailToko
+{
+	text-decoration: none;
+	color: black;
+	transition: 0.5s ease-in;
+}
+
+.link-produk:hover,
+.link-detailToko:hover
+{
+	transition: 0.5s ease-out;
+	border-bottom: 4px solid #ff9900;
+	color: #ff9900;
+}
+
+.dividing-line
+{
+	-webkit-transform:rotate(90deg);
+	margin-top: 40px;
+	margin-left: 4cm;
+	border-top: 2px solid black;
+	width: 1.5cm;
+}
+
+.custom-row
+{
+	padding-left: 1.5cm;
+}
+
+span
+{
+	color: grey;
+	font-size: 16px;
+}
+
+.btn-pesan
+{
+	margin: 0 -0.8cm 0 0.8cm;
+	width: 4cm;
+}
+
+.city
+{
+	color: black;
+	letter-spacing: 1px;
+	font-weight: 450;
+	font-size: 18px;
+}
+
+.pagination-position
+{
+	padding-left: 43%;
+	margin-bottom: 2cm;
+}
