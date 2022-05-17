@@ -1,0 +1,28 @@
+.custom-inpForm
+{
+	position: relative;
+	display: flex;
+	width: 70%;
+	margin: 0 -4cm 1cm 4cm;
+}
+
+.filter-icon
+{
+	justify-content: center;
+	width: 45px;
+	height: 45px;
+	padding: 5px 4px 5px 4px;
+	margin: 0 7px 0 7px;
+	border: 1px solid black;
+	background-attachment: black;
+	background-color: white;
+	border-radius: 10px;
+	filter: invert(0%);
+}
+
+
+.pagination-position
+{
+	padding-left: 43%;
+	margin-bottom: 1cm;
+}

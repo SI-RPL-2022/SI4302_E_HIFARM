@@ -53,8 +53,8 @@
             @foreach ($latest as $item)
                     <div class="col-sm-4">
                         <div class="card">
-
-                        <img src="{{ URL::asset('image/'.$item->image)}}" height="250px"  class="card-img-top" alt="gambar">
+                        
+                        <img src="{{ URL::asset('storage/'.$item->image)}}" height="250px"  class="card-img-top" alt="gambar">
                             <div class="card-body">
                             <!--route open bracket 'vendor.product', $item->id close -->
                             <form action="" method="GET"> 
@@ -63,7 +63,7 @@
                                 <hr>
                                 <h4>{{$item->price}}</h4>
                                 <h4>{{$item->weight}}</h4>
-                                <h4>{{$item->desc}}</h4>
+                                <h4>{!!$item->desc!!}</h4>
                                 <br>
 
                                 <button type="submit" class="btn btn-primary btn-lg">Lihat</button>
@@ -77,7 +77,7 @@
         <div class="text-center">
           <p class="fs-5">HiFarm membuka kesempatan untuk kamu para <br> peternak yang ingin terlibat untuk memanjukan
             <br> Peternakan Indonesia.</p>
-          <a class="btn btn-primary" href="{{ route('register')}}" role="button">Browse Toko</a>
+          <a class="btn btn-primary" href="{{ route('toko')}}" role="button">Browse Toko</a>
         </div>
 
       </div>

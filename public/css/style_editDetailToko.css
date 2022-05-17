@@ -1,0 +1,130 @@
+.custom-btn-edit
+{
+	margin: 0 3.7cm 0 -3.7cm;
+	width: 6cm;
+}
+
+.custom-btn-tutupToko
+{
+	margin: 0 -3.7cm 0 3.7cm;
+	width: 6cm;
+}
+
+.img-file
+{
+	border-radius: 10px;
+	box-shadow: 0 6px 12px 0 rgb(0 0 0 / 20%), 0 9px 20px 0 rgb(0 0 0 / 11%);
+}
+
+
+/*------- footer ---------*/
+.footer-custom
+{
+	box-shadow: 5px 10px 8px 10px #888888;
+}
+
+.col-custom1
+{
+	padding-top: 1cm;
+	margin-right: 1.5cm;
+}
+
+.footer-logo
+{
+	position: relative;
+	width: 2cm;
+	font-weight: 700;
+	color: #fff;
+	text-decoration: none;
+	font-size: 2em;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	transition: 1.5s /* Unix 0.6s*/
+}
+
+.footer-textLeft-title, .footer-textLeft-title2
+{
+	margin-top: 1cm;
+	font-weight: 450;
+	font-size: 19px;	
+}
+
+.footer-textLeft-desc, .footer-textLeft-desc2
+{
+	color: grey;
+    margin-bottom: 1rem;
+    font-weight: 430;
+    font-size: 17px;
+}
+
+.col-custom2
+{
+	padding-top: 2cm;
+}
+
+
+.footer-textCenter-title
+{
+	margin-top: 1cm;
+	font-weight: 450;
+	font-size: 19px;	
+}
+
+.footer-decsLink
+{
+	text-decoration: none;
+}
+
+.footer-textCenter-desc
+{
+	color: grey;
+    margin-bottom: 1rem;
+    font-weight: 430;
+    font-size: 17px;
+}
+
+.col-custom3
+{
+	padding-top: 2cm;
+}
+
+.footer-textRight-title
+{
+	margin-top: 1cm;
+	font-weight: 450;
+	font-size: 19px;
+}
+
+.flex-icon
+{
+	position: relative;
+	display: flex;
+}
+
+.footer-icon1
+{
+	display: flex;
+	justify-content: center;
+	width: 40px;
+	height: 40px;
+	padding: 0 13px;
+	margin: 0 7px 0 7px;
+	background-attachment: white;
+	background-color: #5c5c5c;
+	border-radius: 50%;
+	filter: invert(100%);
+}
+
+.footer-icon2
+{
+	display: flex;
+	justify-content: center;
+	width: 40px;
+	height: 40px;
+	padding: 0 10px;
+	margin: 0 7px 0 7px;
+	background-attachment: white;
+	background-color: #5c5c5c;
+	border-radius: 50%;
+	filter: invert(100%);
+}
