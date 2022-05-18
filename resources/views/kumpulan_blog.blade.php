@@ -15,10 +15,9 @@
 
 		<!-- form -->
 		<div class="container"><br><br><br>
-		<h1 class="text-center mt-5 mb-5">Semua Blog & News</h1>
-			<div class="custom-inpForm text-center">
+			<div class="custom-inpForm text-center mt-5">
 			 	<div class="input-group mb-3">
-					<input type="text" class="form-control" placeholder="Search. . .">
+					<input type="text" class="form-control" placeholder="Search">
 					<button class="btn btn-warning btn-lg" type="button" id="button-addon2">Search</button>
 				</div>
 
@@ -40,42 +39,101 @@
 
 				      <div class="modal-body text-start">
 				        <div class="form-check">
-						  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-						  <label class="form-check-label" for="flexRadioDefault1">
-						    Hewan Ternak
-						  </label>
+						  <input class="form-check-input" type="radio" name="filter" id="HewanTernak">
+						  <label class="form-check-label" for="HewanTernak">Hewan Ternak</label>
 						</div>
 
 						<div class="form-check">
-						  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-						  <label class="form-check-label" for="flexRadioDefault1">
-						    Produk Ternak
-						  </label>
+						  <input class="form-check-input" type="radio" name="filter" id="ProdukTernak">
+						  <label class="form-check-label" for="ProdukTernak">Produk Ternak</label>
 						</div>
 						
 						<div class="form-check">
-						  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-						  <label class="form-check-label" for="flexRadioDefault1">
-						    Pakan Ternak
-						  </label>
+						  <input class="form-check-input" type="radio" name="filter" id="PakanTernak">
+						  <label class="form-check-label" for="PakanTernak">Pakan Ternak</label>
 						</div>
 
 						<div class="form-check">
-						  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-						  <label class="form-check-label" for="flexRadioDefault1">
-						    Lainnya. . .
-						  </label>
+						  <input class="form-check-input" type="radio" name="filter" id="Lainnya">
+						  <label class="form-check-label" for="Lainnya">Lainnya. . .</label>
 						</div>
 				      </div>
 				
 				    </div>
 				  </div>
 				</div>
-							
 			</div>
 
+			<div class="container">
+				<div class="row">
+					<div class="d-flex">
+						<img src="assets/lol.png" class="img-blog-row1">
+						<div class="flex-column">
+							<h2 class="fw-bold">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Itaque, nostrum.</h2>
+							<div class="desc-row1">
+								<span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora, debitis inventore? Accusamus nobis at odio!</span>
+							</div>
+						</div>
+					</div>
+				</div>
 
-						
+				<div class="row mt-5">
+					<div class="col me-3">
+						<img src="assets/lol.png" class="img-blog-row2">
+						<div class="flex-column mt-3">
+							<h5 class="fw-bold">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quam, laboriosam.</h5>
+							<div class="desc-row2">
+								<span>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolores impedit a nulla sit ab tempore?</span>
+							</div>
+							 	
+						</div>
+					</div>
+
+					<div class="col me-3">
+						<img src="assets/lol.png" class="img-blog-row2">
+						<div class="flex-column mt-3">
+							<h5 class="fw-bold">Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium, assumenda!</h5>
+							<div class="desc-row2">
+								<span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium saepe adipisci tenetur voluptatem in dignissimos.</span>
+							</div>
+							 	
+						</div>
+					</div>
+
+					<div class="col">
+						<img src="assets/lol.png" class="img-blog-row2">
+						<div class="flex-column mt-3">
+							<h5 class="fw-bold">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos, itaque.</h5>
+							<div class="desc-row2">
+								<span>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quo laborum ratione laudantium porro praesentium rem?</span>
+							</div>
+							 	
+						</div>
+					</div>
+				</div>
+
+			</div>			
+
+			<div class="pagination-position">
+					    <nav aria-label="Page navigation example">
+						  <ul class="pagination">
+						    <li class="page-item">
+						      <a class="page-link" href="#" aria-label="Previous">
+						        <span aria-hidden="true">&laquo;</span>
+						      </a>
+						    </li>
+						    <li class="page-item"><a class="page-link" href="#">1</a></li>
+						    <li class="page-item"><a class="page-link" href="#">2</a></li>
+						    <li class="page-item"><a class="page-link" href="#">3</a></li>
+						    <li class="page-item">
+						      <a class="page-link" href="#" aria-label="Next">
+						        <span aria-hidden="true">&raquo;</span>
+						      </a>
+						    </li>
+						  </ul>
+						</nav>
+					</div>
+		</div>
 
 	 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 	</body>
