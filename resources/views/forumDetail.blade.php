@@ -26,7 +26,7 @@
 						<!-- Anggota -->
 						<div class="row">
 							<div class="col-md-8 col-custom-flex">
-								<img src="{{ URL::asset('image/noimg.jpg')}}" class="img-profile rounded-circle" alt="User Image" width="72" height="72">
+								<img src="{{ URL::asset('image/noimg.jpg')}}" class="img-profile rounded-circle" alt="User Image" width="72" height="72" style="margin-right:1rem">
 						    	<div class="mb-3">
 									<h4>{{ $thread->user->name }}</h4>
 									@if($thread->user->role == 'vendor')
@@ -48,12 +48,13 @@
 								</div>
 							</div>
 						</div>
-						@if (Auth::id() == $thread->user_id)
-						<form action="{{  route('thread.edit', $thread->id ) }}" method='GET'>
+						
 						<div class="row mb-3">
-								<label>{{ $thread->content }}</label>
+								<label style="margin-bottom:1.5rem;">{{ $thread->content }}</label>
+								<br>
 						
-						
+								@if (Auth::id() == $thread->user_id)
+						<form action="{{  route('thread.edit', $thread->id ) }}" method='GET'>
 							<div class="text-end">		
 							
 								<button type="submit" class="btn btn-warning btn-sm custom-btn-edit text-white me-3">
@@ -100,9 +101,11 @@
 								  </div>
 								</div>
 							</div>
+							</form>
 						</div>
-						</form>
+						
 						@endif
+						<br>
 						<hr>
 						
 
@@ -122,7 +125,7 @@
 					<div class="content-user">
 						<div class="row">
 							<div class="col-md-8 col-custom-flex">
-								<img src="{{ URL::asset('image/noimg.jpg')}}" class="img-user">
+								<img src="{{ URL::asset('image/noimg.jpg')}}" class="img-profile rounded-circle" width="60" height="60" style="margin-right:1rem;">
 						    	<div class="mb-3">
 									<h4>{{ $comments->user->name }}</h4>
 									@if($comments->user->role == 'vendor')
