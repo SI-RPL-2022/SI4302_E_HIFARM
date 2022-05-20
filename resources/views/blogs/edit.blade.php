@@ -40,8 +40,8 @@
                             </div>
                         </div>
 
-                        {{-- <div class="mb-3 row">
-                            <label for="category" class="col-sm-2 col-form-label">{{ __('Kategori Produk') }}</label>
+                        <div class="mb-3 row">
+                            <label for="category" class="col-sm-2 col-form-label">{{ __('Kategori Blog') }}</label>
                             <div class="col-sm-10">
 
                                 <div class="form-check form-check-inline">
@@ -69,7 +69,7 @@
                                 </div>
 
                             </div>
-                        </div> --}}
+                        </div>
 
                         <div class="mb-3 row">
                             <label for="content" class="col-sm-2 col-form-label">{{ __('Deskripsi') }}</label>
