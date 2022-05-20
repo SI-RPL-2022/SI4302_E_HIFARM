@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Models\Vendor;
 use App\Models\Product;
+use App\Models\Blog;
 
 class FrontController extends Controller
 {
@@ -38,6 +39,16 @@ class FrontController extends Controller
     }
 
     public function blog(){
-        return view('kumpulan_blog');
+        if(request('search')) {{
+            $blog = DB::table('blogs')->where('title', 'like', '%'.request('search').'%')
+                                        ->orWhere('subtitle', 'like', '%'.request('search').'%')->paginate(4);
+        }}
+        elseif (request('filter')) {{
+            $blog = DB::table('blogs')->where('category', 'like', '%'.request('filter').'%')->paginate(4);
+        }}
+        else{
+            $blog = Blog::paginate(4);
+        }
+        return view('kumpulan_blog', compact('blog'));
     }
 }

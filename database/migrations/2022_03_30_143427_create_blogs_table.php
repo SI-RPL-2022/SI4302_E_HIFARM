@@ -21,6 +21,7 @@ class CreateBlogsTable extends Migration
             $table->string('subtitle');
             $table->text('content');
             $table->string('image')->default('noimg.jpg');
+            $table->enum('category',['Hewan Ternak','Produk Ternak','Pakan Ternak','Lainnya']);
             $table->timestamps();
         });
     }

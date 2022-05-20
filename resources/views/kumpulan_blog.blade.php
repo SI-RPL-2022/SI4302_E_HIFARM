@@ -1,26 +1,20 @@
-<!doctype html>
-<html lang="en">
-	<head>
-	<!-- Required meta tags -->
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layouts.app')
+
+
+@section('content')
+
 	<link rel="stylesheet" href="{{asset('/css/style_blog.css')}}">
-
-	<!-- Bootstrap CSS -->
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-	<title>Blog</title>
-	</head>
-
-	<body>
 
 		<!-- form -->
 		<div class="container"><br><br><br>
+		
 			<div class="custom-inpForm text-center mt-5">
+			<form action="{{ route('blog')}}" method='GET'>
 			 	<div class="input-group mb-3">
-					<input type="text" class="form-control" placeholder="Search">
-					<button class="btn btn-warning btn-lg" type="button" id="button-addon2">Search</button>
+					<input type="text" class="form-control" name="search" placeholder="Search">
+					<button class="btn btn-warning btn-lg" type="submit" id="button-addon2">Search</button>
 				</div>
-
+			</form>
 				<!-- Button trigger modal -->
 				<button type="button" class="btn btn-link btn-sm custom-btn-filter" data-bs-toggle="modal" data-bs-target="#exampleModal"> 
 					<div class="filter-icon">
@@ -37,104 +31,84 @@
 				        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 				      </div>
 
+					  <form action="{{ route('blog')}}" method='GET'>
 				      <div class="modal-body text-start">
 				        <div class="form-check">
-						  <input class="form-check-input" type="radio" name="filter" id="HewanTernak">
+						  <input class="form-check-input" type="radio" name="filter" value="Hewan Ternak" id="HewanTernak">
 						  <label class="form-check-label" for="HewanTernak">Hewan Ternak</label>
 						</div>
 
 						<div class="form-check">
-						  <input class="form-check-input" type="radio" name="filter" id="ProdukTernak">
+						  <input class="form-check-input" type="radio" name="filter" value="Produk Ternak" id="ProdukTernak">
 						  <label class="form-check-label" for="ProdukTernak">Produk Ternak</label>
 						</div>
 						
 						<div class="form-check">
-						  <input class="form-check-input" type="radio" name="filter" id="PakanTernak">
+						  <input class="form-check-input" type="radio" name="filter" value="Pakan Ternak" id="PakanTernak">
 						  <label class="form-check-label" for="PakanTernak">Pakan Ternak</label>
 						</div>
 
 						<div class="form-check">
-						  <input class="form-check-input" type="radio" name="filter" id="Lainnya">
+						  <input class="form-check-input" type="radio" name="filter" value="Lainnya" id="Lainnya">
 						  <label class="form-check-label" for="Lainnya">Lainnya. . .</label>
 						</div>
 				      </div>
-				
+					
+					  <div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+						<button type="submit" class="btn btn-primary">Cari</button>
+					 </div>
+					 </form>
 				    </div>
 				  </div>
 				</div>
 			</div>
-
+			@foreach ($blog as $article)
+				@if ($loop->first) 
 			<div class="container">
 				<div class="row">
 					<div class="d-flex">
-						<img src="assets/lol.png" class="img-blog-row1">
+						<img src="{{ asset('storage/'. $article->image) }}" class="img-blog-row1">
 						<div class="flex-column">
-							<h2 class="fw-bold">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Itaque, nostrum.</h2>
+							<h2 class="fw-bold">{{ $article->title }}</h2>
 							<div class="desc-row1">
-								<span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora, debitis inventore? Accusamus nobis at odio!</span>
+								<span>{{ $article->subtitle }}</span>
 							</div>
 						</div>
 					</div>
 				</div>
+				@else @break
+				@endif
+			@endforeach
 
+				
 				<div class="row mt-5">
-					<div class="col me-3">
-						<img src="assets/lol.png" class="img-blog-row2">
-						<div class="flex-column mt-3">
-							<h5 class="fw-bold">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quam, laboriosam.</h5>
-							<div class="desc-row2">
-								<span>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolores impedit a nulla sit ab tempore?</span>
-							</div>
-							 	
-						</div>
-					</div>
 
+				@foreach ($blog as $article)
+				@if ($loop->first) @continue @endif
 					<div class="col me-3">
-						<img src="assets/lol.png" class="img-blog-row2">
+						<img src="{{ asset('storage/'. $article->image) }}" class="img-blog-row2">
 						<div class="flex-column mt-3">
-							<h5 class="fw-bold">Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium, assumenda!</h5>
+							<h5 class="fw-bold">{{ $article->title }}</h5>
 							<div class="desc-row2">
-								<span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium saepe adipisci tenetur voluptatem in dignissimos.</span>
+								<span>{{ $article->subtitle }}</span>
 							</div>
 							 	
 						</div>
 					</div>
+					@endforeach
 
-					<div class="col">
-						<img src="assets/lol.png" class="img-blog-row2">
-						<div class="flex-column mt-3">
-							<h5 class="fw-bold">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos, itaque.</h5>
-							<div class="desc-row2">
-								<span>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quo laborum ratione laudantium porro praesentium rem?</span>
-							</div>
-							 	
-						</div>
-					</div>
+
+					
 				</div>
 
 			</div>			
 
-			<div class="pagination-position">
-					    <nav aria-label="Page navigation example">
-						  <ul class="pagination">
-						    <li class="page-item">
-						      <a class="page-link" href="#" aria-label="Previous">
-						        <span aria-hidden="true">&laquo;</span>
-						      </a>
-						    </li>
-						    <li class="page-item"><a class="page-link" href="#">1</a></li>
-						    <li class="page-item"><a class="page-link" href="#">2</a></li>
-						    <li class="page-item"><a class="page-link" href="#">3</a></li>
-						    <li class="page-item">
-						      <a class="page-link" href="#" aria-label="Next">
-						        <span aria-hidden="true">&raquo;</span>
-						      </a>
-						    </li>
-						  </ul>
-						</nav>
-					</div>
-		</div>
+			<div class="d-flex justify-content-center">
+				{{ $blog->links() }}	
+			</div>
 
-	 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-	</body>
-</html>
+
+
+		</div>
+@endsection

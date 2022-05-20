@@ -13,7 +13,8 @@ class Blog extends Model
         'title',
         'subtitle',
         'content',
-        'image'
+        'image',
+        'category'
     ];
 
     public function scopeFilter($query, array $filters)
