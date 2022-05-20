@@ -43,7 +43,7 @@ class BlogController extends Controller
             'title' => 'required',
             'subtitle' => 'required',
             'content' => 'required',
-            // 'category' => 'required',
+            'category' => 'required',
             'image' => 'image|file|max:1024'
         ]);
 
@@ -97,7 +97,7 @@ class BlogController extends Controller
             'title' => 'required',
             'subtitle' => 'required',
             'content' => 'required',
-            // 'category' => 'required',
+            'category' => 'required',
             'image' => 'image|file|max:1024'
         ]);
 

@@ -20,7 +20,18 @@ use App\Http\Controllers\FrontController;
 */
 
 
-/////GUEST
+Route::get('/blog', function () {
+    return view('kumpulanblog', [
+        'data' => App\Models\Blog::latest('updated_at')->filter(request(['search']))->paginate(10)
+    ]);
+});
+
+Route::get('/blog/{id}', function ($id) {
+    return view('showblog', [
+        'data' => App\Models\Blog::where('id', $id)->first()
+    ]);
+});
+
 Auth::routes();
 Route::get('/', [FrontController::class, 'index'])->name('home');
 Route::get('/toko', [FrontController::class, 'toko'])->name('toko');
