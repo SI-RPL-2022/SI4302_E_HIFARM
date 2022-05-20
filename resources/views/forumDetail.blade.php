@@ -48,14 +48,14 @@
 								</div>
 							</div>
 						</div>
-
+						@if (Auth::id() == $thread->user_id)
+						<form action="{{  route('thread.edit', $thread->id ) }}" method='GET'>
 						<div class="row mb-3">
 								<label>{{ $thread->content }}</label>
 						
 						
 							<div class="text-end">		
-							@if (Auth::id() == $thread->user_id)
-							<form action="{{  route('thread.edit', $thread->id ) }}" method='GET'>
+							
 								<button type="submit" class="btn btn-warning btn-sm custom-btn-edit text-white me-3">
 									<div class="d-flex">
 										<b>Edit</b>
@@ -64,7 +64,7 @@
 										</div>
 									</div>
 								</button>
-							</form>
+							
 
 								<!-- Button trigger modal -->
 								<button type="button" class="btn btn-danger btn-sm custom-btn-tutupToko" data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -101,6 +101,7 @@
 								</div>
 							</div>
 						</div>
+						</form>
 						@endif
 						<hr>
 						
@@ -149,8 +150,9 @@
 							
 
 								@if (Auth::id() == $comments->user_id)
-							<div class="text-end">		
 								<form action="{{  route('thread.comment.edit', $comments->id ) }}" method='GET'>
+							<div class="text-end">		
+								
 								<button type="submit" class="btn btn-warning btn-sm custom-btn-edit text-white me-3">
 									<div class="d-flex">
 										<b>Edit</b>
@@ -160,7 +162,7 @@
 									</div>
 								
 								</button>
-								</form>
+								
 
 								<!-- Button trigger modal form delete-->
 								
@@ -197,6 +199,7 @@
 								</div>
 
 							</div>
+							</form>
 							@endif
 
 						</div>

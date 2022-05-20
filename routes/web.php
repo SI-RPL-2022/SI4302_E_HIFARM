@@ -32,20 +32,27 @@ Route::get('/tes', [FrontController::class, 'tes'])->name('tes');
 
     /// THREAD
 Route::prefix('thread')->group(function () {
+    Route::middleware('auth')->group(function () {
     Route::get('/create', [Forum_ThreadController::class, 'create'])->name('thread.create');
     Route::post('/create', [Forum_ThreadController::class, 'store'])->name('thread.store');
-    Route::get('/show/{id}', [Forum_ThreadController::class, 'show'])->name('thread.show');
     Route::get('/edit/{id}', [Forum_ThreadController::class, 'edit'])->name('thread.edit');
     Route::put('/update/{id}', [Forum_ThreadController::class, 'update'])->name('thread.update');
     Route::delete('/delete/{id}', [Forum_ThreadController::class, 'destroy'])->name('thread.delete');
+    });
+    Route::get('/show/{id}', [Forum_ThreadController::class, 'show'])->name('thread.show');
+    
+    
 
     Route::prefix('comment')->group(function () {
-        Route::get('/create/{id}', [Forum_CommentController::class, 'create'])->name('thread.comment.create');              ///id of thread's
+        Route::middleware('auth')->group(function () {
+            Route::get('/create/{id}', [Forum_CommentController::class, 'create'])->name('thread.comment.create');              ///id of thread's
         Route::post('/create', [Forum_CommentController::class, 'store'])->name('thread.comment.store');
 
         Route::get('/edit/{id}', [Forum_CommentController::class, 'edit'])->name('thread.comment.edit');                           ///id of comment's
         Route::put('/edit/{id}', [Forum_CommentController::class, 'update'])->name('thread.comment.update');   
-        Route::delete('/delete/{id}', [Forum_CommentController::class, 'destroy'])->name('thread.comment.delete');            
+        Route::delete('/delete/{id}', [Forum_CommentController::class, 'destroy'])->name('thread.comment.delete'); 
+        });
+                   
         });
 
 });
