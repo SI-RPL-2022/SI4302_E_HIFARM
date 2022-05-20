@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Blog;
+use Illuminate\Support\Facades\Storage;
 
 class BlogController extends Controller
 {
@@ -13,7 +15,9 @@ class BlogController extends Controller
      */
     public function index()
     {
-        //
+        return view('blogs.index', [
+            'data' => Blog::latest('updated_at')->filter(request(['search']))->paginate(10)
+        ]);
     }
 
     /**
@@ -23,7 +27,7 @@ class BlogController extends Controller
      */
     public function create()
     {
-        //
+        return view('blogs.create');
     }
 
     /**
@@ -34,7 +38,21 @@ class BlogController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'user_id' => 'required',
+            'title' => 'required',
+            'subtitle' => 'required',
+            'content' => 'required',
+            // 'category' => 'required',
+            'image' => 'image|file|max:1024'
+        ]);
+
+        if ($request->file('image')) {
+            $validatedData['image'] = $request->file('image')->store('blog-images');
+        }
+
+        Blog::create($validatedData);
+        return redirect('/vendor/blog')->with('success-add','Anda berhasil menambah blog!');
     }
 
     /**
@@ -43,9 +61,11 @@ class BlogController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Blog $blog)
     {
-        //
+        return view('blogs.show', [
+            'data' => $blog
+        ]);
     }
 
     /**
@@ -54,9 +74,13 @@ class BlogController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Blog $blog)
     {
-        //
+        $this->authorize('view', $blog);
+
+        return view('blogs.edit', [
+            'data' => $blog
+        ]);
     }
 
     /**
@@ -66,9 +90,26 @@ class BlogController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Blog $blog)
     {
-        //
+        $validatedData = $request->validate([
+            'user_id' => 'required',
+            'title' => 'required',
+            'subtitle' => 'required',
+            'content' => 'required',
+            // 'category' => 'required',
+            'image' => 'image|file|max:1024'
+        ]);
+
+        if ($request->file('image')) {
+            if ($request->oldImage) {
+                Storage::delete($request->oldImage);
+            }
+            $validatedData['image'] = $request->file('image')->store('blog-images');
+        }
+
+        Blog::where('id', $blog->id)->update($validatedData);
+        return redirect('/vendor/blog')->with('success-update','Anda berhasil update blog!');
     }
 
     /**
@@ -77,8 +118,13 @@ class BlogController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Blog $blog)
     {
-        //
+        if ($blog->image) {
+            Storage::delete($blog->image);
+        }
+
+        Blog::destroy($blog->id);
+        return redirect('/vendor/blog')->with('success-remove','Anda berhasil menghapus Blog!');
     }
 }
