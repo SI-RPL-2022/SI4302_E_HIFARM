@@ -20,6 +20,12 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
+    <!-- Icon -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.2/font/bootstrap-icons.css">
+    <style>
+      @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.2/font/bootstrap-icons.css");
+    </style>
+
     <!-- Trix Editor -->
     <link rel="stylesheet" type="text/css" href="{{ asset('css/trix.css') }}">
     <script type="text/javascript" src="{{ asset('js/trix.js') }}"></script>
