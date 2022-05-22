@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Vendor;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Redirect;
+
+
 
 class ProductController extends Controller
 {
@@ -70,6 +73,27 @@ class ProductController extends Controller
         return view('products.show', [
             'data' => $product
         ]);
+    }
+
+
+    public function show2($id)
+    {
+        $product= Product::find($id);
+        $vendorID = $product->vendor->id;
+
+        $more = Product::where("vendor_id",$vendorID)->where("id","!=",$id)->paginate(4);
+        return view('pembelian', compact('product','more'));
+    }
+
+    public function whatsapp($id)
+    {
+        $product= Product::find($id);
+        $x= substr($product->vendor->phone, 1);
+        $new= $product->views += 1;
+        $product->update([
+            'views' => $new
+        ]);
+        return Redirect::to('https://api.whatsapp.com/send?phone=62'.$x);
     }
 
     /**

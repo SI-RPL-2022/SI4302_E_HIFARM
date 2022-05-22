@@ -50,7 +50,7 @@
 							<span>Kategori: {{$item->category}}</span>
 					    </p>
 						
-					    	<a href="#" class="btn btn-primary float-right" style="border-radius: 10px; width:4cm">Lihat</a>
+					    	<a href="{{ route('product.show', ['id' => $item->id]) }}" class="btn btn-primary float-right" style="border-radius: 10px; width:4cm">Lihat</a>
 					  </div>
 					</div>
 		    	</div>

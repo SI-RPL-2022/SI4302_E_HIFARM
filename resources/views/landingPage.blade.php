@@ -57,7 +57,7 @@
                         <img src="{{ URL::asset('storage/'.$item->image)}}" height="250px"  class="card-img-top" alt="gambar">
                             <div class="card-body">
                             <!--route open bracket 'vendor.product', $item->id close -->
-                            <form action="" method="GET"> 
+                            <form action="{{ route('product.show',$item->id)}}" method="GET"> 
                                 <br>
                                 <h3 class="card-title">{{$item->name}}</h3>
                                 <hr>

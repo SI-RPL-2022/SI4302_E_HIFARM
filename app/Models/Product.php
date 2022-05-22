@@ -16,7 +16,8 @@ class Product extends Model
         'weight',
         'role',
         'image',
-        'desc'
+        'desc',
+        'views'
     ];
 
     public function scopeFilter($query, array $filters)

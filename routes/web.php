@@ -30,6 +30,7 @@ Route::get('/forum', [FrontController::class, 'forum'])->name('forum');
 
 
 
+
     /// THREAD
 Route::prefix('thread')->group(function () {
     Route::get('/create', [Forum_ThreadController::class, 'create'])->name('thread.create');
@@ -60,6 +61,10 @@ Route::prefix('home')->middleware('auth')->group(function () {
     Route::get('/', [HomeController::class, 'index'])->name('home');
     // Route::get('/storeList', [HomeController::class, 'index'])->name('storeList');
     Route::get('/visit/{id}', [VendorController::class, 'show'])->name('user.visit');
+
+    //////////////////// PEMBELIAN
+    Route::get('/produk/{id}', [ProductController::class, 'show2'])->name('product.show');
+    Route::get('/produk/{id}/whatsapp', [ProductController::class, 'whatsapp'])->name('product.whatsapp');
 
 });
 

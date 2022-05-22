@@ -1,6 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
+
+<link rel="stylesheet" href="{{ asset('css/pembelian.css') }}">
+
 		<!-- form -->
 		<div class="container">
 			<div class="row">
@@ -10,24 +13,19 @@
 					<!-- Detail Produk -->
 					<div class="row">
 						<div class="col">
-					  		<img src="assets/discord1.png" class="img-produk">
+					  		<img src="{{ URL::asset('storage/'.$product->image)}}" class="img-produk">
 						</div>
 
 						<div class="col">
-					  		<h2>Sapi Jantan Unggulan</h2>
-					  		<h4>Rp. 15.000.000,-</h4><br>
-					  		<h5><img src="assets/Group_54.png" class="img-toko">Nama Toko</h5>
+					  		<h2>{{$product->name}}</h2>
+					  		<h4>Rp. {{$product->price}} -</h4>
+							<br>
+							<h6>Jumlah Transaksi : {{$product->views}}</h6>
+							<br>
+					  		<h5><img src="{{ URL::asset('image/'.$product->vendor->image)}}" class="img-toko rounded-circle">{{ $product->vendor->store_name}}</h5>
 					  		<hr>
 					  		<p class="title-deskripsi">Deskripsi:</p>
-					  		<p class="content-deskripsi">Assalamualaikum.<br> 
-					  		Saya Menjual Sapi Qurban.<br> 
-					  		SAPI JANTAN UNGGULAN. <br>
-					  		*Berat 480 Kg-an. <br>
-					  		*Tinggi 150 Cm-an <br>
-					  		*Panjang 200 Cm-an. <br>
-					  		*Warna Coklat. <br>
-					  		*Kondisi Sehat dan Terawat. <br>
-					  		*Gratis Ongkir.</p>
+					  		<p class="content-deskripsi">{!!$product->desc!!}</p>
 
 					  		<!-- Button trigger modal -->
 					  		<button type="button" class="btn btn-primary btn-lg custom-btn-pesan text-white" data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -42,10 +40,16 @@
 							        <h5 class="modal-title text-center" id="exampleModalLabel">Anda akan diarahkan ke laman WhatsApp penjual!</h5>
 							        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 							      </div>
+								  <form action="{{ route('product.whatsapp',$product->id)}}" method="GET">
 							      <div class="modal-body text-center">
-							        <button type="button" class="btn btn-warning me-5" data-bs-dismiss="modal"><a href="https://api.whatsapp.com/send?phone=6285784092679&text=Apakah%20produk%20masih%20ada?.%20.%20:D" class="link-wa"><b>Yakin</b></a></button>
-							        <button type="button" class="btn btn-primary"><b>Kembali</b></button>
+									  
+									
+							        <button type="submit" class="btn btn-warning me-5" ><b>Yakin</b></button>
+									
+									
+							        <button type="button" class="btn btn-primary" data-bs-dismiss="modal"><b>Kembali</b></button>
 							      </div>
+								  </form>
 							    </div>
 							  </div>
 							</div>	
@@ -57,29 +61,20 @@
 					
 					<div class="row more-produk">
 						<h4>Produk Lainnya</h4><br><br><br>
-						<div class="col-3">
-							<img src="assets/discord3.png" class="img-thumbnail img-moreProduk" alt="Produk1">
-							<p class="title-moreProduk">Sapi Tanduk Suci</p>
-							<p class="price-moreProduk">Rp. 12.000.000,-</p>
-						</div>
+						@foreach ($more as $item)
+						@if ($item->id == $product->id)
+
+						@else
 
 						<div class="col-3">
-							<img src="assets/discord3.png" class="img-thumbnail img-moreProduk" alt="Produk2">
-							<p class="title-moreProduk">Sapi Tanduk Suci</p>
-							<p class="price-moreProduk">Rp. 12.000.000,-</p>
+							<a href="{{ route('product.show', ['id' => $item->id]) }}"><img src="{{ URL::asset('storage/'.$item->image)}}" class="img-thumbnail img-moreProduk" alt="Produk1"></a>
+							<p class="title-moreProduk">{{$item->name}}</p>
+							<p class="price-moreProduk">{{$item->price}}</p>
 						</div>
+						@endif
+						@endforeach
 
-						<div class="col-3">
-							<img src="assets/discord3.png" class="img-thumbnail img-moreProduk" alt="Produk3">
-							<p class="title-moreProduk">Sapi Tanduk Suci</p>
-							<p class="price-moreProduk">Rp. 12.000.000,-</p>
-						</div>
-
-						<div class="col-3">
-							<img src="assets/discord3.png" class="img-thumbnail img-moreProduk" alt="Produk4">
-							<p class="title-moreProduk">Sapi Tanduk Suci</p>
-							<p class="price-moreProduk">Rp. 12.000.000,-</p>
-						</div>
+						
 					</div><br><br><br>
 				</div>
 			</div>
