@@ -23,4 +23,9 @@ class Blog extends Model
             return $query->where('title','like','%'.$search.'%');
         });
     }
+    
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

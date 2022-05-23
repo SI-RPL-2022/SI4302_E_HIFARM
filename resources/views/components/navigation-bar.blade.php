@@ -27,7 +27,7 @@
                         <a class="nav-link" href="{{ route('toko')}}">Toko</a>
                     </li>
                     <li class="nav-item me-2">
-                        <a class="nav-link" href="">Blog</a>
+                        <a class="nav-link" href="{{ route('blog')}}">Blog</a>
                     </li>
                     <li class="nav-item me-2">
                         <a class="nav-link" href="">About Us</a>
