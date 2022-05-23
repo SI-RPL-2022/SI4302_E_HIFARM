@@ -22,18 +22,17 @@ use App\Http\Controllers\Forum_CommentController;
 */
 
 
-//////////////////////////////////////GUEST & ALL USER
-Route::get('/blog', function () {
-    return view('kumpulanblog', [
-        'data' => App\Models\Blog::latest('updated_at')->filter(request(['search']))->paginate(10)
-    ]);
-});
+// Route::get('/blog', function () {
+//     return view('kumpulanblog', [
+//         'data' => App\Models\Blog::latest('updated_at')->filter(request(['search']))->paginate(10)
+//     ]);
+// });
 
-Route::get('/blog/{id}', function ($id) {
-    return view('showblog', [
-        'data' => App\Models\Blog::where('id', $id)->first()
-    ]);
-});
+// Route::get('/blog/{id}', function ($id) {
+//     return view('showblog', [
+//         'data' => App\Models\Blog::where('id', $id)->first()
+//     ]);
+// });
 
 Auth::routes();
 Route::get('/', [FrontController::class, 'index'])->name('home');
@@ -41,6 +40,7 @@ Route::get('/toko', [FrontController::class, 'toko'])->name('toko');
 Route::get('/visit/{id}', [VendorController::class, 'show'])->name('visit');
 Route::get('/forum', [FrontController::class, 'forum'])->name('forum');
 Route::get('/blog', [FrontController::class, 'blog'])->name('blog');
+Route::get('/blog/{id}', [BlogController::class, 'showblog'])->name('blog.visit');
 
 Route::get('/tes', [FrontController::class, 'tes'])->name('tes');
 

@@ -68,6 +68,13 @@ class BlogController extends Controller
         ]);
     }
 
+    public function showblog($id)
+    {
+        return view('showblog', [
+                    'data' => Blog::where('id', $id)->first()
+                ]);
+    }
+
     /**
      * Show the form for editing the specified resource.
      *

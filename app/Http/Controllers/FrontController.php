@@ -50,6 +50,19 @@ class FrontController extends Controller
         else{
             $forum = Forum_Thread::withCount('comments')->orderBy('created_at', 'DESC')->paginate(6); //the 'comments' here refer to the function from thread's model
             // $forum = Forum_Thread::paginate(6);
+        }}
+
+    public function blog(){
+        
+            if(request('search')) {{
+            $blog = DB::table('blogs')->where('title', 'like', '%'.request('search').'%')
+                                        ->orWhere('subtitle', 'like', '%'.request('search').'%')->latest('updated_at')->paginate(4);
+        }}
+        elseif (request('filter')) {{
+            $blog = DB::table('blogs')->where('category', 'like', '%'.request('filter').'%')->latest('updated_at')->paginate(4);
+        }}
+        else{
+            $blog = Blog::latest('updated_at')->paginate(4);
         }
         
 
