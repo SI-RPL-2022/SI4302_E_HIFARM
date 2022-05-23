@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\VendorController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\BlogController;
 use App\Http\Controllers\FrontController;
 use App\Http\Controllers\Forum_ThreadController;
 use App\Http\Controllers\Forum_CommentController;
@@ -22,11 +23,24 @@ use App\Http\Controllers\Forum_CommentController;
 
 
 //////////////////////////////////////GUEST & ALL USER
+Route::get('/blog', function () {
+    return view('kumpulanblog', [
+        'data' => App\Models\Blog::latest('updated_at')->filter(request(['search']))->paginate(10)
+    ]);
+});
+
+Route::get('/blog/{id}', function ($id) {
+    return view('showblog', [
+        'data' => App\Models\Blog::where('id', $id)->first()
+    ]);
+});
+
 Auth::routes();
 Route::get('/', [FrontController::class, 'index'])->name('home');
 Route::get('/toko', [FrontController::class, 'toko'])->name('toko');
 Route::get('/visit/{id}', [VendorController::class, 'show'])->name('visit');
 Route::get('/forum', [FrontController::class, 'forum'])->name('forum');
+Route::get('/blog', [FrontController::class, 'blog'])->name('blog');
 
 Route::get('/tes', [FrontController::class, 'tes'])->name('tes');
 
@@ -86,6 +100,17 @@ Route::group(['middleware'=>'checkRole:vendor','prefix'=>'vendor'], function() {
     Route::get('/store/{id}', [VendorController::class, 'edit'])->name('vendor.edit');
     Route::put('/store/{id}', [VendorController::class, 'update'])->name('vendor.update');
     Route::delete('/store/delete/{id}', [VendorController::class, 'destroy'])->name('vendor.delete');
+
+    // Blog
+    Route::group(['prefix'=>'blog'], function() {
+        Route::get('/', [BlogController::class, 'index'])->name('vendor.blog.index');
+        Route::post('/', [BlogController::class, 'store']);
+        Route::get('/create', [BlogController::class, 'create'])->name('vendor.blog.create');
+        Route::get('/edit/{blog}', [BlogController::class, 'edit'])->name('vendor.blog.edit');
+        Route::post('/edit/{blog}', [BlogController::class, 'update']);
+        Route::get('/show/{blog}', [BlogController::class, 'show']);
+        Route::delete('/{blog}', [BlogController::class, 'destroy']);
+    });
 
     // PRODUK
     Route::group(['prefix'=>'product'], function() {

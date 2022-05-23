@@ -19,8 +19,10 @@ class CreateBlogsTable extends Migration
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->string('title');
             $table->string('subtitle');
+            $table->enum('category',['Hewan Ternak','Produk Ternak','Pakan Ternak','Lainnya']);
             $table->text('content');
             $table->string('image')->default('noimg.jpg');
+            $table->enum('category',['Hewan Ternak','Produk Ternak','Pakan Ternak','Lainnya']);
             $table->timestamps();
         });
     }
