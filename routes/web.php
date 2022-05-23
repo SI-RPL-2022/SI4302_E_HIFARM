@@ -44,6 +44,7 @@ Route::get('/blog', [FrontController::class, 'blog'])->name('blog');
 
 Route::get('/tes', [FrontController::class, 'tes'])->name('tes');
 
+
     /// THREAD
 Route::prefix('thread')->group(function () {
     Route::middleware('auth')->group(function () {
@@ -81,6 +82,10 @@ Route::prefix('home')->middleware('auth')->group(function () {
     Route::get('/', [HomeController::class, 'index'])->name('home');
     // Route::get('/storeList', [HomeController::class, 'index'])->name('storeList');
     Route::get('/visit/{id}', [VendorController::class, 'show'])->name('user.visit');
+
+    //////////////////// PEMBELIAN
+    Route::get('/produk/{id}', [ProductController::class, 'show2'])->name('product.show');
+    Route::get('/produk/{id}/whatsapp', [ProductController::class, 'whatsapp'])->name('product.whatsapp');
 
 });
 

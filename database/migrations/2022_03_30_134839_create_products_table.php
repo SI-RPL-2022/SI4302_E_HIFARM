@@ -24,6 +24,7 @@ class CreateProductsTable extends Migration
             $table->string('image')->default('product-images/noimg.jpg');
             // $table->string('image')->nullable();
             $table->text('desc')->nullable();
+            $table->integer('views')->default(0);
             $table->timestamps();
         });
     }

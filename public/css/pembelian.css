@@ -1,0 +1,92 @@
+.img-produk
+{
+	border-radius: 10px;
+	/*width: 10cm;
+	height: 14cm;*/
+	max-width: 10cm;
+	max-height: 14cm;
+	box-shadow: 0 6px 12px 0 rgb(0 0 0 / 20%), 0 9px 20px 0 rgb(0 0 0 / 11%);
+}
+
+.img-toko
+{
+	max-width: 1cm;
+	max-height: 1cm;
+	margin-right: 10px;
+}
+
+.title-deskripsi
+{
+	font-weight: 430;
+	font-size: 19px;
+}
+
+.content-deskripsi
+{
+	color: grey;
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-weight: 400;
+    font-size: 18px;
+}
+
+.custom-btn-pesan
+{
+	width: 5cm;
+	margin-right: 0.5cm;
+}
+
+.link-wa
+{
+	color: white;
+	text-decoration: none;
+}
+
+
+.line-area
+{
+	padding-top: 0.7cm;
+	margin: 0 1cm 0 1cm;
+}
+
+.line-moreProduk
+{
+	border: 1px solid black;
+}
+
+.more-produk
+{
+	padding: 0 20px;
+}
+
+.img-moreProduk
+{
+	
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	width: 50%;
+	max-width: 5cm;
+	max-height: 5cm;
+	border-radius: 10px;
+	box-shadow: 0 6px 12px 0 rgb(0 0 0 / 20%), 0 9px 20px 0 rgb(0 0 0 / 11%);
+}
+
+.title-moreProduk
+{
+	margin-top: 1rem;
+	text-align: center;
+	font-weight: 450;
+	font-size: 19px;	
+}
+
+.price-moreProduk
+{
+	color: grey;
+	text-align: center;
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-weight: 400;
+    font-size: 15px;
+    
+}
