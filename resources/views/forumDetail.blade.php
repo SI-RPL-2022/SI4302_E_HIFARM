@@ -65,6 +65,7 @@
 										</div>
 									</div>
 								</button>
+							</form>	
 							
 
 								<!-- Button trigger modal -->
@@ -165,6 +166,7 @@
 									</div>
 								
 								</button>
+								</form>
 								
 
 								<!-- Button trigger modal form delete-->

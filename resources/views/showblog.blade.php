@@ -12,6 +12,7 @@
             <h3 class="fw-bold">{{ $data->title }}</h3>
             <h5 class="text-black-50">{{ $data->subtitle }}</h5>
             <h5 class="text-black-50">by {{ $data->user->name }}</h5>
+            <h5 class="text-black-50">Kategori : {{ $data->category }}</h5>
             <p class="text-black-50">{{ $data->created_at }}</p>
 
             <br>

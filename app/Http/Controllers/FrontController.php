@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Models\Vendor;
 use App\Models\Product;
+use App\Models\Blog;
 use App\Models\Forum_Thread;
 
 
@@ -50,7 +51,10 @@ class FrontController extends Controller
         else{
             $forum = Forum_Thread::withCount('comments')->orderBy('created_at', 'DESC')->paginate(6); //the 'comments' here refer to the function from thread's model
             // $forum = Forum_Thread::paginate(6);
-        }}
+        }
+        return view('forum', compact('forum'));
+    }
+        
 
     public function blog(){
         
@@ -66,7 +70,7 @@ class FrontController extends Controller
         }
         
 
-        return view('forum', compact('forum'));
+        return view('kumpulan_blog', compact('blog'));
     }
 
     public function tes(){
