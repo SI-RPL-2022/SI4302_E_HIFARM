@@ -18,10 +18,9 @@ class CreateAccountingBooksTable extends Migration
             $table->unsignedBigInteger('vendor_id');
             $table->foreign('vendor_id')->references('id')->on('vendors')->onDelete('cascade')->onUpdate('cascade');
             $table->string('note');
+            $table->integer('amount')->default(0);
+            $table->enum('category',['Pemasukan','Pengeluaran']);
             $table->date('date');
-            $table->integer('income')->default(0);
-            $table->integer('expense')->default(0);
-            $table->timestamps();
         });
     }
 

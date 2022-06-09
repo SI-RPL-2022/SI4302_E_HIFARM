@@ -8,5 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Accounting_Book extends Model
 {
     use HasFactory;
-    protected $fillable = ['vendor_id','note','date','income','expense'];
+    protected $table = 'accounting_books';
+    public $timestamps = false;
+    protected $fillable = ['vendor_id','note','amount','category','date'];
 }
