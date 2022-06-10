@@ -7,6 +7,7 @@ use App\Http\Controllers\VendorController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\FrontController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Forum_ThreadController;
 use App\Http\Controllers\Forum_CommentController;
 
@@ -93,6 +94,16 @@ Route::group(['middleware'=>'checkRole:user','prefix'=>'user'], function() {
     // GET BUKA TOKO
     Route::get('/store', [VendorController::class, 'create'])->name('user.create');
     Route::post('/store', [VendorController::class, 'store'])->name('user.store');
+
+    
+});
+
+Route::group(['middleware'=>'checkRole:admin','prefix'=>'admin'], function() {
+    
+    Route::get('/request', [AdminController::class, 'index'])->name('admin.index');
+    Route::get('/request/show/{id}', [AdminController::class, 'show'])->name('admin.show');
+    Route::post('/request/accept/{id}', [AdminController::class, 'Accept'])->name('admin.acc');
+    Route::post('/request/deny/{id}', [AdminController::class, 'Deny'])->name('admin.deny');
 
     
 });

@@ -59,14 +59,14 @@ class FrontController extends Controller
     public function blog(){
         
             if(request('search')) {{
-            $blog = DB::table('blogs')->where('title', 'like', '%'.request('search').'%')
+            $blog = DB::table('blogs')->where('status','Accepted')->where('title', 'like', '%'.request('search').'%')
                                         ->orWhere('subtitle', 'like', '%'.request('search').'%')->latest('updated_at')->paginate(4);
         }}
         elseif (request('filter')) {{
-            $blog = DB::table('blogs')->where('category', 'like', '%'.request('filter').'%')->latest('updated_at')->paginate(4);
+            $blog = DB::table('blogs')->where('status','Accepted')->where('category', 'like', '%'.request('filter').'%')->latest('updated_at')->paginate(4);
         }}
         else{
-            $blog = Blog::latest('updated_at')->paginate(4);
+            $blog = Blog::latest('updated_at')->where('status','Accepted')->paginate(4);
         }
         
 

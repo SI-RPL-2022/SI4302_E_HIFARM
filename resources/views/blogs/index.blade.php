@@ -44,6 +44,7 @@
                                 <th scope="col">Id</th>
                                 <th scope="col">Updated</th>
                                 <th scope="col">Title</th>
+                                <th scope="col">Status</th>
                                 <th scope="col">Action</th>
                             </tr>
                         </thead>
@@ -54,6 +55,7 @@
                                 <td>{{ $key->id }}</td>
                                 <td>{{ $key->updated_at }}</td>
                                 <td>{{ $key->title }}</td>
+                                <td>{{ $key->status }}</td>
                                 <td class="d-flex flex-wrap">
                                     <a class="btn btn-sm btn-info me-1 mb-1 text-white" href="/vendor/blog/show/{{ $key->id }}"> {{ __('View') }} </a>
                                     <a class="btn btn-sm btn-primary me-1 mb-1" href="/vendor/blog/edit/{{ $key->id }}"> {{ __('Edit') }} </a>

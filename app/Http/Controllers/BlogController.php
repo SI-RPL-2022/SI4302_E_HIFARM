@@ -70,9 +70,13 @@ class BlogController extends Controller
 
     public function showblog($id)
     {
-        return view('showblog', [
-                    'data' => Blog::where('id', $id)->first()
-                ]);
+        $data = Blog::where('id', $id)->first();
+        if ($data->status == 'Accepted') {
+        return view('showblog', compact('data'));
+            }
+        else {
+            abort(404);
+        }
     }
 
     /**

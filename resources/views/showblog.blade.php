@@ -5,7 +5,7 @@
     <div class="row justify-content-md-center">
         <div class="col col-lg-9">
             <div class="mb-3">
-                <a href="/blog" class="text-decoration-none"><span><i class="bi bi-arrow-left-short"></i></span>
+                <a href="{{ url()->previous() }}" class="text-decoration-none"><span><i class="bi bi-arrow-left-short"></i></span>
                     Kembali ke sebelumnya</a>
             </div>
 
