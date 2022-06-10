@@ -1,0 +1,137 @@
+/*Banner*/
+.banner
+{
+	position: relative;
+	background: url(../img1.png);
+	display: flex;
+	background-size: cover;
+	justify-content: center;
+	align-items: center;
+	height: 8cm;
+}
+
+.custom-container
+{
+	display: flex;
+	margin: 0.5cm 7cm -0.5cm -7cm;
+}
+
+.title-banner
+{
+	font-size: 45px;
+	font-weight: 600;
+	margin-left: 0.5cm;
+}
+
+.desc-banner
+{
+	font-weight: 480;
+	font-size: 18px;
+	margin: 1.5cm 12.5cm -0.5cm -12.8cm;
+}
+
+.img-profil-toko
+{
+	border-radius: 60%;
+	min-width: 2.5cm;
+	min-height: 2.5cm;
+	max-width: 2.5cm;
+	max-height: 2.5cm;
+	object-fit: cover;
+	margin-left: -1cm;
+}
+/*--------- end banner ----------*/
+
+/*container*/
+.container-produk, 
+.container-detailToko,
+.container-review
+{
+	margin-top: 20px;
+	font-size: 0.8cm;
+}
+
+.link-produk,
+.link-detailToko,
+.link-review
+{
+	text-decoration: none;
+	color: black;
+	transition: 0.5s ease-in;
+}
+
+.link-produk:hover,
+.link-detailToko:hover,
+.link-review:hover
+{
+	transition: 0.5s ease-out;
+	border-bottom: 4px solid #ff9900;
+	color: #ff9900;
+}
+
+.dividing-line
+{
+	-webkit-transform:rotate(90deg);
+	margin-top: 40px;
+	margin-left: 4cm;
+	border-top: 2px solid black;
+	width: 1.5cm;
+}
+
+.rating
+{
+	position: relative;
+	left: 14%;
+	margin-bottom: -1cm;
+	transform: translate(-50%, -50%) rotateY(180deg);
+	display: flex;
+}
+
+.rating input
+{
+	display: none;
+}
+
+.rating label
+{
+	display: block;
+	cursor: pointer;
+	width: 50px;
+	margin: 0 5px 0 5px;
+}
+
+.rating label:before
+{
+	content:'\f005';
+	font-family: fontAwesome;
+	position: relative;
+	display: block;
+	font-size: 50px;
+	color: lightgrey;
+}
+
+.rating label:after
+{
+	content:'\f005';
+	font-family: fontAwesome;
+	position: absolute;
+	display: block;
+	font-size: 50px;
+	color: #fffa00;
+	top:0;
+	opacity: 0;
+	transition: .5s;
+	text-shadow: 0 2px 5px rgba(0,0,0,.5);
+}
+
+.rating label:hover:after,
+.rating label:hover ~ label:after,
+.rating input:checked ~ label:after
+{
+	opacity: 1;
+}
+
+.textarea-custom
+{
+	max-height: 8cm;
+}
