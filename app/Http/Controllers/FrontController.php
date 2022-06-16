@@ -59,11 +59,11 @@ class FrontController extends Controller
     public function blog(){
         
             if(request('search')) {{
-            $blog = DB::table('blogs')->where('status','Accepted')->where('title', 'like', '%'.request('search').'%')
+            $blog = Blog::latest('updated_at')->where('status','Accepted')->where('title', 'like', '%'.request('search').'%')
                                         ->orWhere('subtitle', 'like', '%'.request('search').'%')->latest('updated_at')->paginate(4);
         }}
         elseif (request('filter')) {{
-            $blog = DB::table('blogs')->where('status','Accepted')->where('category', 'like', '%'.request('filter').'%')->latest('updated_at')->paginate(4);
+            $blog = Blog::latest('updated_at')->where('status','Accepted')->where('category', 'like', '%'.request('filter').'%')->latest('updated_at')->paginate(4);
         }}
         else{
             $blog = Blog::latest('updated_at')->where('status','Accepted')->paginate(4);
@@ -73,6 +73,22 @@ class FrontController extends Controller
         return view('kumpulan_blog', compact('blog'));
     }
 
+    public function product(){
+        
+        if(request('search')) {{
+        $produk = Product::latest('updated_at')->where('name', 'like', '%'.request('search').'%')
+                                    ->latest('updated_at')->paginate(6);
+    }}
+    elseif (request('filter')) {{
+        $produk = Product::latest('updated_at')->where('category', 'like', '%'.request('filter').'%')->latest('updated_at')->paginate(6);
+    }}
+    else{
+        $produk = Product::latest('updated_at')->paginate(6);
+    }
+    
+
+    return view('produk', compact('produk'));
+}
     public function tes(){
 
         return view('auth.passwords.confirm');

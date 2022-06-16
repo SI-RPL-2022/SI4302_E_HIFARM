@@ -40,6 +40,7 @@ Route::get('/', [FrontController::class, 'index'])->name('home');
 Route::get('/toko', [FrontController::class, 'toko'])->name('toko');
 Route::get('/visit/{id}', [VendorController::class, 'show'])->name('visit');
 Route::get('/forum', [FrontController::class, 'forum'])->name('forum');
+Route::get('/produk', [FrontController::class, 'product'])->name('produk');
 Route::get('/blog', [FrontController::class, 'blog'])->name('blog');
 Route::get('/blog/{id}', [BlogController::class, 'showblog'])->name('blog.visit');
 
