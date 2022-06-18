@@ -91,6 +91,8 @@ Route::group(['middleware'=>'checkRole:vendor','prefix'=>'vendor'], function() {
         Route::delete('/{product}', [ProductController::class, 'destroy']);
     });
 
+    
+
 });
 
 //////////////////////////////////////// SPECIFIC USER
