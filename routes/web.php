@@ -3,6 +3,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\VendorController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\FrontController;
@@ -61,6 +62,13 @@ Route::prefix('home')->middleware('auth')->group(function () {
     // Route::get('/storeList', [HomeController::class, 'index'])->name('storeList');
     Route::get('/visit/{id}', [VendorController::class, 'show'])->name('user.visit');
 
+});
+
+Route::group(['middleware'=>'checkRole:user,vendor'], function() {
+    // GET BUKA TOKO
+    Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');   
+    Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');   
+    Route::post('/profile/edit', [ProfileController::class, 'update']);
 });
 
 Route::group(['middleware'=>'checkRole:user','prefix'=>'user'], function() {
