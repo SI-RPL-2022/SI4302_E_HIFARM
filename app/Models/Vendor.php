@@ -17,6 +17,6 @@ class Vendor extends Model
 
     public function getJournal()
     {
-        return $this->hasMany(Accounting_Book::class);
+        return $this->hasMany(Journal::class);
     }
 }

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAccountingBooksTable extends Migration
+class CreateJournalsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateAccountingBooksTable extends Migration
      */
     public function up()
     {
-        Schema::create('accounting_books', function (Blueprint $table) {
+        Schema::create('journals', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('vendor_id');
             $table->foreign('vendor_id')->references('id')->on('vendors')->onDelete('cascade')->onUpdate('cascade');
@@ -31,6 +31,6 @@ class CreateAccountingBooksTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('accounting_books');
+        Schema::dropIfExists('journals');
     }
 }

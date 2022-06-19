@@ -99,6 +99,7 @@
                             $total_pengeluaran = 0;
                             @endphp
                             @foreach ($data as $key)
+                            @can('view', $key)
                             <tr>
                                 <td>{{ $key->date }}</td>
                                 <td>{{ $key->note }}</td>
@@ -133,8 +134,10 @@
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                 aria-label="Close"></button>
                                         </div>
-                                        <form action="/vendor/journal/edit/{{ $key->id }}" method="post">
+                                        <form action="{{ route('vendor.journal.update', $key->id) }}" method="post">
                                             @csrf
+                                            <input type="hidden" name="_method" value="POST">
+                                            <input type="hidden" name="id" value="{{ $key->id }}">
                                             <div class="modal-body">
                                                 <div class="mb-3 row">
                                                     <label for="note"
@@ -219,6 +222,7 @@
                                 </div>
                             </div>
 
+                            @endcan
                             @endforeach
                             <tr>
                                 <td colspan="2" class="fw-bold">Total</td>

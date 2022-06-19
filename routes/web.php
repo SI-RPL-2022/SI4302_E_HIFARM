@@ -5,7 +5,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\VendorController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\BlogController;
-use App\Http\Controllers\Accounting_BookController;
+use App\Http\Controllers\JournalController;
 
 /*
 |--------------------------------------------------------------------------
@@ -79,10 +79,10 @@ Route::group(['middleware'=>'checkRole:vendor','prefix'=>'vendor'], function() {
 
     // Journal
     Route::group(['prefix'=>'journal'], function() {
-        Route::get('/', [Accounting_BookController::class, 'index'])->name('vendor.journal.index');
-        Route::post('/', [Accounting_BookController::class, 'store']);
-        Route::post('/edit/{id}', [Accounting_BookController::class, 'update']);
-        Route::delete('/{id}', [Accounting_BookController::class, 'destroy']);
+        Route::get('/', [JournalController::class, 'index'])->name('vendor.journal.index');
+        Route::post('/', [JournalController::class, 'store']);
+        Route::post('/edit/{id}', [JournalController::class, 'update'])->name('vendor.journal.update');
+        Route::delete('/{id}', [JournalController::class, 'destroy']);
     });
 
 });

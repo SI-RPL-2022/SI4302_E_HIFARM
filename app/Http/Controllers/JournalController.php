@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Vendor;
-use App\Models\Accounting_Book;
+use App\Models\Journal;
 
-class Accounting_BookController extends Controller
+class JournalController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,7 +17,7 @@ class Accounting_BookController extends Controller
     {
         // dd(Accounting_Book::latest('date')->get());
         return view('journal.index', [
-            'data' => Accounting_Book::latest('date')->get()
+            'data' => Journal::latest('date')->get()
         ]);
     }
 
@@ -49,7 +49,7 @@ class Accounting_BookController extends Controller
 
         $validatedData['vendor_id'] = Vendor::where('user_id', auth()->user()->id)->first()->id;
 
-        Accounting_Book::create($validatedData);
+        Journal::create($validatedData);
         return redirect('/vendor/journal')->with('success-add','Anda berhasil menambah Transaksi!');
     }
 
@@ -92,7 +92,7 @@ class Accounting_BookController extends Controller
             'date' => 'required'
         ]);
 
-        Accounting_Book::where('id', $id)->update($validatedData);
+        Journal::where('id', $id)->update($validatedData);
         return redirect('/vendor/journal')->with('success-update','Anda berhasil update Transaksi!');
     }
 
@@ -104,7 +104,7 @@ class Accounting_BookController extends Controller
      */
     public function destroy($id)
     {
-        Accounting_Book::destroy($id);
+        Journal::destroy($id);
         return redirect('/vendor/journal')->with('success-remove','Anda berhasil menghapus Transaksi!');
     }
 }
