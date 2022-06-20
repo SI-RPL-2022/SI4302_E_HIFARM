@@ -19,6 +19,9 @@
             @if (session()->has('success-changeData'))
                 <x-alert type="success" message="{{ session('success-changeData') }}"/>
             @endif
+            @if (session()->has('success-changePass'))
+                <x-alert type="success" message="{{ session('success-changePass') }}"/>
+            @endif
             <div class="mb-4">
                 <form action="{{ route('profile.edit') }}" method="POST" enctype="multipart/form-data">
                     @csrf
@@ -26,7 +29,7 @@
                     <div class="mb-3 p-3 bg-white rounded-3 border">
                         <div class="mb-2">
                             <label for="image" class="form-label">Photo</label>
-                            <img class="rounded-circle d-block mb-2" src="" alt="...">
+                            <img class="rounded-circle d-block mb-2" src="{{ asset('image/'.auth()->user()->image) }}" alt="{{ auth()->user()->image }}" width=80 height="80">
                             <input class="form-control col-2" type="file" id="image" name="image">
                         </div>
                         <div class="mb-2">

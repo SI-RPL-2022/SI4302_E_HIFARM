@@ -7,7 +7,7 @@
 <div class="p-4 mb-4 col-5 mx-auto bg-white rounded-3 border">
     <div class="mb-2">
         <label for="photo" class="col-sm-3 col-form-label fw-bold">Photo</label>
-        <img class="rounded-circle d-block" src="" alt="...">
+        <img class="rounded-circle d-block" src="{{ asset('image/'.auth()->user()->image) }}" alt="{{ auth()->user()->image }}" width=80 height="80">
     </div>
     <div class="mb-1 row">
         <label for="name" class="col-sm-3 col-form-label fw-bold">Nama Lengkap</label>
@@ -24,7 +24,7 @@
     <div class="mb-1 row">
         <label for="no_hp" class="col-sm-3 col-form-label fw-bold">No. Handphone</label>
         <div class="col-sm-9">
-          <input type="text" readonly class="form-control-plaintext" id="no_hp" name="no_hp" value="{{ auth()->user()->no_hp }}">
+          <input type="text" readonly class="form-control-plaintext" id="no_hp" name="no_hp" value="{{ $vendor->phone }}">
         </div>
     </div>
     <div class="d-grid gap-2 mt-3">
