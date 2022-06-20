@@ -7,6 +7,7 @@ use App\Http\Controllers\VendorController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\FrontController;
+use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\Forum_ThreadController;
 use App\Http\Controllers\Forum_CommentController;
 
@@ -86,6 +87,11 @@ Route::prefix('home')->middleware('auth')->group(function () {
     //////////////////// PEMBELIAN
     Route::get('/produk/{id}', [ProductController::class, 'show2'])->name('product.show');
     Route::get('/produk/{id}/whatsapp', [ProductController::class, 'whatsapp'])->name('product.whatsapp');
+
+    //////////////////// Review
+    Route::get('/review/{id}', [ReviewController::class, 'create'])->name('review.create');
+    Route::post('/review/{id}/store', [ReviewController::class, 'store'])->name('review.store');
+    Route::delete('/review/{id}/delete', [ReviewController::class, 'destroy'])->name('review.delete');
 
 });
 

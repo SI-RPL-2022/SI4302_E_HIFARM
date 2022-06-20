@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Vendor;
 use App\Models\User;
 use App\Models\Product;
+use App\Models\Review;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -76,10 +77,10 @@ class VendorController extends Controller
     public function show($id)
     {
         $vendor= Vendor::find($id);
-        $product= Product::where("vendor_id",$id)->paginate(6); //iterate foreach
-        //$ review here, also foreach
+        $product= Product::where("vendor_id",$id)->paginate(6);
+        $review= Review::latest('created_at')->where("vendor_id",$id)->get();  //iterate foreach
 
-        return view('vendor.show',compact('vendor','product'));
+        return view('vendor.show',compact('vendor','product','review'));
 
     }
 

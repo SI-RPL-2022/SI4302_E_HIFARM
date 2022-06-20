@@ -6,7 +6,7 @@
 	<!-- Required meta tags -->
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="css/style_tambahReview.css">
+	<link rel="stylesheet" href="{{ asset('css/style_tambahReview.css') }}">
 	<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
 	<!-- Bootstrap CSS -->
@@ -28,11 +28,11 @@
 						<p class="mb-5 text-center container-detailToko"><a href="#" class="link-detailToko">Review Toko</a></p>
 
 						<div class="mt-4 rating">
-							<input type="radio" name="star" id="star1"><label for="star1"></label>
-							<input type="radio" name="star" id="star2"><label for="star2"></label>
-							<input type="radio" name="star" id="star3"><label for="star3"></label>
-							<input type="radio" name="star" id="star4"><label for="star4"></label>
-							<input type="radio" name="star" id="star5"><label for="star5"></label>
+							<input type="radio" name="star" value="5" id="star1"><label  for="star1"></label>
+							<input type="radio" name="star" value="4" id="star2"><label for="star2"></label>
+							<input type="radio" name="star" value="3" id="star3"><label for="star3"></label>
+							<input type="radio" name="star" value="2" id="star4"><label for="star4"></label>
+							<input type="radio" name="star" value="1" id="star5"><label for="star5"></label>
 						</div>
 
 						<div class="mb-3">
@@ -40,8 +40,8 @@
 						</div><br>
 
 						<div class="mb-3">
-							<!-- <label for="formFile" class="form-label">Cover Gambar Toko</label> -->
-							<input class="form-control" name='image'type="file" id="formFile">
+							<label for="formFile" class="form-label">Gambar Review</label>
+                            <input class="form-control" name="image" type="file" id="formFile">
 						</div><br><br>
 
 						<div class="mb-5 text-center">

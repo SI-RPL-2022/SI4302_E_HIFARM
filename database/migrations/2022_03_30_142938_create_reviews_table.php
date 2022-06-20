@@ -21,6 +21,7 @@ class CreateReviewsTable extends Migration
             $table->foreign('vendor_id')->references('id')->on('vendors')->onDelete('cascade')->onUpdate('cascade');
             $table->text('review');
             $table->enum('rating', ['1', '2','3','4','5']);
+            $table->string('image')->default('noimg.jpg');
             $table->timestamps();
         });
     }

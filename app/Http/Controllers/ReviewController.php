@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Review;
 
 class ReviewController extends Controller
 {
@@ -21,9 +22,11 @@ class ReviewController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create( $id)
     {
-        //
+        $vendor_id = $id;
+
+        return view('review.create', compact('vendor_id'));
     }
 
     /**
@@ -32,9 +35,25 @@ class ReviewController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $id)
     {
-        //
+        $nama_file="noimg.jpg";
+        if ($request->file('image')){
+            $file = $request->file('image');
+            $nama_file= time().str_replace(" ","",$file->getClientOriginalName());
+            $file->move('image', $nama_file);
+        }
+
+        $review = Review::create(
+            [
+                'user_id' => $request->user_id,
+                'vendor_id' => $id,
+                'rating' => $request->star,
+                'review' => $request->review,
+                'image' => $nama_file,
+            ]);
+
+            return redirect()->route('visit', ['id' => $id])->with('success-add', 'Review Berhasil Ditambahkan');
     }
 
     /**
@@ -79,6 +98,11 @@ class ReviewController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $review = Review::where('id', $id)->first();
+        $vendor_id = $review->vendor_id;
+        $review->delete();
+
+        return redirect()->route('visit', ['id' => $vendor_id])->with('success-add', 'Review Berhasil Dihapus');
+
     }
 }
