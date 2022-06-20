@@ -91,6 +91,10 @@ class JournalController extends Controller
             'category' => 'required',
             'date' => 'required'
         ]);
+        
+        // dd($validatedData);
+
+        $validatedData['vendor_id'] = Vendor::where('user_id', auth()->user()->id)->first()->id;
 
         Journal::where('id', $id)->update($validatedData);
         return redirect('/vendor/journal')->with('success-update','Anda berhasil update Transaksi!');

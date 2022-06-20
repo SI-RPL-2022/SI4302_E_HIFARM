@@ -95,8 +95,8 @@
                         </thead>
                         <tbody>
                             @php
-                            $total_pemasukan = 0;
-                            $total_pengeluaran = 0;
+                                $total_pemasukan = 0;
+                                $total_pengeluaran = 0;
                             @endphp
                             @foreach ($data as $key)
                             @can('view', $key)
@@ -105,20 +105,19 @@
                                 <td>{{ $key->note }}</td>
                                 @if ($key->category == 'Pemasukan')
                                 @php
-                                $total_pemasukan += $key->amount;
+                                    $total_pemasukan += $key->amount;
                                 @endphp
-                                <td>{{ $key->amount }}</td>
-                                <td>Rp. 0</td>
+                                <td>@currency($key->amount)</td>
+                                <td>@currency(0)</td>
                                 @else
                                 @php
-                                $total_pengeluaran += $key->amount;
+                                    $total_pengeluaran += $key->amount;
                                 @endphp
-                                <td>Rp. 0</td>
-                                <td>{{ $key->amount }}</td>
+                                <td>@currency(0)</td>
+                                <td>@currency($key->amount)</td>
                                 @endif
                                 <td class="d-flex flex-wrap">
-                                    <button class="btn btn-sm btn-warning me-1 mb-1" type="button"
-                                        data-bs-toggle="modal"
+                                    <button class="btn btn-sm btn-warning me-1 mb-1" type="button" data-bs-toggle="modal"
                                         data-bs-target="#confirmationEdit{{ $key->id }}">Edit</button>
                                     <button class="btn btn-sm btn-danger me-1 mb-1" type="button" data-bs-toggle="modal"
                                         data-bs-target="#confirmationDelete{{ $key->id }}">Delete</button>
@@ -134,10 +133,11 @@
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                 aria-label="Close"></button>
                                         </div>
-                                        <form action="{{ route('vendor.journal.update', $key->id) }}" method="post">
+                                        <form action="/vendor/journal/edit/{{ $key->id }}" method="post">
                                             @csrf
-                                            <input type="hidden" name="_method" value="POST">
+                                            {{-- <input type="hidden" name="_method" value="POST"> --}}
                                             <input type="hidden" name="id" value="{{ $key->id }}">
+                                            <input type="hidden" name="vendor_id" value="{{ auth()->user()->id }}">
                                             <div class="modal-body">
                                                 <div class="mb-3 row">
                                                     <label for="note"
@@ -167,23 +167,18 @@
                                                     <label for="category"
                                                         class="col-sm-4 col-form-label">{{ __('Jenis Transaksi') }}</label>
                                                     <div class="col-sm-8">
-
                                                         <div class="form-check form-check-inline">
                                                             <input class="form-check-input" type="radio" name="category"
-                                                                id="inlineRadio1" value="Pemasukan" @if($key->category
-                                                            == 'Pemasukan') checked @endif>
+                                                                id="inlineRadio1" value="Pemasukan" @if($key->category == 'Pemasukan') checked @endif>
                                                             <label class="form-check-label"
                                                                 for="inlineRadio1">{{ __('Pemasukan') }}</label>
                                                         </div>
-
                                                         <div class="form-check form-check-inline">
                                                             <input class="form-check-input" type="radio" name="category"
-                                                                id="inlineRadio2" value="Pengeluaran" @if($key->category
-                                                            == 'Pengeluaran') checked @endif>
+                                                                id="inlineRadio2" value="Pengeluaran" @if($key->category == 'Pengeluaran') checked @endif>
                                                             <label class="form-check-label"
                                                                 for="inlineRadio2">{{ __('Pengeluaran') }}</label>
                                                         </div>
-
                                                     </div>
                                                 </div>
                                             </div>
@@ -226,8 +221,8 @@
                             @endforeach
                             <tr>
                                 <td colspan="2" class="fw-bold">Total</td>
-                                <td>{{ $total_pemasukan }}</td>
-                                <td>{{ $total_pengeluaran }}</td>
+                                <td>@currency($total_pemasukan)</td>
+                                <td>@currency($total_pengeluaran)</td>
                                 <td></td>
                             </tr>
                         </tbody>

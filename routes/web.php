@@ -81,7 +81,7 @@ Route::group(['middleware'=>'checkRole:vendor','prefix'=>'vendor'], function() {
     Route::group(['prefix'=>'journal'], function() {
         Route::get('/', [JournalController::class, 'index'])->name('vendor.journal.index');
         Route::post('/', [JournalController::class, 'store']);
-        Route::post('/edit/{id}', [JournalController::class, 'update'])->name('vendor.journal.update');
+        Route::post('/edit/{id}', [JournalController::class, 'update']);
         Route::delete('/{id}', [JournalController::class, 'destroy']);
     });
 
