@@ -1,0 +1,207 @@
+/*Banner*/
+.banner
+{
+	position: relative;
+	background: url(../img1.png);
+	display: flex;
+	background-size: cover;
+	justify-content: center;
+	align-items: center;
+	height: 8cm;
+}
+
+.custom-container
+{
+	display: flex;
+	margin: 0.5cm 7cm -0.5cm -7cm;
+}
+
+.title-banner
+{
+	font-size: 45px;
+	font-weight: 600;
+	margin-left: 0.5cm;
+}
+
+.desc-banner
+{
+	font-weight: 480;
+	font-size: 18px;
+	margin: 1.5cm 12.5cm -0.5cm -12.8cm;
+}
+
+.img-profil-toko
+{
+	border-radius: 60%;
+	min-width: 2.5cm;
+	min-height: 2.5cm;
+	max-width: 2.5cm;
+	max-height: 2.5cm;
+	object-fit: cover;
+	margin-left: -1cm;
+}
+/*--------- end banner ----------*/
+
+/*container*/
+.container-produk, 
+.container-detailToko,
+.container-review
+{
+	margin-top: 20px;
+	font-size: 0.8cm;
+}
+
+.link-produk,
+.link-detailToko,
+.link-review
+{
+	text-decoration: none;
+	color: black;
+	transition: 0.5s ease-in;
+}
+
+.link-produk:hover,
+.link-detailToko:hover,
+.link-review:hover
+{
+	transition: 0.5s ease-out;
+	border-bottom: 4px solid #ff9900;
+	color: #ff9900;
+}
+
+.dividing-line
+{
+	-webkit-transform:rotate(90deg);
+	margin-top: 40px;
+	margin-left: 4cm;
+	border-top: 2px solid black;
+	width: 1.5cm;
+}
+
+.col-custom-flex
+{
+	display: flex;
+	padding-top: 0.5cm;
+	margin-bottom: 0.5cm;
+}
+
+.img-user
+{
+	border-radius: 60%;
+	min-width: 1.8cm;
+	min-height: 1.8cm;
+	max-width: 1.8cm;
+	max-height: 1.8cm;
+	object-fit: cover;
+	margin-right: 10px;
+}
+
+.rating 
+{
+	display: inline-block;
+	position: relative;
+	height: 50px;
+	margin-left: 1.5cm;
+	margin-bottom: -10px;
+	line-height: 50px;
+	font-size: 50px;
+}
+
+.rating label 
+{
+	position: absolute;
+	margin-top: -1cm;
+	top: 30px;
+	left: 0;
+	height: 100%;
+	cursor: pointer;
+}
+
+.rating label:last-child 
+{
+	position: static;
+}
+
+.rating label:nth-child(1) 
+{
+	z-index: 5;
+	margin-left: 11.85px;
+}
+
+.rating label:nth-child(2) 
+{
+	z-index: 4;
+	margin-left: 11.85px;
+}
+
+.rating label:nth-child(3) 
+{
+	z-index: 3;
+	margin-left: 11.85px;
+}
+
+.rating label:nth-child(4) 
+{
+	z-index: 2;
+	margin-left: 11.85px;
+}
+
+.rating label:nth-child(5) 
+{
+	z-index: 1;
+}
+
+.rating label input 
+{
+	position: absolute;
+	top: 0;
+	left: 0;
+	opacity: 0;
+}
+
+.rating label .icon 
+{
+	float: left;
+	color: transparent;
+}
+
+.rating label:last-child .icon 
+{
+	color: lightgrey;
+}
+
+.rating:not(:hover) label input:checked ~ .icon,
+.rating:hover label:hover input ~ .icon 
+{
+	color: #fffa00;
+}
+
+.rating label input:focus:not(:checked) ~ .icon:last-child 
+{
+	color: lightgrey;
+	text-shadow: 0 0 5px #fffa00;
+}
+
+.review
+{
+	margin-left: 1.7cm;
+}
+
+.review label
+{
+	font-size: 18px;
+	width: 90%;
+}
+
+.img-review
+{
+	margin-left: 1.7cm;
+	width: 300px;
+	border-radius: 10px;
+	box-shadow: 0 6px 12px 0 rgb(0 0 0 / 20%), 0 9px 20px 0 rgb(0 0 0 / 11%);
+}
+
+.custom-btn-submit
+{
+	width: 6cm;
+}

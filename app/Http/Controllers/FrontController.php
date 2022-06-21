@@ -75,6 +75,6 @@ class FrontController extends Controller
 
     public function tes(){
 
-        return view('auth.passwords.confirm');
+        return view('tambah_review');
     }
 }
