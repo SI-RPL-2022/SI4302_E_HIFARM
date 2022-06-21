@@ -3,6 +3,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\VendorController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\BlogController;
@@ -96,6 +97,13 @@ Route::prefix('home')->middleware('auth')->group(function () {
 
 });
 
+Route::group(['middleware'=>'checkRole:user,vendor'], function() {
+    // GET BUKA TOKO
+    Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');   
+    Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');   
+    Route::post('/profile/edit', [ProfileController::class, 'update']);
+});
+
 Route::group(['middleware'=>'checkRole:user','prefix'=>'user'], function() {
     // GET BUKA TOKO
     Route::get('/store', [VendorController::class, 'create'])->name('user.create');
@@ -144,6 +152,8 @@ Route::group(['middleware'=>'checkRole:vendor','prefix'=>'vendor'], function() {
         Route::get('/show/{product}', [ProductController::class, 'show']);
         Route::delete('/{product}', [ProductController::class, 'destroy']);
     });
+
+    
 
 });
 
