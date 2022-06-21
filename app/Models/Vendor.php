@@ -26,4 +26,8 @@ class Vendor extends Model
     {
         return $this->belongsTo(User::class);
     }
+    public function getJournal()
+    {
+        return $this->hasMany(Journal::class);
+    }
 }

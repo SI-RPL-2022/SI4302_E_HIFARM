@@ -12,6 +12,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\Forum_ThreadController;
 use App\Http\Controllers\Forum_CommentController;
+use App\Http\Controllers\JournalController;
 
 /*
 |--------------------------------------------------------------------------
@@ -153,7 +154,13 @@ Route::group(['middleware'=>'checkRole:vendor','prefix'=>'vendor'], function() {
         Route::delete('/{product}', [ProductController::class, 'destroy']);
     });
 
-    
+    // Journal
+    Route::group(['prefix'=>'journal'], function() {
+        Route::get('/', [JournalController::class, 'index'])->name('vendor.journal.index');
+        Route::post('/', [JournalController::class, 'store']);
+        Route::post('/edit/{id}', [JournalController::class, 'update']);
+        Route::delete('/{id}', [JournalController::class, 'destroy']);
+    });
 
 });
 
