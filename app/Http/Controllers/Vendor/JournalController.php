@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Vendor;
 use App\Models\Journal;
+use Illuminate\Http\Request;
 
 class JournalController extends Controller
 {

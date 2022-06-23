@@ -1,181 +1,75 @@
 @extends('layouts.app')
 
+@section('title', 'Home')
+
 @section('content')
+<div class="container ">
+    <div class="mb-5">
+        <img src="{{ asset('image/home1.png') }}" height="350" class="card-img-top" style="border-radius: 25px"
+            alt="home1">
+    </div>
 
-
-	<link rel="stylesheet" href="{{ asset('css/style_kunjungiTokoAdmin.css') }}">
-
-	<!-- Bootstrap CSS
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-	<title>Toko</title>
-	</head> -->
-
-	<body>
-	<div class="container">
-    <div class="row">
-        <x-sidebar-navigation/>
-
-        <div class="col-lg-10">
-            <div class="card">
-                <div class="card-header">{{ __('Buat Produk') }}</div>
-                <div class="card-body">
-
-
-		<!-- banner -->
-		<div class="banner">
-			<div class="custom-container">
-				<img src="assets/discord2.png" class="img-profil-toko">
-				<h1 class="text-white title-banner">Toko Abadi</h1>
-			</div>
-			<p class="text-white desc-banner">Menyediakan berbagai daging terbaik</p>
-		</div>
-		
-		<!-- container -->
-		<div class="container">
-			<!-- row 1 -->
-			<div class="row mt-2 mb-4">
-		    	<div class="col">
-		      		<p class="text-center container-produk"><a href="#" class="link-produk">Produk</a></p>
-		    	</div>
-
-		    	<div class="col">
-		    		<hr class="dividing-line">
-		    	</div>
-
-		    	<div class="col">
-		      		<p class="text-center container-detailToko"><a href="#" class="link-detailToko">Detail Toko</a></p>
-		    	</div>
-		    </div>
-
-		    <div class="text-center mt-3 mb-4">
-		    	<button type="button" class="btn btn-primary btn-lg"><b>+ Tambah Produk</b></button>	
-		    </div>
-		    
-		    <!-- row 2 -->
-		    <div class="row mb-5 custom-row">
-		    	<div class="col-4">
-		    		<div class="card" style="width: 18rem;">
-					  <img src="assets/image_3.png" class="card-img-top" alt="...">
-					  <div class="card-body">
-					    <h5 class="card-title">Sapi jantan unggulan</h5>
-					    <p class="card-text">
-					    	<span>Rp. 24.450.000,-</span><br>
-					    	<span>Bobot: 200-250kg</span>
-					    </p>
-
-					    <span class="city">Bandung<a href="#" class="btn btn-primary btn-pesan" style="border-radius: 10px;">Pesan</a></span>
-					  </div>
-					</div>
-		    	</div>
-
-		    	<div class="col-4">
-		    		<div class="card" style="width: 18rem;">
-					  <img src="assets/image_3.png" class="card-img-top" alt="...">
-					  <div class="card-body">
-					    <h5 class="card-title">Sapi biasa aja</h5>
-					    <p class="card-text">
-					    	<span>Rp. 24.450.000,-</span><br>
-					    	<span>Bobot: 200-250kg</span>
-					    </p>
-
-					    <span class="city">Bandung<a href="#" class="btn btn-primary btn-pesan" style="border-radius: 10px;">Pesan</a></span>
-					  </div>
-					</div>
-		    	</div>
-
-		    	<div class="col-4">
-		    		<div class="card" style="width: 18rem;">
-					  <img src="assets/image_3.png" class="card-img-top" alt="...">
-					  <div class="card-body">
-					    <h5 class="card-title">Sapi galak ternama</h5>
-					    <p class="card-text">
-					    	<span>Rp. 24.450.000,-</span><br>
-					    	<span>Bobot: 200-250kg</span>
-					    </p>
-
-					    <span class="city">Bandung<a href="#" class="btn btn-primary btn-pesan" style="border-radius: 10px;">Pesan</a></span>
-					  </div>
-					</div>
-		    	</div>
-		    </div>
-
-		    <!-- row 3 -->
-		    <div class="row mb-5 custom-row">
-		    	<div class="col-4">
-		    		<div class="card" style="width: 18rem;">
-					  <img src="assets/image_3.png" class="card-img-top" alt="...">
-					  <div class="card-body">
-					    <h5 class="card-title">Sapi jantan unggulan</h5>
-					    <p class="card-text">
-					    	<span>Rp. 24.450.000,-</span><br>
-					    	<span>Bobot: 200-250kg</span>
-					    </p>
-
-					    <span class="city">Bandung<a href="#" class="btn btn-primary btn-pesan" style="border-radius: 10px;">Pesan</a></span>
-					  </div>
-					</div>
-		    	</div>
-
-		    	<div class="col-4">
-		    		<div class="card" style="width: 18rem;">
-					  <img src="assets/image_3.png" class="card-img-top" alt="...">
-					  <div class="card-body">
-					    <h5 class="card-title">Sapi jantan unggulan</h5>
-					    <p class="card-text">
-					    	<span>Rp. 24.450.000,-</span><br>
-					    	<span>Bobot: 200-250kg</span>
-					    </p>
-
-					    <span class="city">Bandung<a href="#" class="btn btn-primary btn-pesan" style="border-radius: 10px;">Pesan</a></span>
-					  </div>
-					</div>
-		    	</div>
-
-		    	<div class="col-4">
-		    		<div class="card" style="width: 18rem;">
-					  <img src="assets/image_3.png" class="card-img-top" alt="...">
-					  <div class="card-body">
-					    <h5 class="card-title">Sapi jantan unggulan</h5>
-					    <p class="card-text">
-					    	<span>Rp. 24.450.000,-</span><br>
-					    	<span>Bobot: 200-250kg</span>
-					    </p>
-
-					    <span class="city">Bandung<a href="#" class="btn btn-primary btn-pesan" style="border-radius: 10px;">Pesan</a></span>
-					  </div>
-					</div>
-		    	</div>
-		    </div>
-
-		    <div class="pagination-position">
-			    <nav aria-label="Page navigation example">
-				  <ul class="pagination">
-				    <li class="page-item">
-				      <a class="page-link" href="#" aria-label="Previous">
-				        <span aria-hidden="true">&laquo;</span>
-				      </a>
-				    </li>
-				    <li class="page-item"><a class="page-link" href="#">1</a></li>
-				    <li class="page-item"><a class="page-link" href="#">2</a></li>
-				    <li class="page-item"><a class="page-link" href="#">3</a></li>
-				    <li class="page-item">
-				      <a class="page-link" href="#" aria-label="Next">
-				        <span aria-hidden="true">&raquo;</span>
-				      </a>
-				    </li>
-				  </ul>
-				</nav>
-			</div>
-		</div>
-
-
-</div>
-</div>
-</div>
-</div>
-</div>
+    <div class="row mb-5">
+        <div class="col-sm d-flex align-items-center">
+            <div>
+                <h1 class="fw-bold">Menjadikan Ternak Sebagai Mata Pencaharian yang Lebih Baik untuk Indonesia</h1>
+                <h5>HiFarm bertujuan untuk menghubungkan peternak skala kecil dengan eksposur global dalam mempromosikan
+                    produk
+                    ternak Indonesia yang lezat; melalui kesepakatan grosir, belanja eceran, dan kemitraan bisnis. </h5>
+            </div>
+        </div>
+        <div class="col-sm">
+            <img src="{{ asset('image/home2.jpg') }}" height="" class="card-img-top" style="border-radius: 25px" alt="home2">
+        </div>
+    </div>
 </div>
 
+<div class="py-5" style="background-color: #9FC088;">
+    <h3 class="mb-4 text-center fw-bold">Bergabung Dalam Ekosistem HiFarm</h3>
+    <div class="container row mx-auto">
+        <div class="col-sm mb-2">
+            <img src="{{ asset('image/home3.png') }}" height="" class="card-img-top rounded-lg" alt="home3">
+        </div>
+        <div class="col-sm mb-2">
+            <img src="{{ asset('image/home4.png') }}" height="" class="card-img-top" alt="home4">
+        </div>
+        <div class="col-sm mb-2">
+            <img src="{{ asset('image/home5.png') }}" height="" class="card-img-top" alt="home5">
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="text-center">
+            <p class="fs-5">HiFarm membuka kesempatan untuk kamu para <br> peternak yang ingin terlibat untuk memanjukan
+                <br> Peternakan Indonesia.</p>
+            <a class="btn btn-lg btn-primary" href="{{ route('register')}}" role="button">Gabung Sekarang</a>
+        </div>
+    </div>
+    <br>
+</div>
 
-
-	@endsection
+<div class="py-5 container"> <br>
+    <h3 class="text-center mb-4"><b>Produk-Produk Terbaru</b></h3>
+    <div class="row" style="margin-left:4rem; margin-right:4rem; margin-bottom:2rem;">
+        @foreach ($latest as $item)
+            <div class="col-sm-4">
+                <div class="card">
+                    <img src="{{ URL::asset('storage/'.$item->image)}}" height="250px" class="card-img-top" alt="gambar">
+                    <div class="card-body">
+                        <h3 class="card-title">{{$item->name}}</h3>
+                        <p class="card-text">{{$item->price}}</p>
+                        <p class="card-text">{{$item->weight}}</p>
+                        <p class="card-text">{!!$item->desc!!}</p>
+                        <button type="submit" class="btn btn-primary">Lihat</button>
+                    </div>
+                </div>
+            </div>
+        @endforeach
+    </div>
+    <div class="row justify-content-center">
+        <div class="text-center">
+            <p class="fs-5">Lihat produk lebih jauh.</p>
+            <a class="btn btn-lg btn-primary" href="{{ route('toko')}}" role="button">Browse Toko</a>
+        </div>
+    </div>
+</div>
+@endsection

@@ -19,7 +19,7 @@ class FrontController extends Controller
                     ->limit(3)
                     ->get();
 
-        return view('landingPage',compact('latest'));
+        return view('index',compact('latest'));
     }
 
 

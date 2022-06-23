@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>@yield('title') | {{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -51,7 +51,7 @@
     <div id="app">
         <x-navigation-bar/>
 
-        <main class="py-4 flex-shrink-0">
+        <main class="py-4 flex-shrink-0" style="margin-top: 4rem;">
             @yield('content')
         </main>
 

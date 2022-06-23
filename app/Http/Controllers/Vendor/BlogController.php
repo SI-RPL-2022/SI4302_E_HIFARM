@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Blog;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 class BlogController extends Controller
