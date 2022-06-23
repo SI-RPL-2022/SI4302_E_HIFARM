@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm fixed-top">
+<nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm fixed-top mb-5">
     <div class="container">
         <a class="navbar-brand" href="{{ url('/') }}">
             <img src="{{ asset('image/logo.png') }}" width="75">
@@ -18,19 +18,19 @@
                 <!-- Authentication Links -->
                 
                     <li class="nav-item me-2">
-                        <a class="nav-link" href="">Home</a>
+                        <a class="nav-link {{ Request::is('/') ? 'active' : '' }}" href="{{ url('/') }}">Home</a>
                     </li>
                     <li class="nav-item me-2">
-                        <a class="nav-link" href="{{ route('forum')}}">Forum</a>
+                        <a class="nav-link {{ Request::is('toko') ? 'active' : '' }}" href="{{ route('toko.index')}}">Toko</a>
                     </li>
                     <li class="nav-item me-2">
-                        <a class="nav-link" href="{{ route('toko')}}">Toko</a>
+                        <a class="nav-link {{ Request::is('produk') ? 'active' : '' }}" href="{{ route('produk')}}">Produk</a>
                     </li>
                     <li class="nav-item me-2">
-                        <a class="nav-link" href="{{ route('blog')}}">Blog</a>
+                        <a class="nav-link {{ Request::is('forum') ? 'active' : '' }}" href="{{ route('forum')}}">Forum</a>
                     </li>
                     <li class="nav-item me-2">
-                        <a class="nav-link" href="{{ route('produk')}}">Produk</a>
+                        <a class="nav-link {{ Request::is('blog') ? 'active' : '' }}" href="{{ route('blog.index')}}">Blog</a>
                     </li>
                     <li class="nav-item me-2">
                         <a class="nav-link" href="">About Us</a>
@@ -80,7 +80,6 @@
 
                         <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="{{ route('vendor.index')}}">Toko Ku</a>
-                            <a class="dropdown-item">Buku Akuntan</a>
                             <a class="dropdown-item">Profil</a>
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                onclick="event.preventDefault();

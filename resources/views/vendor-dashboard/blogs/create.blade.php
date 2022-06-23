@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'BlogKu - Buat')
+
 @section('content')
 <div class="container">
     <div class="row">
@@ -7,14 +9,14 @@
 
         <div class="col-lg-10">
             <div class="card">
-                <div class="card-header">{{ __('Buat Produk') }}</div>
+                <div class="card-header">{{ __('Buat Blog') }}</div>
                 <div class="card-body">
-                    <form action="{{ route('vendor.product.index') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('vendor.blog.index') }}" method="POST" enctype="multipart/form-data">
                         @csrf
-                        <input type="hidden" name="vendor_id" value="{{ $vendor_id }}">
+                        <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
 
                         <div class="mb-3 row">
-                            <label for="image" class="col-sm-2 col-form-label">{{ __('Gambar Produk') }}</label>
+                            <label for="image" class="col-sm-2 col-form-label">{{ __('Banner Blog') }}</label>
                             <div class="col-sm-10">
                                 <img class="mb-3 col-sm-5 img-preview img-fluid">
                                 <input class="form-control" type="file" id="image" name="image" onchange="previewImage()">
@@ -22,28 +24,21 @@
                         </div>
 
                         <div class="mb-3 row">
-                            <label for="name" class="col-sm-2 col-form-label">{{ __('Nama Produk') }}</label>
+                            <label for="title" class="col-sm-2 col-form-label">{{ __('Judul Blog') }}</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="name" name="name">
+                                <input type="text" class="form-control" id="title" name="title">
                             </div>
                         </div>
 
                         <div class="mb-3 row">
-                            <label for="price" class="col-sm-2 col-form-label">{{ __('Harga Produk') }}</label>
+                            <label for="subtitle" class="col-sm-2 col-form-label">{{ __('Ringkasan Blog') }}</label>
                             <div class="col-sm-10">
-                                <input type="number" class="form-control" id="price" name="price" min="1">
+                                <input type="text" class="form-control" id="subtitle" name="subtitle">
                             </div>
                         </div>
 
                         <div class="mb-3 row">
-                            <label for="weight" class="col-sm-2 col-form-label">{{ __('Berat Produk') }}</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="weight" name="weight">
-                            </div>
-                        </div>
-
-                        <div class="mb-3 row">
-                            <label for="category" class="col-sm-2 col-form-label">{{ __('Kategori Produk') }}</label>
+                            <label for="category" class="col-sm-2 col-form-label">{{ __('Kategori Blog') }}</label>
                             <div class="col-sm-10">
 
                                 <div class="form-check form-check-inline">
@@ -74,16 +69,15 @@
                         </div>
 
                         <div class="mb-3 row">
-                            <label for="desc" class="col-sm-2 col-form-label">{{ __('Keterangan') }}</label>
+                            <label for="content" class="col-sm-2 col-form-label">{{ __('Deskripsi') }}</label>
                             <div class="col-sm-10">
-                                <input type="hidden" name="desc" id="desc">
-                                <trix-editor input="desc"></trix-editor>
-                                {{-- <textarea class="form-control" id="desc" name="desc" rows="3"></textarea> --}}
+                                <input type="hidden" name="content" id="content">
+                                <trix-editor input="content"></trix-editor>
                             </div>
                         </div>
 
                         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                            <a class="btn btn-danger me-md-2" href="{{ route('vendor.product.index') }}">{{ __('Cancel') }}</a>
+                            <a class="btn btn-danger me-md-2" href="{{ route('vendor.blog.index') }}">{{ __('Cancel') }}</a>
                             <button class="btn btn-primary" type="submit">{{ __('Submit') }}</button>
                         </div>
 

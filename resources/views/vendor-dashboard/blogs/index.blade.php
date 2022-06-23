@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'BlogKu')
+
 @section('content')
 <div class="container">
     <div class="row">
@@ -9,12 +11,6 @@
             <div class="card">
                 <div class="card-header">{{ __('Daftar Blog') }}</div>
 
-                {{-- @if (session()->has('success-add'))
-                    <div class="mx-3 my-2 alert alert-success alert-dismissible fade show" role="alert">
-                        {{ session('success-add') }}
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
-                @endif --}}
                 <div class="m-3">
                     @if (session()->has('success-add'))
                         <x-alert type="success" message="{{ session('success-add') }}"/>
@@ -29,7 +25,7 @@
                     @endif
 
                     <a class="btn btn-sm btn-primary mb-2 fw-bold" href="{{ route('vendor.blog.create') }}">
-                        <span><i class="bi bi-plus-lg fw-bold"></i>
+                        <span><i class="bi bi-plus-lg fw-bold text-white"></i>
                         </span>{{ __('Add Blog') }}
                     </a>
 
@@ -58,7 +54,7 @@
                                 <td>{{ $key->status }}</td>
                                 <td class="d-flex flex-wrap">
                                     <a class="btn btn-sm btn-info me-1 mb-1 text-white" href="/vendor/blog/show/{{ $key->id }}"> {{ __('View') }} </a>
-                                    <a class="btn btn-sm btn-primary me-1 mb-1" href="/vendor/blog/edit/{{ $key->id }}"> {{ __('Edit') }} </a>
+                                    <a class="btn btn-sm btn-primary me-1 mb-1" href="{{ route('vendor.blog.edit',$key->id) }}"> {{ __('Edit') }} </a>
                                     <button class="btn btn-sm btn-danger me-1 mb-1" type="button" data-bs-toggle="modal" data-bs-target="#confirmationDelete{{ $key->id }}">Delete</button>
                                 </td>
                             </tr>
@@ -76,7 +72,7 @@
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                             
-                                            <form action="/vendor/blog/{{ $key->id }}" method="post">
+                                            <form action="{{ route('vendor.blog.destroy',$key->id) }}" method="post">
                                                 @csrf
 
                                                 <input type="hidden" name="_method" value="DELETE">

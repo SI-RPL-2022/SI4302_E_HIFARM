@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'BlogKu - Edit')
+
 @section('content')
 <div class="container">
     <div class="row">
@@ -7,16 +9,21 @@
 
         <div class="col-lg-10">
             <div class="card">
-                <div class="card-header">{{ __('Buat Blog') }}</div>
+                <div class="card-header">{{ __('Edit Produk') }}</div>
                 <div class="card-body">
-                    <form action="{{ route('vendor.blog.index') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('vendor.blog.edit',$data->id) }}" method="POST" enctype="multipart/form-data">
                         @csrf
-                        <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
+                        <input type="hidden" name="user_id" value="{{ $data->user_id }}">
+                        <input type="hidden" name="oldImage" value="{{ $data->image }}">
 
                         <div class="mb-3 row">
                             <label for="image" class="col-sm-2 col-form-label">{{ __('Banner Blog') }}</label>
                             <div class="col-sm-10">
-                                <img class="mb-3 col-sm-5 img-preview img-fluid">
+                                @if ($data->image)
+                                    <img src="{{ asset('storage/'.$data->image) }}" class="mb-3 col-sm-5 img-preview img-fluid">
+                                @else
+                                    <img class="mb-3 col-sm-5 img-preview img-fluid">
+                                @endif
                                 <input class="form-control" type="file" id="image" name="image" onchange="previewImage()">
                             </div>
                         </div>
@@ -24,14 +31,14 @@
                         <div class="mb-3 row">
                             <label for="title" class="col-sm-2 col-form-label">{{ __('Judul Blog') }}</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="title" name="title">
+                                <input type="text" class="form-control" id="title" name="title" value="{{ $data->title }}">
                             </div>
                         </div>
 
                         <div class="mb-3 row">
                             <label for="subtitle" class="col-sm-2 col-form-label">{{ __('Ringkasan Blog') }}</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="subtitle" name="subtitle">
+                                <input type="text" class="form-control" id="subtitle" name="subtitle" value="{{ $data->subtitle }}">
                             </div>
                         </div>
 
@@ -41,25 +48,25 @@
 
                                 <div class="form-check form-check-inline">
                                     <input class="form-check-input" type="radio" name="category" id="inlineRadio1"
-                                        value="Hewan Ternak">
+                                        value="Hewan Ternak" @if($data->category == 'Hewan Ternak') checked @endif>
                                     <label class="form-check-label" for="inlineRadio1">{{ __('Hewan Ternak') }}</label>
                                 </div>
 
                                 <div class="form-check form-check-inline">
                                     <input class="form-check-input" type="radio" name="category" id="inlineRadio2"
-                                        value="Produk Ternak">
+                                        value="Produk Ternak" @if($data->category == 'Produk Ternak') checked @endif>
                                     <label class="form-check-label" for="inlineRadio2">{{ __('Produk Ternak') }}</label>
                                 </div>
 
                                 <div class="form-check form-check-inline">
                                     <input class="form-check-input" type="radio" name="category" id="inlineRadio3"
-                                        value="Pakan Ternak">
+                                        value="Pakan Ternak" @if($data->category == 'Pakan Ternak') checked @endif>
                                     <label class="form-check-label" for="inlineRadio3">{{ __('Pakan Ternak') }}</label>
                                 </div>
 
                                 <div class="form-check form-check-inline">
                                     <input class="form-check-input" type="radio" name="category" id="inlineRadio4"
-                                        value="Lainnya">
+                                        value="Lainnya" @if($data->category == 'Lainnya') checked @endif>
                                     <label class="form-check-label" for="inlineRadio4">{{ __('Lainnya') }}</label>
                                 </div>
 
@@ -69,7 +76,7 @@
                         <div class="mb-3 row">
                             <label for="content" class="col-sm-2 col-form-label">{{ __('Deskripsi') }}</label>
                             <div class="col-sm-10">
-                                <input type="hidden" name="content" id="content">
+                                <input type="hidden" name="content" id="content" value="{{ $data->content }}">
                                 <trix-editor input="content"></trix-editor>
                             </div>
                         </div>

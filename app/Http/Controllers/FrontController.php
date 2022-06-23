@@ -5,9 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use App\Models\Blog;
 use App\Models\Vendor;
 use App\Models\Product;
-use App\Models\Blog;
+use App\Models\Review;
 use App\Models\Forum_Thread;
 
 
@@ -24,25 +25,34 @@ class FrontController extends Controller
 
 
     public function toko(){
-
-        
-        if(request('search')) {{
-            $toko = DB::table('vendors')->where('store_name', 'like', '%'.request('search').'%')
-                                        ->orWhere('address', 'like', '%'.request('search').'%')->paginate(6);
-        }}
-        elseif (request('filter')) {{
-            $toko = DB::table('vendors')->where('store_name', 'like', request('filter').'%')->paginate(6);
-        }}
-        else{
+        if (request('search')) {
+            {
+                $toko = DB::table('vendors')->where('store_name', 'like', '%'.request('search').'%')
+                                            ->orWhere('address', 'like', '%'.request('search').'%')
+                                            ->paginate(6);
+            }
+        } elseif (request('filter')) {
+            {
+                $toko = DB::table('vendors')->where('store_name', 'like', request('filter').'%')
+                                            ->paginate(6);
+            }
+        } else {
             $toko = Vendor::paginate(6);
         }
 
-        return view('toko', compact('toko'));
+        return view('toko.index', compact('toko'));
+    }
+
+    public function tokoShow($id)
+    {
+        $vendor= Vendor::find($id);
+        $product= Product::where("vendor_id",$id)->paginate(6);
+        $review= Review::latest('created_at')->where("vendor_id",$id)->get();
+
+        return view('toko.show',compact('vendor','product','review'));
     }
 
     public function forum(){
-
-        
         if(request('search')) {{
             // need fix
             $forum = Forum_Thread::withCount('comments');
@@ -57,20 +67,38 @@ class FrontController extends Controller
         
 
     public function blog(){
-        
-            if(request('search')) {{
-            $blog = Blog::latest('updated_at')->where('status','Accepted')->where('title', 'like', '%'.request('search').'%')
-                                        ->orWhere('subtitle', 'like', '%'.request('search').'%')->latest('updated_at')->paginate(4);
-        }}
-        elseif (request('filter')) {{
-            $blog = Blog::latest('updated_at')->where('status','Accepted')->where('category', 'like', '%'.request('filter').'%')->latest('updated_at')->paginate(4);
-        }}
-        else{
-            $blog = Blog::latest('updated_at')->where('status','Accepted')->paginate(4);
+        if (request('search')) {
+            {
+                $blog = Blog::latest('updated_at')->where('status','Accepted')
+                                        ->where('title', 'like', '%'.request('search').'%')
+                                        ->orWhere('subtitle', 'like', '%'.request('search').'%')
+                                        ->latest('updated_at')
+                                        ->paginate(4);
+            }
+        } elseif (request('filter')) {
+            {
+                $blog = Blog::latest('updated_at')->where('status','Accepted')
+                                        ->where('category', 'like', '%'.request('filter').'%')
+                                        ->latest('updated_at')
+                                        ->paginate(4);
+            }
+        } else {
+                $blog = Blog::latest('updated_at')->where('status','Accepted')
+                                            ->paginate(4);
         }
         
+        return view('blog.index', compact('blog'));
+    }
 
-        return view('kumpulan_blog', compact('blog'));
+    public function showblog($id)
+    {
+        $data = Blog::where('id', $id)->first();
+        if ($data->status == 'Accepted') {
+            return view('blog.show', compact('data'));
+        }
+        else {
+            abort(404);
+        }
     }
 
     public function product(){
@@ -89,6 +117,7 @@ class FrontController extends Controller
 
     return view('produk', compact('produk'));
 }
+
     public function tes(){
 
         return view('tambah_review');

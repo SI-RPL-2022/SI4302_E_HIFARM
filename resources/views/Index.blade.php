@@ -68,7 +68,7 @@
     <div class="row justify-content-center">
         <div class="text-center">
             <p class="fs-5">Lihat produk lebih jauh.</p>
-            <a class="btn btn-lg btn-primary" href="{{ route('toko')}}" role="button">Browse Toko</a>
+            <a class="btn btn-lg btn-primary" href="{{ route('toko.index')}}" role="button">Browse Toko</a>
         </div>
     </div>
 </div>

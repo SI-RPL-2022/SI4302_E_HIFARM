@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Vendor;
 
+use App\Http\Controllers\Controller;
 use App\Models\Blog;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -15,7 +16,7 @@ class BlogController extends Controller
      */
     public function index()
     {
-        return view('blogs.index', [
+        return view('vendor-dashboard.blogs.index', [
             'data' => Blog::latest('updated_at')->filter(request(['search']))->paginate(10)
         ]);
     }
@@ -27,7 +28,7 @@ class BlogController extends Controller
      */
     public function create()
     {
-        return view('blogs.create');
+        return view('vendor-dashboard.blogs.create');
     }
 
     /**
@@ -52,7 +53,7 @@ class BlogController extends Controller
         }
 
         Blog::create($validatedData);
-        return redirect('/vendor/blog')->with('success-add','Anda berhasil menambah blog!');
+        return redirect('/dashboard/vendor/blog')->with('success-add','Anda berhasil menambah blog!');
     }
 
     /**
@@ -63,20 +64,9 @@ class BlogController extends Controller
      */
     public function show(Blog $blog)
     {
-        return view('blogs.show', [
+        return view('vendor-dashboard.blogs.show', [
             'data' => $blog
         ]);
-    }
-
-    public function showblog($id)
-    {
-        $data = Blog::where('id', $id)->first();
-        if ($data->status == 'Accepted') {
-        return view('showblog', compact('data'));
-            }
-        else {
-            abort(404);
-        }
     }
 
     /**
@@ -89,7 +79,7 @@ class BlogController extends Controller
     {
         $this->authorize('view', $blog);
 
-        return view('blogs.edit', [
+        return view('vendor-dashboard.blogs.edit', [
             'data' => $blog
         ]);
     }
@@ -120,7 +110,7 @@ class BlogController extends Controller
         }
 
         Blog::where('id', $blog->id)->update($validatedData);
-        return redirect('/vendor/blog')->with('success-update','Anda berhasil update blog!');
+        return redirect('/dashboard/vendor/blog')->with('success-update','Anda berhasil update blog!');
     }
 
     /**
@@ -136,6 +126,6 @@ class BlogController extends Controller
         }
 
         Blog::destroy($blog->id);
-        return redirect('/vendor/blog')->with('success-remove','Anda berhasil menghapus Blog!');
+        return redirect('/dashboard/vendor/blog')->with('success-remove','Anda berhasil menghapus Blog!');
     }
 }

@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Vendor;
 
+use App\Http\Controllers\Controller;
 use App\Models\Vendor;
 use App\Models\Journal;
 use Illuminate\Http\Request;
@@ -16,7 +17,7 @@ class JournalController extends Controller
     public function index()
     {
         // dd(Accounting_Book::latest('date')->get());
-        return view('journal.index', [
+        return view('vendor-dashboard.journal.index', [
             'data' => Journal::latest('date')->get()
         ]);
     }
@@ -50,7 +51,7 @@ class JournalController extends Controller
         $validatedData['vendor_id'] = Vendor::where('user_id', auth()->user()->id)->first()->id;
 
         Journal::create($validatedData);
-        return redirect('/vendor/journal')->with('success-add','Anda berhasil menambah Transaksi!');
+        return redirect('/dashboard/vendor/journal')->with('success-add','Anda berhasil menambah Transaksi!');
     }
 
     /**
@@ -97,7 +98,7 @@ class JournalController extends Controller
         $validatedData['vendor_id'] = Vendor::where('user_id', auth()->user()->id)->first()->id;
 
         Journal::where('id', $id)->update($validatedData);
-        return redirect('/vendor/journal')->with('success-update','Anda berhasil update Transaksi!');
+        return redirect('/dashboard/vendor/journal')->with('success-update','Anda berhasil update Transaksi!');
     }
 
     /**
@@ -109,6 +110,6 @@ class JournalController extends Controller
     public function destroy($id)
     {
         Journal::destroy($id);
-        return redirect('/vendor/journal')->with('success-remove','Anda berhasil menghapus Transaksi!');
+        return redirect('/dashboard/vendor/journal')->with('success-remove','Anda berhasil menghapus Transaksi!');
     }
 }

@@ -4,15 +4,15 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\VendorController;
-use App\Http\Controllers\ProductController;
-use App\Http\Controllers\BlogController;
 use App\Http\Controllers\FrontController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\Forum_ThreadController;
 use App\Http\Controllers\Forum_CommentController;
-use App\Http\Controllers\JournalController;
+use App\Http\Controllers\Vendor\VendorController;
+use App\Http\Controllers\Vendor\ProductController;
+use App\Http\Controllers\Vendor\JournalController;
+use App\Http\Controllers\Vendor\BlogController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,32 +25,20 @@ use App\Http\Controllers\JournalController;
 |
 */
 
-
-// Route::get('/blog', function () {
-//     return view('kumpulanblog', [
-//         'data' => App\Models\Blog::latest('updated_at')->filter(request(['search']))->paginate(10)
-//     ]);
-// });
-
-// Route::get('/blog/{id}', function ($id) {
-//     return view('showblog', [
-//         'data' => App\Models\Blog::where('id', $id)->first()
-//     ]);
-// });
-
 Auth::routes();
+
 Route::get('/', [FrontController::class, 'index'])->name('home');
-Route::get('/toko', [FrontController::class, 'toko'])->name('toko');
-Route::get('/visit/{id}', [VendorController::class, 'show'])->name('visit');
-Route::get('/forum', [FrontController::class, 'forum'])->name('forum');
+Route::get('/toko', [FrontController::class, 'toko'])->name('toko.index');
+Route::get('/toko/{id}', [FrontController::class, 'tokoShow'])->name('toko.show');
 Route::get('/produk', [FrontController::class, 'product'])->name('produk');
-Route::get('/blog', [FrontController::class, 'blog'])->name('blog');
-Route::get('/blog/{id}', [BlogController::class, 'showblog'])->name('blog.visit');
+Route::get('/forum', [FrontController::class, 'forum'])->name('forum');
+Route::get('/blog', [FrontController::class, 'blog'])->name('blog.index');
+Route::get('/blog/{id}', [FrontController::class, 'blogShow'])->name('blog.show');
 
 Route::get('/tes', [FrontController::class, 'tes'])->name('tes');
 
 
-    /// THREAD
+// Thread
 Route::prefix('thread')->group(function () {
     Route::middleware('auth')->group(function () {
     Route::get('/create', [Forum_ThreadController::class, 'create'])->name('thread.create');
@@ -76,16 +64,9 @@ Route::prefix('thread')->group(function () {
         });
 
 });
-////////////////////////////////////////GUEST & ALL USER
 
-
-
-/////////////////////////////////////////SPECIFIC USER
 
 Route::prefix('home')->middleware('auth')->group(function () {
-    ////////////////////////// LANDING PAGE
-    Route::get('/', [HomeController::class, 'index'])->name('home');
-    // Route::get('/storeList', [HomeController::class, 'index'])->name('storeList');
     Route::get('/visit/{id}', [VendorController::class, 'show'])->name('user.visit');
 
     //////////////////// PEMBELIAN
@@ -110,28 +91,41 @@ Route::group(['middleware'=>'checkRole:user','prefix'=>'user'], function() {
     // GET BUKA TOKO
     Route::get('/store', [VendorController::class, 'create'])->name('user.create');
     Route::post('/store', [VendorController::class, 'store'])->name('user.store');
-
-    
 });
 
 Route::group(['middleware'=>'checkRole:admin','prefix'=>'admin'], function() {
-    
     Route::get('/request', [AdminController::class, 'index'])->name('admin.index');
     Route::get('/request/show/{id}', [AdminController::class, 'show'])->name('admin.show');
     Route::post('/request/accept/{id}', [AdminController::class, 'Accept'])->name('admin.acc');
     Route::post('/request/deny/{id}', [AdminController::class, 'Deny'])->name('admin.deny');
-
-    
 });
 
 /////VENDOR
-Route::group(['middleware'=>'checkRole:vendor','prefix'=>'vendor'], function() {
-    // TOKO
-    
+Route::group(['middleware'=>'checkRole:vendor','prefix'=>'dashboard/vendor'], function() {
+    // Toko
     Route::get('/store', [VendorController::class, 'index'])->name('vendor.index');
     Route::get('/store/{id}', [VendorController::class, 'edit'])->name('vendor.edit');
     Route::put('/store/{id}', [VendorController::class, 'update'])->name('vendor.update');
     Route::delete('/store/delete/{id}', [VendorController::class, 'destroy'])->name('vendor.delete');
+
+    // Produk
+    Route::group(['prefix'=>'product'], function() {
+        Route::get('/', [ProductController::class, 'index'])->name('vendor.product.index');
+        Route::post('/', [ProductController::class, 'store']);
+        Route::get('/create', [ProductController::class, 'create'])->name('vendor.product.create');
+        Route::get('/edit/{product}', [ProductController::class, 'edit'])->name('vendor.product.edit');
+        Route::post('/edit/{product}', [ProductController::class, 'update'])->name('vendor.product.update');
+        Route::get('/show/{product}', [ProductController::class, 'show']);
+        Route::delete('/{product}', [ProductController::class, 'destroy'])->name('vendor.product.destroy');
+    });
+
+    // Journal
+    Route::group(['prefix'=>'journal'], function() {
+        Route::get('/', [JournalController::class, 'index'])->name('vendor.journal.index');
+        Route::post('/', [JournalController::class, 'store']);
+        Route::post('/edit/{id}', [JournalController::class, 'update'])->name('vendor.journal.update');
+        Route::delete('/{id}', [JournalController::class, 'destroy'])->name('vendor.journal.destroy');
+    });
 
     // Blog
     Route::group(['prefix'=>'blog'], function() {
@@ -141,28 +135,7 @@ Route::group(['middleware'=>'checkRole:vendor','prefix'=>'vendor'], function() {
         Route::get('/edit/{blog}', [BlogController::class, 'edit'])->name('vendor.blog.edit');
         Route::post('/edit/{blog}', [BlogController::class, 'update']);
         Route::get('/show/{blog}', [BlogController::class, 'show']);
-        Route::delete('/{blog}', [BlogController::class, 'destroy']);
-    });
-
-    // PRODUK
-    Route::group(['prefix'=>'product'], function() {
-        Route::get('/', [ProductController::class, 'index'])->name('vendor.product.index');
-        Route::post('/', [ProductController::class, 'store']);
-        Route::get('/create', [ProductController::class, 'create'])->name('vendor.product.create');
-        Route::get('/edit/{product}', [ProductController::class, 'edit'])->name('vendor.product.edit');
-        Route::post('/edit/{product}', [ProductController::class, 'update']);
-        Route::get('/show/{product}', [ProductController::class, 'show']);
-        Route::delete('/{product}', [ProductController::class, 'destroy']);
-    });
-
-    // Journal
-    Route::group(['prefix'=>'journal'], function() {
-        Route::get('/', [JournalController::class, 'index'])->name('vendor.journal.index');
-        Route::post('/', [JournalController::class, 'store']);
-        Route::post('/edit/{id}', [JournalController::class, 'update']);
-        Route::delete('/{id}', [JournalController::class, 'destroy']);
+        Route::delete('/{blog}', [BlogController::class, 'destroy'])->name('vendor.blog.destroy');
     });
 
 });
-
-//////////////////////////////////////// SPECIFIC USER

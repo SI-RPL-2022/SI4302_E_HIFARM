@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'JurnalKu')
+
 @section('content')
 <div class="container">
     <div class="row">
@@ -133,7 +135,7 @@
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                 aria-label="Close"></button>
                                         </div>
-                                        <form action="/vendor/journal/edit/{{ $key->id }}" method="post">
+                                        <form action="{{ route('vendor.journal.update', $key->id) }}" method="post">
                                             @csrf
                                             {{-- <input type="hidden" name="_method" value="POST"> --}}
                                             <input type="hidden" name="id" value="{{ $key->id }}">
@@ -207,7 +209,7 @@
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary"
                                                 data-bs-dismiss="modal">Close</button>
-                                            <form action="/vendor/journal/{{ $key->id }}" method="post">
+                                            <form action="{{ route('vendor.journal.destroy', $key->id) }}" method="post">
                                                 @csrf
                                                 <input type="hidden" name="_method" value="DELETE">
                                                 <button type="submit" class="btn btn-danger">Delete</button>
