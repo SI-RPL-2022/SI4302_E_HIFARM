@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Profile - Edit')
+
 @section('content')
 <div class="py-5 text-center">
     <h2>Edit Profile</h2>

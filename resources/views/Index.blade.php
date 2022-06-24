@@ -3,7 +3,7 @@
 @section('title', 'Home')
 
 @section('content')
-<div class="container ">
+<div class="container">
     <div class="mb-5">
         <img src="{{ asset('image/home1.png') }}" height="350" class="card-img-top" style="border-radius: 25px"
             alt="home1">

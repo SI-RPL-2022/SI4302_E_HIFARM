@@ -5,7 +5,7 @@
     <div class="row justify-content-md-center">
         <div class="col col-lg-9">
             <div class="mb-3">
-                <a href="/vendor/blog" class="text-decoration-none"><span><i class="bi bi-arrow-left-short"></i></span>
+                <a href="{{ route('vendor.blog.index') }}" class="text-decoration-none"><span><i class="bi bi-arrow-left-short"></i></span>
                     Kembali ke sebelumnya</a>
             </div>
 

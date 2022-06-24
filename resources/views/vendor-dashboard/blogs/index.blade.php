@@ -53,7 +53,7 @@
                                 <td>{{ $key->title }}</td>
                                 <td>{{ $key->status }}</td>
                                 <td class="d-flex flex-wrap">
-                                    <a class="btn btn-sm btn-info me-1 mb-1 text-white" href="/vendor/blog/show/{{ $key->id }}"> {{ __('View') }} </a>
+                                    <a class="btn btn-sm btn-info me-1 mb-1 text-white" href="/dashboard/vendor/blog/show/{{ $key->id }}"> {{ __('View') }} </a>
                                     <a class="btn btn-sm btn-primary me-1 mb-1" href="{{ route('vendor.blog.edit',$key->id) }}"> {{ __('Edit') }} </a>
                                     <button class="btn btn-sm btn-danger me-1 mb-1" type="button" data-bs-toggle="modal" data-bs-target="#confirmationDelete{{ $key->id }}">Delete</button>
                                 </td>

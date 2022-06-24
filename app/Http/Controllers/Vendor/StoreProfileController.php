@@ -1,10 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Vendor;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Vendor;
 
-class UserController extends Controller
+class StoreProfileController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +15,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        return view('vendor-dashboard.profile.index', [
+            'data' => Vendor::where('user_id', auth()->user()->id)->first()
+        ]);
     }
 
     /**
