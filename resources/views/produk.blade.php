@@ -36,7 +36,7 @@
 				<div class="card mb-6" style="max-width: 100%; border-radius: 20px; margin-top: 12px">
 					<div class="row g-0">
 						<div class="col-md-4">
-							<img src="{{ URL::asset('storage/'.$x->image)}}" class="img-fluid rounded-start" width="300" height="300" style="width: 300px; height: 170px;" alt="...">
+							<img src="{{ asset('storage/'.$x->image)}}" class="img-fluid rounded-start" width="300" height="300" style="width: 300px; height: 170px;" alt="...">
 						</div>
 						<div class="col-md-8">
 							<div class="card-body">
