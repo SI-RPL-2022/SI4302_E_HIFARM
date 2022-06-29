@@ -9,7 +9,7 @@
                 <span><i class="bi bi-trophy"></i></span>&nbsp;&nbsp;{{ __('Products') }}</li></a>
             <a href="" class="text-decoration-none"><li class="list-group-item sidebar-hover">
                 <span><i class="bi bi-trophy"></i></span>&nbsp;&nbsp;{{ __('Blog Post') }}</li></a>
-            <a href="" class="text-decoration-none"><li class="list-group-item sidebar-hover">
+            <a href="{{ route('profile.index')}}" class="text-decoration-none"><li class="list-group-item sidebar-hover">
                 <span><i class="bi bi-person"></i></span>&nbsp;&nbsp;{{ __('Profile') }}</li></a>
             <a href="" class="text-decoration-none" onclick="event.preventDefault();
                     document.getElementById('logout-button').submit();"><li class="list-group-item sidebar-hover">

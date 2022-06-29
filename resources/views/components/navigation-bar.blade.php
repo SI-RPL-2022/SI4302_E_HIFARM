@@ -78,7 +78,7 @@
                         <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="{{ route('vendor.index')}}">Toko Ku</a>
                             <a class="dropdown-item">Buku Akuntan</a>
-                            <a class="dropdown-item">Profil</a>
+                            <a class="dropdown-item" href="{{ route('profile.index')}}">Profil</a>
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                onclick="event.preventDefault();
                                              document.getElementById('logout-form').submit();">

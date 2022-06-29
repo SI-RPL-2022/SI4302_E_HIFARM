@@ -93,7 +93,7 @@ class ProfileController extends Controller
         $password_old = $request->password_old;
         if ($password_old == null) {
             $data_user->fill(['name' => $validatedData["name"]])->save();
-            return redirect("/profile/edit")->with('success-changeData', 'Anda berhasil memperbarui data anda!');
+            return redirect("/profile")->with('success-changeData', 'Anda berhasil memperbarui data anda!');
         } else {
             if (Hash::check($password_old, $data_user->password)) {
                 if ($validatedData["password_new"] == $validatedData["password_new2"]) {
@@ -104,7 +104,7 @@ class ProfileController extends Controller
                         'password' => $validatedData["password_new"]
                     ])->save();
     
-                    return redirect("/profile/edit")->with('success-changePass', 'Anda berhasil memperbarui password anda!');
+                    return redirect("/profile")->with('success-changePass', 'Anda berhasil memperbarui password anda!');
                 } else {
                     return redirect("/profile/edit")->with('failed-changePass', 'Konfirmasi password tidak sesuai!');
                 }
